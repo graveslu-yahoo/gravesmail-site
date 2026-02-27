@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Manual — GravesMail</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button class="mobile-menu-btn" onclick="document.querySelector('.sidebar').classList.toggle('open')">&#9776;</button>
+
+<div class="app-frame">
+  <nav class="sidebar">
+    <button class="sidebar-close" onclick="this.parentElement.classList.remove('open')">&times;</button>
+    <div class="sidebar-header">
+      <h1><a href="index.html">GravesMail</a></h1>
+      <div class="tagline">Secure Email Client</div>
+    </div>
+    <div class="sidebar-nav">
+      <a href="index.html"><span class="nav-icon">&#x1F4EC;</span> Home</a>
+      <a href="mission.html"><span class="nav-icon">&#x1F3AF;</span> Mission &amp; Story</a>
+      <a href="how-it-works.html"><span class="nav-icon">&#x1F9E0;</span> How the Filter Learns</a>
+      <a href="privacy.html"><span class="nav-icon">&#x1F512;</span> Privacy Policy</a>
+      <a href="manual.html" class="active"><span class="nav-icon">&#x1F4D6;</span> User Manual</a>
+    </div>
+    <div class="sidebar-footer">
+      GravesMail v1.1.0<br>&copy; 2026 Luke Graves
+    </div>
+  </nav>
+
+  <main class="content">
+
+    <div class="content-header">
+      <h2>User Manual</h2>
+      <div class="subtitle">GravesMail v1.1.0 &mdash; Everything you need to know</div>
+    </div>
+
+    <div class="content-body">
+
+      <!-- TABLE OF CONTENTS -->
+      <div class="callout">
+        <div class="callout-label">In This Manual</div>
+        <p>
+          <a href="#getting-started">1. Getting Started</a> &bull;
+          <a href="#first-time-setup">2. First-Time Setup</a> &bull;
+          <a href="#main-screen">3. The Main Screen</a> &bull;
+          <a href="#reading-email">4. Reading Email</a> &bull;
+          <a href="#writing-email">5. Writing &amp; Sending Email</a> &bull;
+          <a href="#spam">6. Dealing with Spam</a> &bull;
+          <a href="#contacts">7. Contacts</a> &bull;
+          <a href="#calendar">8. Calendar</a> &bull;
+          <a href="#rules">9. Mail Rules</a> &bull;
+          <a href="#settings">10. Settings</a> &bull;
+          <a href="#shortcuts">11. Keyboard Shortcuts</a> &bull;
+          <a href="#troubleshooting">12. Troubleshooting</a>
+        </p>
+      </div>
+
+      <!-- 1. GETTING STARTED -->
+      <div class="manual-section" id="getting-started">
+        <h2>1. Getting Started</h2>
+
+        <p>GravesMail is a single file. There is nothing to install. Just double-click GravesMail.exe and it opens.</p>
+
+        <p>The first thing you will see is the Sign In screen.</p>
+
+        <h3>Signing In</h3>
+
+        <p><strong>1. Choose your email provider</strong> from the dropdown menu at the top. GravesMail supports Yahoo, Gmail, Outlook, iCloud, and custom mail servers.</p>
+
+        <p><strong>2. Follow the App Password guide.</strong> Most email providers require something called an App Password instead of your regular password. GravesMail shows you exactly how to create one, step by step, right on the sign-in screen. There is even a button that opens the right settings page for your provider.</p>
+
+        <p><strong>3. Type your email address</strong> in the Email Address field.</p>
+
+        <p><strong>4. Paste your App Password</strong> into the App Password field.</p>
+
+        <p><strong>5. Check &ldquo;Remember credentials&rdquo;</strong> if you want GravesMail to save your login so you don&rsquo;t have to type it again next time.</p>
+
+        <p><strong>6. Click Sign In.</strong></p>
+
+        <div class="callout tip">
+          <div class="callout-label">Tip</div>
+          <p>Your password is encrypted on your computer using Windows encryption. GravesMail never sends your password anywhere except to your email provider to log in.</p>
+        </div>
+
+        <p><strong>For Outlook/Microsoft accounts:</strong> Microsoft uses a different login method called OAuth. GravesMail will show you a &ldquo;Sign in with Microsoft&rdquo; button instead of a password field. Click it, sign in through the Microsoft popup, and you&rsquo;re done.</p>
+      </div>
+
+      <!-- 2. FIRST-TIME SETUP -->
+      <div class="manual-section" id="first-time-setup">
+        <h2>2. First-Time Setup</h2>
+
+        <p>After you sign in for the first time, GravesMail asks how you want to bring in your existing email. You have three choices:</p>
+
+        <h3>Current Only &mdash; Start Fresh</h3>
+        <p>GravesMail will only pick up new email from this point forward. None of your old email will be downloaded. This is the fastest option and takes just a few seconds.</p>
+
+        <h3>Full Sync &mdash; Keep on Server</h3>
+        <p>GravesMail downloads all of your email from all folders to your computer. Your email also stays on the server, so you can still check it from your phone or another computer. This is the best option for most people.</p>
+
+        <h3>Full Sync &mdash; Local Only</h3>
+        <p>GravesMail downloads all of your email and then <strong>deletes it from the server</strong>. After this, your email will only exist on this computer. If something happens to your computer and you don&rsquo;t have a backup, your email is gone. Only choose this if you understand the risk.</p>
+
+        <p>Click Begin Sync when you are ready. A progress bar and log will show you what is happening. You can pause the sync at any time and resume it later.</p>
+
+        <div class="callout tip">
+          <div class="callout-label">Tip</div>
+          <p>The first sync can take a while if you have a lot of email. Let it run. You can use your computer for other things while it works.</p>
+        </div>
+      </div>
+
+      <!-- 3. THE MAIN SCREEN -->
+      <div class="manual-section" id="main-screen">
+        <h2>3. The Main Screen</h2>
+
+        <p>After setup, you will see the main GravesMail screen. It has three panels side by side:</p>
+
+        <h3>Left Panel &mdash; Accounts and Folders</h3>
+        <p>This shows all of your email accounts and their folders (Inbox, Sent, Drafts, Trash, etc.). Click on any folder to see its messages. If you have more than one email account, they are all listed here with their folders grouped underneath.</p>
+        <p>At the bottom of this panel you will see two buttons: Mail and Calendar. Click Calendar to switch to calendar view. Click Mail to switch back.</p>
+
+        <h3>Middle Panel &mdash; Message List</h3>
+        <p>This shows all the messages in whatever folder you selected. Each message shows who it&rsquo;s from, the subject line, and the date. Unread messages appear in bold.</p>
+        <p>You can search for messages by typing in the search box at the top. You can also sort messages by date, subject, sender, importance, or flag using the dropdown menu next to the search box.</p>
+        <p>The Threads checkbox groups related messages together into conversations. Click the number badge next to a conversation to expand or collapse it.</p>
+
+        <h3>Right Panel &mdash; Message Reader</h3>
+        <p>Click on any message in the middle panel and its full content appears here. You will see the subject, who sent it, who received it, the date, and the full message body.</p>
+        <p>If the message has attachments, they appear as cards below the header. Each attachment shows its name and file size, with buttons to Open or Save As.</p>
+        <p>If GravesMail stripped tracking pixels from the message, you will see an orange banner that says &ldquo;Tracking pixels stripped&rdquo; with a count. This means the sender tried to track whether you opened the email, and GravesMail blocked it.</p>
+
+        <div class="callout tip">
+          <div class="callout-label">Tip</div>
+          <p>You can zoom in and out on the message body using the + and &ndash; buttons at the bottom right of the reader panel.</p>
+        </div>
+
+        <h3>Toolbar</h3>
+        <p>The toolbar sits across the top of the screen with buttons for the most common actions: Refresh, Compose, Reply, Reply All, Forward, Move, Archive, Delete, Read/Unread, Flag, Junk, Not Spam, Safe, and Block.</p>
+
+        <h3>Status Bar</h3>
+        <p>The bottom of the screen shows the current status (like &ldquo;Syncing&hellip;&rdquo; or &ldquo;Ready&rdquo;), your spam filter statistics, and the GravesMail version number.</p>
+      </div>
+
+      <!-- 4. READING EMAIL -->
+      <div class="manual-section" id="reading-email">
+        <h2>4. Reading Email</h2>
+
+        <p>Click on any message in the message list to read it in the right panel. Double-click a message to open it in its own window.</p>
+
+        <p>Right-click on a message for more options: open in a new window, reply, forward, mark as read or unread, move to a folder, archive, flag, move to junk, delete, or view the message properties.</p>
+
+        <h3>Message Properties</h3>
+        <p>Right-click a message and choose Properties to see detailed information about it. The Properties window has several tabs:</p>
+
+        <p><strong>General</strong> &mdash; basic information like sender, recipient, date, and size.</p>
+        <p><strong>Headers</strong> &mdash; the raw technical headers of the email. You can copy these to your clipboard.</p>
+        <p><strong>Spam Analysis</strong> &mdash; shows exactly how GravesMail scored this message. You can see which spam engines flagged it and why.</p>
+        <p><strong>Attachments</strong> &mdash; lists all files attached to the message.</p>
+        <p><strong>URLs &amp; Security</strong> &mdash; lists every link in the message so you can check them before clicking.</p>
+        <p><strong>Tracking Pixels</strong> &mdash; shows any hidden tracking images that were found and blocked.</p>
+        <p><strong>Body Text</strong> &mdash; the plain text version of the message, stripped of all formatting.</p>
+
+        <h3>Meeting Invitations</h3>
+        <p>If an email contains a meeting invitation, GravesMail will show a green banner with the meeting details and three buttons: Accept, Tentative, and Decline. Clicking one of these adds the event to your calendar and sends a response to the organizer.</p>
+      </div>
+
+      <!-- 5. WRITING EMAIL -->
+      <div class="manual-section" id="writing-email">
+        <h2>5. Writing and Sending Email</h2>
+
+        <p><strong>Click the Compose button</strong> in the toolbar (or press Ctrl+N) to open a new message window.</p>
+
+        <p>Fill in the To field with the recipient&rsquo;s email address. You can also use CC (carbon copy) and BCC (blind carbon copy) if you want to send copies to other people.</p>
+
+        <p><strong>The address book button</strong> next to each address field lets you pick recipients from your contacts. GravesMail also suggests contacts as you type.</p>
+
+        <p>Type your subject line and your message in the body area. The spell checker is always on &mdash; misspelled words will be underlined in red.</p>
+
+        <h3>Attachments</h3>
+        <p>Click the Attach button to add files to your message. You can also drag and drop files directly into the compose window. Attached files appear as tags above the message body. Click the X on any attachment to remove it.</p>
+
+        <h3>Saving Drafts</h3>
+        <p>Click Save Draft (or press Ctrl+S) to save a message you&rsquo;re not ready to send yet. Your draft will be saved in your Drafts folder.</p>
+
+        <h3>Spell Check</h3>
+        <p>Click the Check button to run a grammar and spelling check on your message before sending.</p>
+
+        <h3>Signatures</h3>
+        <p>To set up an email signature that gets added to every message you send, go to Settings &gt; Edit Signature. Type your signature text and click Save. It will be added to all new messages, replies, and forwards automatically.</p>
+      </div>
+
+      <!-- 6. SPAM -->
+      <div class="manual-section" id="spam">
+        <h2>6. Dealing with Spam</h2>
+
+        <p>GravesMail has a powerful spam filter that checks every incoming message using five different detection methods. Most spam is caught automatically and moved to your Junk folder. But no filter is perfect, so here is how to help it learn:</p>
+
+        <h3>If Spam Gets Through to Your Inbox</h3>
+        <p><strong>Select the message and click the Junk button</strong> in the toolbar. This moves it to the Junk folder and trains the spam filter to recognize similar messages in the future.</p>
+
+        <h3>If a Real Message Lands in Junk</h3>
+        <p><strong>Go to Spam &gt; Review Spam</strong> in the menu bar. This shows all quarantined messages. Check the box next to any real message and click Restore to Inbox. This teaches the filter that it made a mistake.</p>
+
+        <h3>Safe and Blocked Senders</h3>
+        <p><strong>Safe Senders:</strong> Click the Safe button (star icon) in the toolbar to add the current sender to your safe list. Email from safe senders will never be marked as spam.</p>
+        <p><strong>Blocked Senders:</strong> Click the Block button (stop icon) to block a sender. All future email from them goes straight to Junk.</p>
+        <p>You can manage both lists from the Spam menu: Safe Senders List and Blocked Senders List.</p>
+
+        <h3>How the Spam Filter Gets Smarter</h3>
+        <p>Every time you mark a message as Junk or Not Spam, the filter learns from it. The more you use GravesMail, the more accurate it becomes for your specific inbox. The filter starts with a baseline of over 50,000 trained patterns and builds on top of that as you use it.</p>
+
+        <div class="callout tip">
+          <div class="callout-label">Tip</div>
+          <p>The spam filter score is visible in the Properties window under the Spam Analysis tab. A score below 50% means GravesMail thinks it&rsquo;s safe. Above 50% means it&rsquo;s likely spam.</p>
+        </div>
+      </div>
+
+      <!-- 7. CONTACTS -->
+      <div class="manual-section" id="contacts">
+        <h2>7. Managing Your Contacts</h2>
+
+        <p><strong>Open the contacts manager from Tools &gt; Contacts</strong> in the menu bar.</p>
+
+        <p>On the left is a list of all your contacts. Click on anyone to see their details on the right. You can search for contacts by name and filter by category using the toolbar at the top.</p>
+
+        <h3>Adding a Contact</h3>
+        <p>Click New Contact in the toolbar. Fill in whatever information you have &mdash; name, email, phone, company, address, notes. You don&rsquo;t have to fill in every field. Click Save when you&rsquo;re done.</p>
+        <p>You can also add a sender directly from an email: go to Message &gt; Add Sender to Contacts in the menu bar.</p>
+
+        <h3>Exporting Contacts</h3>
+        <p>Click Export CSV in the toolbar to save all your contacts to a spreadsheet file that works with Excel, Google Sheets, or any other spreadsheet program.</p>
+      </div>
+
+      <!-- 8. CALENDAR -->
+      <div class="manual-section" id="calendar">
+        <h2>8. Using the Calendar</h2>
+
+        <p>GravesMail has a built-in calendar. To switch to calendar view, click the Calendar button at the bottom of the left panel, or go to View &gt; Calendar in the menu bar.</p>
+
+        <p>Click any date on the calendar to see events for that day. Click + New Event to create a new event. Double-click an existing event to edit it.</p>
+
+        <p>Each event shows the time, title, and if it&rsquo;s an online meeting, a Join button with the meeting link.</p>
+
+        <p>When GravesMail detects a meeting invitation in your email, it can automatically add it to your calendar when you accept it.</p>
+      </div>
+
+      <!-- 9. MAIL RULES -->
+      <div class="manual-section" id="rules">
+        <h2>9. Mail Rules</h2>
+
+        <p><strong>Mail rules let you automate your inbox. Open the rules editor from Tools &gt; Mail Rules</strong> in the menu bar.</p>
+
+        <p>A rule has two parts: conditions (what to look for) and actions (what to do when it&rsquo;s found).</p>
+
+        <h3>Conditions</h3>
+        <p>You can match messages based on who they&rsquo;re from, what the subject line says, what the body contains, who they&rsquo;re sent to, and whether they have attachments. All conditions must match for the rule to fire.</p>
+
+        <h3>Actions</h3>
+        <p>When a message matches your rule, GravesMail can move it to a specific folder, mark it as read, delete it, flag it for follow-up, or change its importance level.</p>
+
+        <h3>Quick Rules</h3>
+        <p><strong>For simple rules, use Tools &gt; Create Quick Rule</strong> in the menu. You can quickly set up rules to move all email from a sender to a folder, auto-mark it as read, auto-flag it, or auto-delete it.</p>
+
+        <div class="callout tip">
+          <div class="callout-label">Tip</div>
+          <p>Rules run in order from top to bottom. Use the up and down arrows in the rules editor to change the order.</p>
+        </div>
+      </div>
+
+      <!-- 10. SETTINGS -->
+      <div class="manual-section" id="settings">
+        <h2>10. Settings</h2>
+
+        <p><strong>Open settings from Settings &gt; Advanced Settings</strong> in the menu bar.</p>
+
+        <h3>Account</h3>
+        <p>If you have more than one email account, select which account you want to change settings for using the dropdown at the top.</p>
+
+        <h3>Max Messages Per Folder</h3>
+        <p>Controls how many messages GravesMail downloads when it first syncs a folder. Set to 0 for unlimited (download everything).</p>
+
+        <h3>Sync Interval</h3>
+        <p>How often GravesMail checks for new email, in minutes. The default is every 5 minutes.</p>
+
+        <h3>Delete From Server</h3>
+        <p>When checked, messages are removed from your email provider&rsquo;s server after GravesMail downloads them. This means your email will only exist on your computer. Leave this unchecked if you also check email on your phone or other devices.</p>
+
+        <h3>Community Spam Intelligence</h3>
+        <p>This is an optional feature that lets you help improve the spam filter for everyone. When turned on, GravesMail will occasionally send a small package of anonymous spam pattern data &mdash; just words and scores, never any email content. This helps build a stronger filter for all users. It is off by default.</p>
+        <p>You can click Preview Report to see exactly what would be sent before you turn it on.</p>
+      </div>
+
+      <!-- 11. KEYBOARD SHORTCUTS -->
+      <div class="manual-section" id="shortcuts">
+        <h2>11. Keyboard Shortcuts</h2>
+
+        <div class="shortcut-row"><span class="shortcut-key">Ctrl + N</span><span class="shortcut-desc">Compose new message</span></div>
+        <div class="shortcut-row"><span class="shortcut-key">Ctrl + R</span><span class="shortcut-desc">Reply</span></div>
+        <div class="shortcut-row"><span class="shortcut-key">Ctrl + Shift + R</span><span class="shortcut-desc">Reply All</span></div>
+        <div class="shortcut-row"><span class="shortcut-key">Ctrl + Shift + F</span><span class="shortcut-desc">Forward</span></div>
+        <div class="shortcut-row"><span class="shortcut-key">Ctrl + M</span><span class="shortcut-desc">Move to folder</span></div>
+        <div class="shortcut-row"><span class="shortcut-key">Ctrl + E</span><span class="shortcut-desc">Archive</span></div>
+        <div class="shortcut-row"><span class="shortcut-key">Ctrl + S</span><span class="shortcut-desc">Save draft (in compose window)</span></div>
+        <div class="shortcut-row"><span class="shortcut-key">Ctrl + T</span><span class="shortcut-desc">Toggle conversation threads</span></div>
+        <div class="shortcut-row"><span class="shortcut-key">Ctrl + Shift + G</span><span class="shortcut-desc">Toggle flag</span></div>
+        <div class="shortcut-row"><span class="shortcut-key">Ctrl + Shift + C</span><span class="shortcut-desc">Switch to calendar</span></div>
+        <div class="shortcut-row"><span class="shortcut-key">F5</span><span class="shortcut-desc">Refresh (check for new mail)</span></div>
+        <div class="shortcut-row"><span class="shortcut-key">F1</span><span class="shortcut-desc">Open help</span></div>
+        <div class="shortcut-row"><span class="shortcut-key">Delete</span><span class="shortcut-desc">Delete selected message</span></div>
+      </div>
+
+      <!-- 12. TROUBLESHOOTING -->
+      <div class="manual-section" id="troubleshooting">
+        <h2>12. Troubleshooting</h2>
+
+        <h3>I can&rsquo;t sign in</h3>
+        <p>Make sure you are using an App Password, not your regular email password. Most providers (Yahoo, Gmail, iCloud) require App Passwords for third-party email apps. GravesMail shows you how to create one on the sign-in screen.</p>
+
+        <h3>My email is not syncing</h3>
+        <p>Click the Refresh button (or press F5) to force a sync. If that doesn&rsquo;t work, try Tools &gt; Reset Folder Sync to clear the sync state and start fresh. Your existing downloaded email will not be deleted.</p>
+
+        <h3>A real email ended up in Junk</h3>
+        <p>Go to Spam &gt; Review Spam, check the message, and click Restore to Inbox. Then add the sender to your Safe Senders list so it doesn&rsquo;t happen again.</p>
+
+        <h3>I&rsquo;m getting spam in my Inbox</h3>
+        <p>Click the Junk button on the spam message. This trains the filter. The more spam you report, the better the filter gets. You can also block the sender permanently using the Block button.</p>
+
+        <h3>I accidentally deleted a message</h3>
+        <p>Check your Trash folder. Deleted messages stay in Trash until you empty it. To restore a message, right-click it in Trash and move it back to your Inbox.</p>
+
+        <h3>GravesMail seems slow</h3>
+        <p>If you have a very large mailbox, the first sync can take time. After the initial sync, GravesMail only downloads new messages, which is much faster. You can also lower the Max Messages Per Folder setting to limit how much is downloaded.</p>
+
+        <h3>Something else went wrong</h3>
+        <p>Contact Luke with a description of what happened and any error messages you saw.</p>
+      </div>
+
+    </div>
+
+    <footer class="status-bar">
+      <span>GravesMail v1.1.0 &mdash; &copy; 2026 Luke Graves</span>
+      <span>gravesmail.net</span>
+    </footer>
+  </main>
+</div>
+
+</body>
+</html>

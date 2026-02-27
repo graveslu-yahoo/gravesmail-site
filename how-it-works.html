@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Your Filter Learns — GravesMail</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button class="mobile-menu-btn" onclick="document.querySelector('.sidebar').classList.toggle('open')">&#9776;</button>
+
+<div class="app-frame">
+  <nav class="sidebar">
+    <button class="sidebar-close" onclick="this.parentElement.classList.remove('open')">&times;</button>
+    <div class="sidebar-header">
+      <h1><a href="index.html">GravesMail</a></h1>
+      <div class="tagline">Secure Email Client</div>
+    </div>
+    <div class="sidebar-nav">
+      <a href="index.html"><span class="nav-icon">&#x1F4EC;</span> Home</a>
+      <a href="mission.html"><span class="nav-icon">&#x1F3AF;</span> Mission &amp; Story</a>
+      <a href="how-it-works.html" class="active"><span class="nav-icon">&#x1F9E0;</span> How the Filter Learns</a>
+      <a href="privacy.html"><span class="nav-icon">&#x1F512;</span> Privacy Policy</a>
+      <a href="manual.html"><span class="nav-icon">&#x1F4D6;</span> User Manual</a>
+    </div>
+    <div class="sidebar-footer">
+      GravesMail v1.1.0<br>&copy; 2026 Luke Graves
+    </div>
+  </nav>
+
+  <main class="content">
+
+    <div class="content-header">
+      <h2>How Your Spam Filter Learns</h2>
+      <div class="subtitle">And why it gets smarter the longer you use it</div>
+    </div>
+
+    <div class="content-body">
+
+      <h2>Your Filter Learns From You</h2>
+
+      <p>Every time GravesMail checks your email, it&rsquo;s learning. When a spam message lands in your inbox and you confirm it&rsquo;s junk, the filter studies that message and remembers the patterns. When a real message gets flagged by mistake and you mark it as safe, the filter learns from that too.</p>
+
+      <p>Over time, your filter becomes an expert on the specific kinds of email you get. If you receive a lot of fake shipping notifications, your filter gets especially good at catching those. If someone keeps targeting you with phishing emails that pretend to be your bank, your filter learns to spot them faster and faster.</p>
+
+      <p>This happens automatically on your computer. <strong>Nobody else sees your email. Nobody else touches your data.</strong> The learning happens entirely on your machine, and the results stay there.</p>
+
+      <h2>Now Imagine Thousands of People Doing the Same Thing</h2>
+
+      <p>You&rsquo;re not the only person getting spam. Millions of people get hit with the same kinds of attacks every day. A phishing campaign that targets you probably targets thousands of other people too.</p>
+
+      <p>If every GravesMail user&rsquo;s filter is learning on its own, that&rsquo;s thousands of filters all getting smarter independently. But what if they could share what they&rsquo;ve learned with each other?</p>
+
+      <p>That&rsquo;s exactly what GravesMail can do &mdash; if you choose to participate.</p>
+
+      <h2>How It Works</h2>
+
+      <p>When you turn on the sharing option in Settings, GravesMail will occasionally send a small package of data to help improve the filter for everyone. Here&rsquo;s what that data is:</p>
+
+      <p><strong>It&rsquo;s a list of words and scores.</strong> That&rsquo;s it. Your filter keeps track of words that tend to appear in spam (like &ldquo;winner,&rdquo; &ldquo;urgent,&rdquo; or &ldquo;verify your account&rdquo;) and words that tend to appear in real email. Each word has a number that says how strongly it signals spam or not-spam. That list of words and numbers is what gets shared.</p>
+
+      <p><strong>Here&rsquo;s what is <em>never</em> shared:</strong></p>
+
+      <ul class="never-list">
+        <li><strong>Your email address</strong> &mdash; never sent</li>
+        <li><strong>Your contacts</strong> &mdash; never sent</li>
+        <li><strong>Your email content</strong> &mdash; no subject lines, no message bodies, no attachments</li>
+        <li><strong>Your passwords</strong> &mdash; never accessed</li>
+        <li><strong>Your name or location</strong> &mdash; never recorded</li>
+      </ul>
+
+      <p>The data is anonymous. There is no way to connect it back to you or to figure out what emails you received. It&rsquo;s just words and numbers.</p>
+
+      <h2>What Happens With Your Data</h2>
+
+      <p>The word scores from everyone who participates are combined together. If hundreds of people&rsquo;s filters all agree that a certain word is a strong spam signal, that word gets a high score in the shared model. If a word only shows up in one person&rsquo;s data, it carries less weight.</p>
+
+      <p>The combined model becomes the starting point for the next version of GravesMail. So when a new user runs the app for the very first time, they don&rsquo;t start from zero. They start with the combined knowledge of every user who came before them.</p>
+
+      <div class="callout tip">
+        <div class="callout-label">Think of it like a neighborhood watch</div>
+        <p>If one neighbor sees something suspicious, they tell everyone else. Now the whole neighborhood knows what to look for. Nobody has to share their home address or their daily routine &mdash; they just share what they saw.</p>
+      </div>
+
+      <h2>Two Systems, Working Together</h2>
+
+      <p>GravesMail&rsquo;s spam filter actually has two layers of learning:</p>
+
+      <h3>Layer 1: Your Personal Filter</h3>
+
+      <p>This is the filter that trains on your email, on your computer, every day. It gets better the more you use it. It&rsquo;s tuned to the specific spam and phishing attacks that target you. This layer works whether or not you participate in sharing.</p>
+
+      <h3>Layer 2: The Shared Baseline</h3>
+
+      <p>This is the combined knowledge of the entire GravesMail community, delivered with each new version. It protects you against spam campaigns you&rsquo;ve never personally seen, because someone else in the community already saw them.</p>
+
+      <p><strong>When both layers work together, you get the best of both worlds:</strong> protection against the attacks that target you specifically <em>and</em> protection against attacks happening everywhere else.</p>
+
+      <h2>Why This Matters</h2>
+
+      <p>Spam and phishing exist because they&rsquo;re cheap to send and enough people fall for them to make money. That&rsquo;s the entire business model.</p>
+
+      <p>Every GravesMail user who participates in sharing makes it harder for that business model to work. When the filter catches a new attack, that knowledge spreads to every other user. The spammers have to work harder, spend more money, and change their tactics more often &mdash; all for fewer and fewer successful deliveries.</p>
+
+      <p><strong>The more people who use GravesMail, the more expensive it becomes for spammers to operate.</strong> Eventually, the cost of sending spam is higher than the money they make from it. When that happens, they stop. Not because someone asked them to &mdash; because they can&rsquo;t afford to continue.</p>
+
+      <h2>It&rsquo;s Your Choice</h2>
+
+      <p>Sharing is completely optional. It is turned off by default. You can turn it on or off at any time in Settings. GravesMail will never share anything without your permission, and you can stop participating whenever you want.</p>
+
+      <p>If you choose not to participate, your personal filter still learns and improves on its own. You still benefit from the shared baseline that shipped with your version of the app. You just won&rsquo;t be contributing new data to future baselines.</p>
+
+      <p>If you do choose to participate, you&rsquo;re helping build something bigger than any one inbox. You&rsquo;re helping protect everyone.</p>
+
+    </div>
+
+    <footer class="status-bar">
+      <span>GravesMail v1.1.0 &mdash; &copy; 2026 Luke Graves</span>
+      <span>gravesmail.net</span>
+    </footer>
+  </main>
+</div>
+
+</body>
+</html>

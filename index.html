@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GravesMail — Your Email Is Yours</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button class="mobile-menu-btn" onclick="document.querySelector('.sidebar').classList.toggle('open')">&#9776;</button>
+
+<div class="app-frame">
+
+  <!-- Sidebar — mimics the GravesMail folder panel -->
+  <nav class="sidebar">
+    <button class="sidebar-close" onclick="this.parentElement.classList.remove('open')">&times;</button>
+    <div class="sidebar-header">
+      <h1><a href="index.html">GravesMail</a></h1>
+      <div class="tagline">Secure Email Client</div>
+    </div>
+    <div class="sidebar-nav">
+      <a href="index.html" class="active"><span class="nav-icon">&#x1F4EC;</span> Home</a>
+      <a href="mission.html"><span class="nav-icon">&#x1F3AF;</span> Mission &amp; Story</a>
+      <a href="how-it-works.html"><span class="nav-icon">&#x1F9E0;</span> How the Filter Learns</a>
+      <a href="privacy.html"><span class="nav-icon">&#x1F512;</span> Privacy Policy</a>
+      <a href="manual.html"><span class="nav-icon">&#x1F4D6;</span> User Manual</a>
+    </div>
+    <div class="sidebar-footer">
+      GravesMail v1.1.0<br>&copy; 2026 Luke Graves
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <main class="content">
+
+    <!-- Hero -->
+    <div class="hero">
+      <h2>Your email is yours.</h2>
+      <p class="subtitle">
+        GravesMail is a secure email client for Windows that blocks spam, strips tracking pixels,
+        and stores everything locally on your computer. No cloud scanning. No ad profiling. No tracking.
+      </p>
+      <span class="hero-tagline">&#x1F6E1; Local-first &bull; 5-engine spam detection &bull; Zero tracking</span>
+    </div>
+
+    <div class="content-body">
+
+      <h2>What Is GravesMail?</h2>
+
+      <p>GravesMail is a standalone desktop email client. You download it, double-click it, and it runs. There is nothing to install. It connects to your existing email account &mdash; Gmail, Yahoo, Outlook, iCloud, or any IMAP server &mdash; and gives you a fast, clean way to read and send email.</p>
+
+      <p>The difference between GravesMail and other email apps is what happens behind the scenes. Every message that arrives goes through a <strong>five-engine spam and threat detection pipeline</strong> before you ever see it. Dangerous messages get caught. Tracking pixels get stripped. And all of this happens on your computer, not on someone else&rsquo;s server.</p>
+
+      <h2>Why GravesMail Exists</h2>
+
+      <p>The big email providers scan your messages, build advertising profiles about you, and let spam and phishing pour into your inbox because filtering it out doesn&rsquo;t make them money. <em>You</em> are what makes them money.</p>
+
+      <p>GravesMail was built because the providers wouldn&rsquo;t help, law enforcement couldn&rsquo;t act, and the only real solution was to build technology that makes spam and phishing economically unviable. The more people who use GravesMail, the more expensive it becomes for bad actors to operate. <a href="mission.html">Read the full story &rarr;</a></p>
+
+      <h2>Key Features</h2>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon">&#x1F6E1;</div>
+          <h4>5-Engine Spam Detection</h4>
+          <p>Bayesian filtering, heuristic analysis, header inspection, domain reputation, and pattern matching work together to catch threats other filters miss.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F4BB;</div>
+          <h4>100% Local</h4>
+          <p>Your email is stored on your computer. Your passwords are encrypted with Windows DPAPI. Nothing is sent to any cloud service unless you explicitly choose to participate in community spam intelligence.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F441;</div>
+          <h4>Tracking Pixel Protection</h4>
+          <p>GravesMail detects and strips invisible tracking images that senders use to monitor whether you opened their email, when, and from where.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F4E6;</div>
+          <h4>No Installation Required</h4>
+          <p>Download. Double-click. You&rsquo;re running. GravesMail is a single executable file with no installer, no registry entries, and no background services.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F9E0;</div>
+          <h4>Filter That Learns</h4>
+          <p>Every time you mark a message as spam or safe, the filter gets smarter. It starts with 50,000+ pre-trained patterns and builds on them as you use it. <a href="how-it-works.html">Learn more &rarr;</a></p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F4C5;</div>
+          <h4>Built-in Calendar</h4>
+          <p>Meeting invitations in your email are detected automatically. Accept, decline, or tentatively accept right from the message. Events are stored locally.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F4CB;</div>
+          <h4>Mail Rules</h4>
+          <p>Automate your inbox with rules that move, flag, mark as read, or delete messages based on sender, subject, body content, or attachments.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F465;</div>
+          <h4>Contact Manager</h4>
+          <p>Built-in address book with auto-complete in the compose window. Import and export contacts as CSV. No sync to any cloud service.</p>
+        </div>
+      </div>
+
+      <h2>How It Protects You</h2>
+
+      <p>When an email arrives, GravesMail runs it through five separate detection engines before it reaches your inbox. Each engine looks at a different aspect of the message: the words in the body, the structure of the headers, the reputation of the sending domain, patterns common to known attacks, and rules you&rsquo;ve set yourself.</p>
+
+      <p>If a message is flagged as spam, it goes to quarantine. If it&rsquo;s legitimate, it stays. If the filter makes a mistake in either direction, you correct it with one click, and the filter remembers for next time.</p>
+
+      <p>Tracking pixels &mdash; invisible 1&times;1 images that senders embed to spy on you &mdash; are detected and stripped automatically. You see the message; the sender learns nothing about you.</p>
+
+      <div class="callout tip">
+        <div class="callout-label">Community Intelligence</div>
+        <p>If you choose to opt in, GravesMail can share anonymous spam pattern data &mdash; just word scores, never email content &mdash; to help improve the filter for all users. It&rsquo;s off by default and completely optional. <a href="how-it-works.html">Learn how it works &rarr;</a></p>
+      </div>
+
+      <h2>Getting Started</h2>
+
+      <p>GravesMail runs on Windows 10 and later. Download the executable, double-click it, sign in with your email account, and choose how you want to sync your existing messages. The app walks you through the entire process, including how to create an App Password if your provider requires one.</p>
+
+      <p>For detailed instructions, see the <a href="manual.html">User Manual</a>.</p>
+
+    </div>
+
+    <footer class="status-bar">
+      <span>GravesMail v1.1.0 &mdash; &copy; 2026 Luke Graves</span>
+      <span>gravesmail.net</span>
+    </footer>
+  </main>
+
+</div>
+
+</body>
+</html>

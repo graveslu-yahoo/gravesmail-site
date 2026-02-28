@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beta Testers Wanted — GravesMail</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button class="mobile-menu-btn" onclick="document.querySelector('.sidebar').classList.toggle('open')">&#9776;</button>
+
+<div class="app-frame">
+  <nav class="sidebar">
+    <button class="sidebar-close" onclick="this.parentElement.classList.remove('open')">&times;</button>
+    <div class="sidebar-header">
+      <h1><a href="index.html">GravesMail</a></h1>
+      <div class="tagline">Secure Email Client</div>
+    </div>
+    <div class="sidebar-nav">
+      <a href="index.html"><span class="nav-icon">&#x1F4EC;</span> Home</a>
+      <a href="mission.html"><span class="nav-icon">&#x1F3AF;</span> Mission &amp; Story</a>
+      <a href="how-it-works.html"><span class="nav-icon">&#x1F9E0;</span> How the Filter Learns</a>
+      <a href="beta.html" class="active"><span class="nav-icon">&#x1F9EA;</span> Beta Testers Wanted</a>
+      <a href="privacy.html"><span class="nav-icon">&#x1F512;</span> Privacy Policy</a>
+      <a href="terms.html"><span class="nav-icon">&#x1F4DC;</span> Terms of Service</a>
+      <a href="manual.html"><span class="nav-icon">&#x1F4D6;</span> User Manual</a>
+    </div>
+    <div class="sidebar-footer">
+      GravesMail v1.1.0<br>&copy; 2026 Luke Graves
+    </div>
+  </nav>
+
+  <main class="content">
+
+    <!-- Hero -->
+    <div class="hero">
+      <h2>Beta Testers Wanted</h2>
+      <p class="subtitle">
+        Help build an email client that puts you back in control of your inbox.
+        No installation required. No technical expertise needed.
+      </p>
+      <span class="hero-tagline">&#x1F9EA; Now recruiting testers &bull; Limited spots</span>
+    </div>
+
+    <div class="content-body">
+
+      <h2>Why I Built This</h2>
+
+      <p>I built an email client. Not because I wanted to. Because I got tired of waiting for someone else to fix the problem.</p>
+
+      <p>My inbox was getting hammered with spam and phishing attacks &mdash; some of it straight-up criminal. I contacted the email providers. Nobody responded. I went to law enforcement at every level &mdash; local, federal, international &mdash; with forensic evidence, names, addresses, everything. Almost nobody acted.</p>
+
+      <p>So I built my own solution.</p>
+
+      <h2>What GravesMail Does</h2>
+
+      <p>GravesMail is a Windows desktop email client with a 5-engine spam detection system that runs entirely on your machine. No cloud scanning. No data harvesting. No tracking. You choose whether to keep your email on your provider&rsquo;s server, download a local copy, or pull it all down and remove it from the server entirely.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon">&#x1F9E0;</div>
+          <h4>Bayesian Filtering</h4>
+          <p>Pre-trained with 57,000+ spam tokens. Learns your specific inbox patterns the more you use it.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F512;</div>
+          <h4>Header Authentication</h4>
+          <p>SPF, DKIM, and DMARC validation catches forged sender addresses that other clients miss.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F50D;</div>
+          <h4>Heuristic Analysis</h4>
+          <p>16-pattern engine detects common phishing and spam tactics based on message structure and content.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F310;</div>
+          <h4>Domain Reputation</h4>
+          <p>Validates sending domains against known threat databases to flag suspicious sources.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F441;</div>
+          <h4>Tracking Pixel Blocking</h4>
+          <p>Detects and strips invisible tracking images that senders use to spy on whether you opened their email.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F4BB;</div>
+          <h4>100% Local Architecture</h4>
+          <p>You control where your mail lives. Keep it on your provider&rsquo;s server, sync a local copy, or download everything and remove it from the server. All settings, contacts, and filter data are stored locally in your Windows User Profile.</p>
+        </div>
+      </div>
+
+      <h2>What I Need From You</h2>
+
+      <p>I&rsquo;m looking for people willing to try GravesMail as their email client and tell me what they think. Here&rsquo;s what&rsquo;s involved:</p>
+
+      <div class="callout">
+        <p><strong>1. Run GravesMail as your email client for one week.</strong> Use it the way you normally use email &mdash; reading, sending, deleting, dealing with spam.</p>
+      </div>
+
+      <div class="callout">
+        <p><strong>2. Tell me what works, what doesn&rsquo;t, and what you wish it did.</strong> Plain language is fine. You don&rsquo;t need to write a report &mdash; just honest feedback.</p>
+      </div>
+
+      <div class="callout">
+        <p><strong>3. Run a quick data collection script</strong> that sends me your anonymized spam filter statistics. No email content, no personal data &mdash; just the filter&rsquo;s word scores so I can improve the detection engine for everyone.</p>
+      </div>
+
+      <h2>What You Don&rsquo;t Need</h2>
+
+      <p>You don&rsquo;t need to be technical. You just need to use email and be tired of the garbage that shows up in your inbox every day.</p>
+
+      <p>There is no installation required. GravesMail is a single standalone file. Download it, double-click it, and you&rsquo;re running. Nothing gets installed on your system. No registry entries, no background services, no admin privileges needed.</p>
+
+      <h2>Who I&rsquo;m Looking For</h2>
+
+      <p>If you&rsquo;re an IT professional, security-minded, or just someone who thinks your email provider should be protecting you instead of profiting off you &mdash; I want your feedback.</p>
+
+      <div class="callout tip">
+        <div class="callout-label">Interested?</div>
+        <p>Send me a message at <strong>graveslu@yahoo.com</strong> and I&rsquo;ll send you the executable, a README that walks you through everything step by step, and the data collection script.</p>
+      </div>
+
+    </div>
+
+    <footer class="status-bar">
+      <span>GravesMail v1.1.0 &mdash; &copy; 2026 Luke Graves</span>
+      <span>graveslu-yahoo.github.io/gravesmail-site</span>
+    </footer>
+  </main>
+</div>
+
+</body>
+</html>

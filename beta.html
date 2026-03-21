@@ -55,7 +55,7 @@
 
       <h2>What GravesMail Does</h2>
 
-      <p>GravesMail is a Windows desktop email client with a 5-engine spam detection system that runs entirely on your machine. No cloud scanning. No data harvesting. No tracking. You choose whether to keep your email on your provider&rsquo;s server, download a local copy, or pull it all down and remove it from the server entirely.</p>
+      <p>GravesMail is a cross-platform desktop email client with a 5-engine spam detection system that runs entirely on your machine. No cloud scanning. No data harvesting. No tracking. You choose whether to keep your email on your provider&rsquo;s server, download a local copy, or pull it all down and remove it from the server entirely.</p>
 
       <div class="features-grid">
         <div class="feature-card">
@@ -118,12 +118,86 @@
 
       <h2>Get Started</h2>
 
-      <p>GravesMail is code-signed by Microsoft Artifact Signing. Your browser and Windows will recognize it as a verified, trusted application &mdash; no SmartScreen warnings, no &ldquo;Unknown Publisher&rdquo; prompts.</p>
+      <p>GravesMail runs on Windows, Linux, and macOS. Every platform gets the same 5-layer spam engine, local-first architecture, and zero telemetry. No installation required &mdash; download and run.</p>
 
-      <div class="callout tip" style="text-align:center;">
-        <div class="callout-label">Download GravesMail v1.0.0</div>
-        <p style="margin-bottom:1rem;">Windows 11 &bull; Standalone executable &bull; No installation required</p>
-        <a href="GravesMail.exe" download style="display:inline-block; background:#6BBFB9; color:#1a1a2e; text-decoration:none; padding:0.75rem 2rem; border-radius:6px; font-weight:700; font-size:1.1rem; letter-spacing:0.02em; transition:background 0.2s;">&#x2B07; Download GravesMail.exe</a>
+      <div class="download-cards">
+
+        <div class="download-card">
+          <div class="download-card-icon">&#x1FA9F;</div>
+          <h4>Windows</h4>
+          <p class="download-card-platform">Windows 10 and above, x64</p>
+          <p class="download-card-detail">Single executable, no installation required</p>
+          <p class="download-card-detail">Code signed by Luke Graves via Microsoft Azure Code Signing</p>
+          <p class="download-card-size">83 MB</p>
+          <a href="GravesMail.exe" download class="download-btn">&#x2B07; Download for Windows</a>
+        </div>
+
+        <div class="download-card">
+          <div class="download-card-icon">&#x1F427;</div>
+          <h4>Linux</h4>
+          <p class="download-card-platform">x64 &mdash; RHEL 9, Ubuntu, Fedora, Debian</p>
+          <p class="download-card-detail">Single binary, no installation required</p>
+          <p class="download-card-detail">Protected: AES-256 encrypted training data, obfuscated code</p>
+          <p class="download-card-note">After download run: <code>chmod +x GravesMail-Linux-x64</code></p>
+          <p class="download-card-size">63 MB</p>
+          <a href="GravesMail-Linux-x64" download class="download-btn">&#x2B07; Download for Linux</a>
+        </div>
+
+        <div class="download-card">
+          <div class="download-card-icon">&#x1F34E;</div>
+          <h4>macOS</h4>
+          <p class="download-card-platform">Apple Silicon &mdash; M1, M2, M3, M4</p>
+          <p class="download-card-detail">Protected: AES-256 encrypted training data, obfuscated code</p>
+          <p class="download-card-note">macOS may show a security warning &mdash; right-click then Open to bypass</p>
+          <p class="download-card-size">64 MB</p>
+          <a href="GravesMail-macOS-arm64" download class="download-btn">&#x2B07; Download for macOS</a>
+        </div>
+
+      </div>
+
+      <h2>System Requirements</h2>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon">&#x1FA9F;</div>
+          <h4>Windows</h4>
+          <p>Windows 10 or later (x64). No .NET installation required &mdash; everything is bundled. No admin privileges needed.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F427;</div>
+          <h4>Linux</h4>
+          <p>x64 Linux with glibc 2.17+ (RHEL 9, Ubuntu 20.04+, Fedora 38+, Debian 11+). No .NET installation required.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F34E;</div>
+          <h4>macOS</h4>
+          <p>macOS 13 (Ventura) or later on Apple Silicon (M1/M2/M3/M4). No .NET installation required.</p>
+        </div>
+      </div>
+
+      <h2>What&rsquo;s Inside</h2>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon">&#x1F6E1;</div>
+          <h4>5-Layer Spam Engine</h4>
+          <p>Bayesian filter pre-trained on 1,645 samples with 82,000+ tokens, domain validation, header authentication, heuristic analysis, and Windows Defender integration.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F4BB;</div>
+          <h4>100% Local Architecture</h4>
+          <p>All email stored on YOUR computer in SQLite. No cloud dependency. Works offline. No telemetry, no analytics, no data ever leaves your machine.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F4C5;</div>
+          <h4>Calendar &amp; Contacts</h4>
+          <p>Built-in calendar with meeting invitation support (Accept/Tentative/Decline). Full contact manager with categories, export, and auto-complete.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F9F5;</div>
+          <h4>Conversation Threading</h4>
+          <p>Group messages by conversation thread. Expand and collapse threads. Sort by date, sender, subject, or size.</p>
+        </div>
       </div>
 
       <div class="callout">

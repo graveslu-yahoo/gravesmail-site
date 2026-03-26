@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Email Provider Compatibility &mdash; GravesMail</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .compat-table { width: 100%; border-collapse: collapse; margin: 1.5em 0; font-size: 0.95em; }
+    .compat-table th, .compat-table td { padding: 10px 12px; border: 1px solid #E8E4DF; text-align: left; }
+    .compat-table th { background: #F5F3F0; font-weight: 600; color: #3A3A3C; }
+    .compat-table tr:nth-child(even) { background: #FEFCFA; }
+    .compat-table tr:hover { background: #F0EDE8; }
+    .sync-table { width: 100%; border-collapse: collapse; margin: 1.5em 0; font-size: 0.95em; }
+    .sync-table th, .sync-table td { padding: 8px 12px; border: 1px solid #E8E4DF; text-align: left; }
+    .sync-table th { background: #F5F3F0; font-weight: 600; color: #3A3A3C; }
+    .setup-steps { background: #F9F7F4; border-radius: 8px; padding: 20px 24px; margin: 1.5em 0; border: 1px solid #E8E4DF; }
+    .setup-steps h3 { margin-top: 0; color: #5C6A94; }
+    .setup-steps ol { padding-left: 1.2em; line-height: 1.8; }
+  </style>
+</head>
+<body>
+
+<button class="mobile-menu-btn" onclick="document.querySelector('.sidebar').classList.toggle('open')">&#9776;</button>
+
+<div class="app-frame">
+  <nav class="sidebar">
+    <button class="sidebar-close" onclick="this.parentElement.classList.remove('open')">&times;</button>
+    <div class="sidebar-header">
+      <h1><a href="index.html">GravesMail</a></h1>
+      <div class="tagline">Secure Email Client</div>
+    </div>
+    <div class="sidebar-nav">
+      <a href="index.html"><span class="nav-icon">&#x1F4EC;</span> Home</a>
+      <a href="mission.html"><span class="nav-icon">&#x1F3AF;</span> Mission &amp; Story</a>
+      <a href="how-it-works.html"><span class="nav-icon">&#x1F9E0;</span> How the Filter Learns</a>
+      <a href="compatibility.html" class="active"><span class="nav-icon">&#x2705;</span> Compatibility</a>
+      <a href="beta.html"><span class="nav-icon">&#x1F9EA;</span> Beta Testers Wanted</a>
+      <a href="privacy.html"><span class="nav-icon">&#x1F512;</span> Privacy Policy</a>
+      <a href="terms.html"><span class="nav-icon">&#x1F4DC;</span> Terms of Service</a>
+      <a href="manual.html"><span class="nav-icon">&#x1F4D6;</span> User Manual</a>
+    </div>
+    <div class="sidebar-footer">
+      GravesMail v1.0.0<br>&copy; 2026 Luke Graves
+    </div>
+  </nav>
+
+  <main class="content">
+
+    <div class="content-header">
+      <h2>Email Provider Compatibility</h2>
+      <div class="subtitle">GravesMail works with any standard IMAP provider</div>
+    </div>
+
+    <div class="content-body">
+
+      <h2>Tested Providers</h2>
+
+      <table class="compat-table">
+        <thead>
+          <tr>
+            <th>Provider</th>
+            <th>Status</th>
+            <th>IMAP Server</th>
+            <th>SMTP Server</th>
+            <th>Auth</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Yahoo Mail</td>
+            <td>&#x2705; Fully Supported</td>
+            <td>imap.mail.yahoo.com:993</td>
+            <td>smtp.mail.yahoo.com:465</td>
+            <td>App Password</td>
+            <td>Enable 2FA first, generate app password in Account Security</td>
+          </tr>
+          <tr>
+            <td>Gmail / Google Workspace</td>
+            <td>&#x2705; Fully Supported</td>
+            <td>imap.gmail.com:993</td>
+            <td>smtp.gmail.com:465</td>
+            <td>App Password</td>
+            <td>Enable 2FA, generate app password in Google Account &rarr; Security</td>
+          </tr>
+          <tr>
+            <td>AOL Mail</td>
+            <td>&#x2705; Fully Supported</td>
+            <td>imap.aol.com:993</td>
+            <td>smtp.aol.com:465</td>
+            <td>App Password</td>
+            <td>Same as Yahoo</td>
+          </tr>
+          <tr>
+            <td>Outlook.com / Hotmail / Live</td>
+            <td>&#x2705; Supported</td>
+            <td>outlook.office365.com:993</td>
+            <td>smtp-mail.outlook.com:587</td>
+            <td>OAuth2</td>
+            <td>Enable IMAP in Outlook settings</td>
+          </tr>
+          <tr>
+            <td>IONOS / 1&amp;1</td>
+            <td>&#x2705; Fully Supported</td>
+            <td>imap.ionos.com:993</td>
+            <td>smtp.ionos.com:465</td>
+            <td>Password</td>
+            <td>Standard login, no app password needed</td>
+          </tr>
+          <tr>
+            <td>Proton Mail</td>
+            <td>&#x26A0;&#xFE0F; Paid Only</td>
+            <td>127.0.0.1:1143</td>
+            <td>127.0.0.1:1025</td>
+            <td>Bridge</td>
+            <td>Requires Plus plan ($4/month) + Proton Bridge app</td>
+          </tr>
+          <tr>
+            <td>iCloud Mail</td>
+            <td>&#x2705; Supported</td>
+            <td>imap.mail.me.com:993</td>
+            <td>smtp.mail.me.com:587</td>
+            <td>App Password</td>
+            <td>Generate at appleid.apple.com &rarr; Sign-In and Security</td>
+          </tr>
+          <tr>
+            <td>FastMail</td>
+            <td>&#x2705; Supported</td>
+            <td>imap.fastmail.com:993</td>
+            <td>smtp.fastmail.com:465</td>
+            <td>App Password</td>
+            <td>Generate in Settings &rarr; Privacy &amp; Security</td>
+          </tr>
+          <tr>
+            <td>Zoho Mail</td>
+            <td>&#x2705; Supported</td>
+            <td>imap.zoho.com:993</td>
+            <td>smtp.zoho.com:465</td>
+            <td>App Password</td>
+            <td>Generate in Zoho Account Security</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Large Mailbox Guidance</h2>
+
+      <p>GravesMail handles large mailboxes using a two-phase sync approach:</p>
+
+      <p><strong>Phase 1 &mdash; Quick Start:</strong> Your newest 500 messages per folder are fetched first. This typically takes 30&ndash;60 seconds and gives you immediate access to your recent email.</p>
+
+      <p><strong>Phase 2 &mdash; Background Sync:</strong> Remaining messages sync quietly while you work. A progress indicator in the status bar shows completion percentage and estimated time remaining.</p>
+
+      <table class="sync-table">
+        <thead>
+          <tr>
+            <th>Mailbox Size</th>
+            <th>Estimated Initial Sync Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>&lt; 1,000 messages</td><td>Under 2 minutes</td></tr>
+          <tr><td>1,000 &ndash; 10,000</td><td>5&ndash;15 minutes</td></tr>
+          <tr><td>10,000 &ndash; 50,000</td><td>30 minutes &ndash; 1 hour</td></tr>
+          <tr><td>50,000 &ndash; 100,000</td><td>1&ndash;3 hours</td></tr>
+          <tr><td>100,000+</td><td>3+ hours</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>Tips for large mailboxes:</strong></p>
+      <ul>
+        <li>You can work with your email immediately after Phase 1 completes</li>
+        <li>Background sync can be paused and resumed at any time</li>
+        <li>Progress is saved &mdash; close the app and it resumes where it left off</li>
+        <li>Consider archiving old email with your current provider before migrating</li>
+      </ul>
+
+      <h2>How to Set Up</h2>
+
+      <div class="setup-steps">
+        <h3>Gmail Setup</h3>
+        <ol>
+          <li>Go to myaccount.google.com &rarr; Security</li>
+          <li>Enable 2-Step Verification</li>
+          <li>Go to App Passwords, generate one for &ldquo;Mail&rdquo;</li>
+          <li>In GravesMail: enter your Gmail address and the app password</li>
+          <li>Server settings auto-detect &mdash; just click Test Connection</li>
+        </ol>
+      </div>
+
+      <div class="setup-steps">
+        <h3>Yahoo Mail Setup</h3>
+        <ol>
+          <li>Go to login.yahoo.com &rarr; Account Security</li>
+          <li>Enable Two-step verification</li>
+          <li>Generate an app password</li>
+          <li>In GravesMail: enter your Yahoo address and the app password</li>
+          <li>Server settings auto-detect &mdash; just click Test Connection</li>
+        </ol>
+      </div>
+
+      <div class="setup-steps">
+        <h3>Proton Mail Setup</h3>
+        <ol>
+          <li>Subscribe to Proton Mail Plus ($4/month) or higher</li>
+          <li>Download and install Proton Bridge from proton.me/mail/bridge</li>
+          <li>Start Proton Bridge and sign in</li>
+          <li>In GravesMail: use the local IMAP settings shown in Proton Bridge (typically 127.0.0.1:1143)</li>
+          <li>Use the Bridge-generated password, NOT your Proton account password</li>
+        </ol>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+</body>
+</html>

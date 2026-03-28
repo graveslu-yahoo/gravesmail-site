@@ -46,17 +46,19 @@
         <div class="callout-label">In This Manual</div>
         <p>
           <a href="#getting-started">1. Getting Started</a> &bull;
-          <a href="#reading-email">2. Reading Email</a> &bull;
-          <a href="#composing-email">3. Composing Email</a> &bull;
-          <a href="#managing-email">4. Managing Email</a> &bull;
-          <a href="#quick-rules">5. Quick Rules</a> &bull;
-          <a href="#spam">6. Spam Protection</a> &bull;
-          <a href="#calendar">7. Calendar</a> &bull;
-          <a href="#contacts">8. Contacts &amp; Rules</a> &bull;
-          <a href="#privacy">9. Privacy &amp; Security</a> &bull;
-          <a href="#shortcuts">10. Keyboard Shortcuts</a> &bull;
-          <a href="#settings">11. Settings</a> &bull;
-          <a href="#troubleshooting">12. Troubleshooting</a>
+          <a href="#providers">2. Email Provider Compatibility</a> &bull;
+          <a href="#reading-email">3. Reading Email</a> &bull;
+          <a href="#composing-email">4. Composing Email</a> &bull;
+          <a href="#managing-email">5. Managing Email</a> &bull;
+          <a href="#quick-rules">6. Quick Rules</a> &bull;
+          <a href="#spam">7. Spam Protection</a> &bull;
+          <a href="#backup">8. Backup &amp; Recovery</a> &bull;
+          <a href="#calendar">9. Calendar</a> &bull;
+          <a href="#contacts">10. Contacts &amp; Rules</a> &bull;
+          <a href="#privacy">11. Privacy &amp; Security</a> &bull;
+          <a href="#shortcuts">12. Keyboard Shortcuts</a> &bull;
+          <a href="#settings">13. Settings</a> &bull;
+          <a href="#troubleshooting">14. Troubleshooting</a>
         </p>
       </div>
 
@@ -65,21 +67,49 @@
         <h2>1. Getting Started</h2>
 
         <h3>Creating Your First Account (IMAP/SMTP Settings, Test Connection)</h3>
-        <p>Go to File &rarr; Add Email Account. Enter your email address and an app-specific password (not your regular password). GravesMail supports Yahoo, Gmail, Outlook, iCloud, AOL, Zoho, ProtonMail Bridge, and custom IMAP servers. Use the Test Connection button to verify your settings before saving.</p>
+        <p>Go to File &rarr; Add Email Account. Enter your IMAP/SMTP settings and use the Test Connection button to verify before saving.</p>
 
-        <h3>Initial Sync (First-Run Sync Dialog)</h3>
-        <p>When you first connect, a first-run sync dialog appears showing progress with the current folder, message count, and elapsed time. You can pause, resume, or cancel the initial sync at any time.</p>
+        <h3>App Password Setup for Yahoo, Gmail, AOL (2FA Required First)</h3>
+        <p>Yahoo, Gmail, and AOL require app-specific passwords (not your regular password). Enable two-factor authentication on your account first, then generate an app password in your provider&rsquo;s security settings.</p>
+
+        <h3>Initial Sync (Newest 500 Messages First)</h3>
+        <p>The newest 500 messages are fetched first for immediate access. Remaining messages sync in the background while you work.</p>
+
+        <h3>Background Sync Progress</h3>
+        <p>A progress indicator in the status bar shows sync progress with estimated time remaining.</p>
 
         <h3>Navigating the Interface (Three-Pane Layout)</h3>
         <p>The main window uses a three-pane layout: folders on the left, message list in the center, and reading pane on the right. Switch between Mail and Calendar views using the toggle buttons at the bottom of the folder pane.</p>
-
-        <h3>The Quick Rules Toolbar</h3>
-        <p>Below the main toolbar is the Quick Rules toolbar, showing one button per rule you&rsquo;ve created. Click any rule button to apply it to the selected message. See the <a href="#quick-rules">Quick Rules</a> section for details.</p>
       </div>
 
-      <!-- 2. READING EMAIL -->
+      <!-- 2. EMAIL PROVIDER COMPATIBILITY -->
+      <div class="manual-section" id="providers">
+        <h2>2. Email Provider Compatibility</h2>
+
+        <p>GravesMail works with any email provider that supports standard IMAP/SMTP access.</p>
+
+        <ul>
+          <li><strong>Yahoo Mail</strong> &mdash; app-specific password required. Enable 2FA first.</li>
+          <li><strong>Gmail / Google Workspace</strong> &mdash; app-specific password. Enable 2-Step Verification.</li>
+          <li><strong>AOL Mail</strong> &mdash; app-specific password, same process as Yahoo.</li>
+          <li><strong>Outlook.com / Hotmail / Live</strong> &mdash; OAuth2 authentication. Enable IMAP in settings.</li>
+          <li><strong>IONOS / 1&amp;1</strong> &mdash; standard password, no app password needed.</li>
+          <li><strong>Proton Mail</strong> &mdash; requires paid plan (Plus or higher) with Proton Bridge running locally.</li>
+          <li><strong>iCloud Mail</strong> &mdash; app-specific password from appleid.apple.com.</li>
+          <li><strong>FastMail</strong> &mdash; app-specific password from Settings &rarr; Privacy &amp; Security.</li>
+        </ul>
+
+        <h3>Large Mailboxes (10,000+ Messages)</h3>
+        <ul>
+          <li>Two-phase sync: newest 500 messages fetched first, then background download</li>
+          <li>Pause and resume at any time &mdash; progress is saved if you close the app</li>
+          <li>Progress indicator in the status bar with estimated time remaining</li>
+        </ul>
+      </div>
+
+      <!-- 3. READING EMAIL -->
       <div class="manual-section" id="reading-email">
-        <h2>2. Reading Email</h2>
+        <h2>3. Reading Email</h2>
 
         <h3>Selecting Messages</h3>
         <p>Click a message in the message list to view it in the reading pane. The message is automatically marked as read when selected.</p>
@@ -96,6 +126,8 @@
         <h3>Tracking Pixel Detection</h3>
         <p>GravesMail detects and strips invisible tracking pixels (1&times;1 images used by senders to track when you open an email). Click &ldquo;Load Tracking Pixels&rdquo; if you want to allow them. A warning explains this may send a read receipt to the sender.</p>
 
+        <p>External images and tracking pixels are independent controls &mdash; you can load one without the other.</p>
+
         <h3>Show Detailed Analysis</h3>
         <p>Click to expand a per-engine spam score breakdown showing each engine&rsquo;s raw and weighted scores.</p>
 
@@ -103,9 +135,9 @@
         <p>Use Ctrl+MouseWheel or the &minus;/+ buttons in the status bar to zoom in and out. Press Ctrl+0 to reset zoom to 100%.</p>
       </div>
 
-      <!-- 3. COMPOSING EMAIL -->
+      <!-- 4. COMPOSING EMAIL -->
       <div class="manual-section" id="composing-email">
-        <h2>3. Composing Email</h2>
+        <h2>4. Composing Email</h2>
 
         <p><strong>New message:</strong> Click Compose or press Ctrl+N.</p>
 
@@ -128,11 +160,11 @@
         <p>Your default signature is automatically appended. Edit via Settings &rarr; Edit Signature.</p>
       </div>
 
-      <!-- 4. MANAGING EMAIL -->
+      <!-- 5. MANAGING EMAIL -->
       <div class="manual-section" id="managing-email">
-        <h2>4. Managing Email</h2>
+        <h2>5. Managing Email</h2>
 
-        <p><strong>Moving messages:</strong> Right-click &rarr; Move to Folder, or press Ctrl+M.</p>
+        <p><strong>Moving messages:</strong> Right-click &rarr; Move to Folder, press Ctrl+M, or drag-drop on Windows.</p>
         <p><strong>Deleting:</strong> Press Delete or use the toolbar button. Messages move to Trash.</p>
         <p><strong>Flagging:</strong> Press Ctrl+Shift+G to toggle the flag.</p>
         <p><strong>Marking read/unread:</strong> Right-click &rarr; Mark as Read or Mark as Unread.</p>
@@ -148,82 +180,80 @@
         <p>Use View &rarr; Group by Thread or press Ctrl+T. Expand/collapse thread groups to see all messages in a conversation.</p>
       </div>
 
-      <!-- 5. QUICK RULES -->
+      <!-- 6. QUICK RULES -->
       <div class="manual-section" id="quick-rules">
-        <h2>5. Quick Rules &mdash; Intelligent Email Triage</h2>
+        <h2>6. Quick Rules &mdash; Intelligent Email Triage</h2>
 
-        <p>Quick Rules let you define personal quarantine rules that catch emails matching specific criteria and store them in a hidden database. Each rule gets its own button in the Quick Rules toolbar for one-click application.</p>
+        <p>Quick Rules let you define personal quarantine rules that catch emails matching specific criteria and store them in a hidden database. Each rule gets its own button in the Quick Rules toolbar.</p>
 
         <h3>Creating a Rule</h3>
         <ul>
           <li>Click &ldquo;+&rdquo; in the Quick Rules toolbar, or right-click a message &rarr; &ldquo;Create Quick Rule from Message&hellip;&rdquo;</li>
-          <li>Choose a match type: sender address, sender domain, sender contains, subject contains, or subject starts with</li>
-          <li>Add multiple match values &mdash; paste comma or semicolon-separated lists, or add one at a time</li>
-          <li>Choose an action: Quarantine (review later), Move to folder, Delete permanently, or Auto-delete after X days (7 to 1,000 days)</li>
+          <li>Choose match type: sender address, sender domain, sender contains, subject contains, subject starts with</li>
+          <li>Add multiple match values &mdash; paste comma/semicolon-separated lists or add individually</li>
+          <li>Choose action: Quarantine (review later), Move to folder, Delete permanently, Auto-delete after X days (7&ndash;1,000)</li>
           <li>Enable &ldquo;Auto-apply during sync&rdquo; to catch matching messages before they reach your Inbox</li>
         </ul>
 
         <h3>Using Rules</h3>
         <ul>
-          <li>Select a message &rarr; click a rule button in the toolbar &rarr; message is quarantined and sender is automatically added to the rule</li>
-          <li>Right-click a message &rarr; Apply Rule &rarr; select which rule to apply</li>
-          <li>Each time you apply a rule to a new sender, that sender is added to the rule&rsquo;s match list automatically</li>
+          <li>Select a message &rarr; click a rule button &rarr; message quarantined, sender auto-added to rule</li>
+          <li>Right-click &rarr; Apply Rule &rarr; select which rule</li>
+          <li>Each application to a new sender automatically adds that sender to the rule&rsquo;s match list</li>
         </ul>
 
         <h3>Scanning Folders</h3>
         <ul>
-          <li>Right-click a rule button &rarr; &ldquo;Scan Current Folder&rdquo; to bulk-quarantine matching messages</li>
-          <li>Right-click a rule button &rarr; &ldquo;Scan All Folders&rdquo; to scan every folder at once</li>
-          <li>Right-click a folder &rarr; &ldquo;Scan with Rule&rdquo; &rarr; select a rule</li>
-          <li>Scanning reduces storage by moving matching messages out of your active mail</li>
+          <li>Right-click rule button &rarr; Scan Current Folder or Scan All Folders</li>
+          <li>Right-click a folder &rarr; Scan with Rule &rarr; select rule</li>
+          <li>Bulk-quarantines matching messages to reduce storage</li>
         </ul>
 
         <h3>Reviewing Quarantined Messages</h3>
         <ul>
-          <li>Right-click a rule button &rarr; &ldquo;Review Quarantine&rdquo; to see all caught messages</li>
-          <li>Full message properties available (General, Headers, Spam Analysis, Attachments, URLs, Tracking Pixels, Body Text)</li>
-          <li>Restore individual messages or all messages back to their original folder</li>
-          <li>Delete individual messages or purge all quarantined messages for a rule</li>
-          <li>Matched Senders tab shows all senders/values the rule matches, with add/edit/remove</li>
+          <li>Right-click rule button &rarr; Review Quarantine</li>
+          <li>Full message properties (General, Headers, Spam Analysis, Attachments, URLs, Tracking Pixels, Body)</li>
+          <li>Restore individual or all messages to original folders</li>
+          <li>Delete individual or purge all quarantined messages</li>
+          <li>Matched Senders tab: view, add, edit, remove match values</li>
         </ul>
 
         <h3>Managing Rules</h3>
         <ul>
-          <li>Right-click a rule button &rarr; &ldquo;Edit Rule&hellip;&rdquo; to modify settings</li>
-          <li>Right-click &rarr; &ldquo;Disable Rule&rdquo; to temporarily pause without deleting (button appears grayed out)</li>
-          <li>Right-click &rarr; &ldquo;Enable Rule&rdquo; to reactivate</li>
-          <li>Right-click &rarr; &ldquo;Delete Rule&hellip;&rdquo; with option to restore or permanently delete quarantined messages</li>
+          <li>Right-click &rarr; Edit Rule, Disable/Enable Rule, Delete Rule</li>
+          <li>Delete offers: Restore All to Inbox, Delete All Permanently, Cancel</li>
+          <li>Disabled rules appear grayed out, don&rsquo;t auto-apply but stay visible</li>
         </ul>
 
         <h3>Auto-Delete Expiry</h3>
         <ul>
-          <li>Rules can be configured to auto-delete quarantined messages after a set number of days</li>
-          <li>Messages nearing expiry are highlighted in the review window</li>
-          <li>Expired messages are purged automatically on app startup and after each sync</li>
+          <li>Configure auto-delete after 7&ndash;1,000 days</li>
+          <li>Expired messages purged on startup and after sync</li>
+          <li>Nearing-expiry messages highlighted in review</li>
         </ul>
       </div>
 
-      <!-- 6. SPAM PROTECTION -->
+      <!-- 7. SPAM PROTECTION -->
       <div class="manual-section" id="spam">
-        <h2>6. Spam Protection</h2>
+        <h2>7. Spam Protection</h2>
 
         <p>GravesMail includes a 5-layer spam detection engine:</p>
 
         <ol>
-          <li><strong>Bayesian Filter (30%)</strong> &mdash; statistical analysis trained on 1,645 spam samples with 82,000+ tokens. Learns from your spam/ham training over time.</li>
+          <li><strong>Bayesian Filter (30%)</strong> &mdash; trained on 1,645 spam samples with 82,000+ tokens.</li>
           <li><strong>Domain Validator (25%)</strong> &mdash; DNS verification, MX records, SPF checks.</li>
           <li><strong>Header Analyzer (15%)</strong> &mdash; SPF/DKIM/DMARC authentication, header anomalies.</li>
-          <li><strong>Heuristic Scorer (20%)</strong> &mdash; 18 pattern-matching rules (phishing URLs, urgency language, suspicious formatting, etc.).</li>
+          <li><strong>Heuristic Scorer (20%)</strong> &mdash; 18 pattern-matching rules.</li>
           <li><strong>Defender Integration (10%)</strong> &mdash; Windows Defender scan (Windows only).</li>
         </ol>
 
         <h3>Reviewing Spam</h3>
-        <p>Go to Spam &rarr; Review Spam to view quarantined messages and restore false positives.</p>
+        <p>Spam &rarr; Review Spam to view quarantined messages.</p>
 
         <h3>Training the Filter</h3>
         <ul>
-          <li><strong>Mark as Junk</strong> (Ctrl+Shift+J) &mdash; trains the Bayesian filter as spam</li>
-          <li><strong>Mark as Not Spam</strong> &mdash; trains the Bayesian filter as legitimate</li>
+          <li><strong>Mark as Junk</strong> trains Bayesian filter as spam</li>
+          <li><strong>Mark as Not Spam</strong> trains Bayesian filter as legitimate</li>
         </ul>
 
         <h3>Safe Senders and Blocked Senders</h3>
@@ -232,13 +262,59 @@
         <h3>Spam Sensitivity</h3>
         <p>Adjust the threshold in Settings &rarr; Advanced Settings.</p>
 
-        <h3>Resetting the Bayesian Filter</h3>
-        <p>Available in Settings &rarr; Advanced Settings to start fresh with the baseline training data.</p>
+        <h3>Reset Bayesian Filter</h3>
+        <p>Reset option available in Settings &rarr; Advanced Settings.</p>
       </div>
 
-      <!-- 7. CALENDAR -->
+      <!-- 8. BACKUP & RECOVERY -->
+      <div class="manual-section" id="backup">
+        <h2>8. Backup &amp; Recovery</h2>
+
+        <p>GravesMail automatically protects your email with encrypted backups.</p>
+
+        <h3>Automatic Backups</h3>
+        <ul>
+          <li>Full backup created weekly (complete database copy, AES-256 encrypted)</li>
+          <li>Differential backup created daily (only changes since last full, lightweight)</li>
+          <li>Pre-operation snapshot before any destructive operation (Quick Rules scan, purge, delete rule, clear trash)</li>
+          <li>All backups encrypted with machine-specific key</li>
+          <li>Runs silently in background after app loads &mdash; never blocks your work</li>
+        </ul>
+
+        <h3>Manual Backups</h3>
+        <ul>
+          <li>File &rarr; Backup Database: choose Full or Differential, password-protected</li>
+          <li>Backup file (.gravesmail-backup) can be stored on external drives or cloud storage</li>
+        </ul>
+
+        <h3>Backup Manager (Tools &rarr; Backup Manager)</h3>
+        <ul>
+          <li>View all backups with dates, sizes, types</li>
+          <li>Browse any backup&rsquo;s contents instantly via metadata catalog</li>
+          <li>Search across ALL backups for specific messages</li>
+          <li>Compare backup with current database to find missing messages</li>
+          <li>Selective recovery: check individual messages and recover just those</li>
+        </ul>
+
+        <h3>Recently Deleted Messages (Tools &rarr; Recently Deleted Messages)</h3>
+        <ul>
+          <li>Every deleted message is captured with full body content</li>
+          <li>Browse, search, and preview deleted messages</li>
+          <li>One-click recovery to original folder &mdash; no backup file needed</li>
+          <li>Retained for 90 days by default (configurable in Settings)</li>
+        </ul>
+
+        <h3>Backup Settings</h3>
+        <ul>
+          <li>Full backup frequency: Weekly, Every 2 Weeks, Monthly</li>
+          <li>Retention: configurable for full, differential, and pre-operation backups</li>
+          <li>Deletion log retention: 30&ndash;365 days</li>
+        </ul>
+      </div>
+
+      <!-- 9. CALENDAR -->
       <div class="manual-section" id="calendar">
-        <h2>7. Calendar</h2>
+        <h2>9. Calendar</h2>
 
         <h3>Switching Views</h3>
         <p>Switch between Mail and Calendar views using the toggle at the bottom of the folder pane.</p>
@@ -256,9 +332,9 @@
         <p>Events can include reminders that notify you before the event starts.</p>
       </div>
 
-      <!-- 8. CONTACTS & RULES -->
+      <!-- 10. CONTACTS & RULES -->
       <div class="manual-section" id="contacts">
-        <h2>8. Contacts &amp; Rules</h2>
+        <h2>10. Contacts &amp; Rules</h2>
 
         <h3>Managing Contacts</h3>
         <p>Tools &rarr; Contacts opens the contact manager. Contacts support full business card fields: name, company, job title, multiple emails and phones, addresses, categories, and notes. Contacts can be exported to CSV.</p>
@@ -273,25 +349,26 @@
         <p>Settings &rarr; Edit Signature lets you create a default email signature. Per-account signature overrides are also supported.</p>
       </div>
 
-      <!-- 9. PRIVACY & SECURITY -->
+      <!-- 11. PRIVACY & SECURITY -->
       <div class="manual-section" id="privacy">
-        <h2>9. Privacy &amp; Security</h2>
+        <h2>11. Privacy &amp; Security</h2>
 
         <ul>
-          <li><strong>Local-first architecture</strong> &mdash; all mail stored on YOUR computer in SQLite. GravesMail never stores your email in the cloud.</li>
+          <li><strong>Local-first</strong> &mdash; all mail stored on YOUR computer in SQLite, not the cloud.</li>
           <li><strong>No cloud dependency</strong> &mdash; works fully offline with cached messages.</li>
-          <li><strong>Delete from server</strong> &mdash; optional setting to remove mail from provider after fetch.</li>
+          <li><strong>Delete from server</strong> &mdash; optional, removes mail from provider after fetch.</li>
           <li><strong>Credential encryption</strong> &mdash; DPAPI on Windows, AES-256 on Mac/Linux.</li>
-          <li><strong>External images blocked by default</strong> &mdash; prevents IP address tracking.</li>
+          <li><strong>External images blocked by default</strong> &mdash; prevents IP tracking.</li>
           <li><strong>Tracking pixels stripped by default</strong> &mdash; prevents read receipt tracking.</li>
+          <li><strong>Backups AES-256 encrypted</strong> with machine key or user password.</li>
           <li><strong>Obfuscated code and encrypted training data</strong> in release builds.</li>
-          <li><strong>No telemetry</strong> &mdash; GravesMail does not phone home or collect any data.</li>
+          <li><strong>No telemetry</strong> &mdash; GravesMail never phones home or collects data.</li>
         </ul>
       </div>
 
-      <!-- 10. KEYBOARD SHORTCUTS -->
+      <!-- 12. KEYBOARD SHORTCUTS -->
       <div class="manual-section" id="shortcuts">
-        <h2>10. Keyboard Shortcuts</h2>
+        <h2>12. Keyboard Shortcuts</h2>
 
         <div class="shortcut-row"><span class="shortcut-key">Ctrl + N</span><span class="shortcut-desc">New message</span></div>
         <div class="shortcut-row"><span class="shortcut-key">Ctrl + R</span><span class="shortcut-desc">Reply</span></div>
@@ -312,21 +389,23 @@
         <div class="shortcut-row"><span class="shortcut-key">Ctrl + MouseWheel</span><span class="shortcut-desc">Zoom in/out</span></div>
       </div>
 
-      <!-- 11. SETTINGS -->
+      <!-- 13. SETTINGS -->
       <div class="manual-section" id="settings">
-        <h2>11. Settings</h2>
+        <h2>13. Settings</h2>
 
-        <p><strong>Account management:</strong> File &rarr; Add/Remove account, account switcher.</p>
-        <p><strong>Sync frequency:</strong> Configure in Settings &rarr; Advanced Settings (default: 5 minutes).</p>
-        <p><strong>Spam sensitivity slider:</strong> Adjust the threshold for spam detection.</p>
-        <p><strong>Delete from server toggle:</strong> Remove messages from IMAP server after download.</p>
-        <p><strong>Community spam intelligence:</strong> Opt-in to help improve spam detection for all users.</p>
-        <p><strong>Storage management:</strong> View message count, database size, clear trash/spam.</p>
+        <p><strong>Account management:</strong> File &rarr; Add/Remove account.</p>
+        <p><strong>Sync frequency.</strong></p>
+        <p><strong>Spam sensitivity.</strong></p>
+        <p><strong>Delete from server toggle.</strong></p>
+        <p><strong>Community spam intelligence</strong> (opt-in).</p>
+        <p><strong>Backup frequency and retention.</strong></p>
+        <p><strong>Deletion log retention.</strong></p>
+        <p><strong>Storage management:</strong> message count, database size, clear trash/spam.</p>
       </div>
 
-      <!-- 12. TROUBLESHOOTING -->
+      <!-- 14. TROUBLESHOOTING -->
       <div class="manual-section" id="troubleshooting">
-        <h2>12. Troubleshooting</h2>
+        <h2>14. Troubleshooting</h2>
 
         <h3>&ldquo;Offline &mdash; showing cached messages&rdquo;</h3>
         <p>Check your internet connection. GravesMail will sync when reconnected.</p>
@@ -338,16 +417,19 @@
         <p>SMTP connection failed. Check your outgoing mail settings.</p>
 
         <h3>macOS: Right-click not working</h3>
-        <p>Enable Secondary Click in System Settings &rarr; Mouse &rarr; select &ldquo;Click Right Side&rdquo;.</p>
+        <p>System Settings &rarr; Mouse &rarr; enable &ldquo;Click Right Side&rdquo;.</p>
 
         <h3>High spam scores on legitimate email</h3>
-        <p>Mark as &ldquo;Not Spam&rdquo; to train the filter. Add to Safe Senders list.</p>
+        <p>Mark Not Spam, add to Safe Senders.</p>
 
-        <h3>Empty reading pane</h3>
-        <p>Click a message to select it.</p>
+        <h3>Quick Rule not catching</h3>
+        <p>Check if disabled (grayed out). Verify Matched Senders tab.</p>
 
-        <h3>Quick Rule not catching messages</h3>
-        <p>Check if the rule is disabled (grayed out button). Verify match values in Review &rarr; Matched Senders tab.</p>
+        <h3>Backup failed</h3>
+        <p>Check disk space. Ensure no other instance of GravesMail is running.</p>
+
+        <h3>Recently deleted message not found</h3>
+        <p>Check deletion retention setting in Settings.</p>
       </div>
 
       <!-- ABOUT -->

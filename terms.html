@@ -19,10 +19,10 @@
     </div>
     <div class="sidebar-nav">
       <a href="index.html"><span class="nav-icon">&#x1F4EC;</span> Home</a>
-      <a href="mission.html"><span class="nav-icon">&#x1F3AF;</span> Mission &amp; Story</a>
-      <a href="how-it-works.html"><span class="nav-icon">&#x1F9E0;</span> How the Filter Learns</a>
+      <a href="beta.html" class="nav-download"><span class="nav-icon">&#x2B07;</span> Download the Beta</a>
+      <a href="mission.html"><span class="nav-icon">&#x1F3AF;</span> My Mission &amp; Story</a>
+      <a href="how-it-works.html"><span class="nav-icon">&#x1F9E0;</span> How It Works</a>
       <a href="compatibility.html"><span class="nav-icon">&#x2705;</span> Compatibility</a>
-      <a href="beta.html"><span class="nav-icon">&#x1F9EA;</span> Beta Testers Wanted</a>
       <a href="privacy.html"><span class="nav-icon">&#x1F512;</span> Privacy Policy</a>
       <a href="terms.html" class="active"><span class="nav-icon">&#x1F4DC;</span> Terms of Service</a>
       <a href="manual.html"><span class="nav-icon">&#x1F4D6;</span> User Manual</a>
@@ -36,7 +36,7 @@
 
     <div class="content-header">
       <h2>Terms of Service</h2>
-      <div class="subtitle">Last updated: February 27, 2026</div>
+      <div class="subtitle">Last updated: March 28, 2026</div>
     </div>
 
     <div class="content-body">
@@ -47,7 +47,13 @@
 
       <h2>What GravesMail Is</h2>
 
-      <p>GravesMail is a desktop email client for Windows. It connects to your existing email account through standard IMAP and SMTP protocols to download, display, and send email. GravesMail is not an email service. It does not provide email addresses, host mailboxes, or operate mail servers. Your email account and mailbox are provided by your email service provider (such as Gmail, Yahoo, Outlook, or iCloud).</p>
+      <p>GravesMail is a desktop email client available for Windows, macOS, and Linux. It connects to your existing email account through standard IMAP and SMTP protocols to download, display, and send email. GravesMail is not an email service. It does not provide email addresses, host mailboxes, or operate mail servers. Your email account and mailbox are provided by your email service provider (such as Gmail, Yahoo, Outlook, or iCloud).</p>
+
+      <h2>Beta Software</h2>
+
+      <p>GravesMail is currently in beta. The software is provided as-is during the beta period. I make best efforts to ensure reliability and data safety, but beta software may contain bugs or unexpected behavior. I recommend keeping backups of important email with your provider.</p>
+
+      <p>There is no subscription, no payment, and no registration required during beta or at any other time.</p>
 
       <h2>License</h2>
 
@@ -55,33 +61,47 @@
 
       <h2>Your Email Account</h2>
 
-      <p>You are responsible for your own email account. GravesMail accesses your account using credentials you provide. You are responsible for keeping those credentials secure. GravesMail stores your saved credentials locally on your computer using Windows DPAPI encryption. GravesMail does not have access to your credentials on any server and cannot recover them if lost.</p>
+      <p>You are responsible for your own email account. GravesMail accesses your account using credentials you provide. You are responsible for keeping those credentials secure. GravesMail stores your saved credentials locally on your computer using DPAPI encryption (Windows) or AES-256 encryption (macOS/Linux). I do not have access to your credentials on any server and cannot recover them if lost.</p>
 
       <h2>Your Data</h2>
 
-      <p>GravesMail stores email, contacts, calendar events, settings, and spam filter data locally on your computer. You are responsible for backing up your own data. If your computer is lost, damaged, or the data is deleted, GravesMail cannot recover it.</p>
+      <p>You own all your data. GravesMail makes no claim on your email content, contacts, calendar events, or any other data stored by the application. All data is stored locally on your computer.</p>
 
-      <p>If you enable the &ldquo;Delete From Server&rdquo; option, GravesMail will remove messages from your email provider&rsquo;s server after downloading them. Once deleted from the server, those messages exist only on your computer. GravesMail is not responsible for data loss resulting from this feature.</p>
+      <p>GravesMail includes an automatic backup system (weekly full, daily differential, pre-operation snapshots), but you should verify your backups periodically. If you create manual backup exports with a password, that password cannot be recovered if lost.</p>
+
+      <p>If you enable the &ldquo;Delete From Server&rdquo; option, GravesMail will remove messages from your email provider&rsquo;s server after downloading them. This is your choice. Once deleted from the server, those messages exist only on your computer (and in your encrypted backups). I am not responsible for data loss resulting from this feature.</p>
+
+      <h2>Quick Rules</h2>
+
+      <p>Quick Rules are user-created rules for quarantining, moving, or auto-deleting messages. You are responsible for managing your rules and periodically reviewing quarantined messages. Messages quarantined by Quick Rules with auto-delete expiry will be permanently deleted after the configured period.</p>
+
+      <h2>Backup System</h2>
+
+      <p>GravesMail creates automatic encrypted backups to protect your data. While the backup system is designed to be reliable, I recommend periodically verifying that backups are being created and that you can browse their contents via the Backup Manager.</p>
 
       <h2>Community Spam Intelligence</h2>
 
-      <p>If you choose to enable the Community Spam Intelligence feature, you agree to allow GravesMail to transmit anonymous spam filter data (word-frequency scores only, never email content) to help improve the spam filter for all users. This feature is off by default and entirely optional. You can disable it at any time. For full details on what is and is not shared, see the <a href="privacy.html">Privacy Policy</a>.</p>
+      <p>If you choose to enable the Community Spam Intelligence feature, you agree to allow GravesMail to transmit anonymous spam filter data (word-frequency scores only, never email content) to help improve the spam filter for all users. This feature is off by default and entirely optional. You can disable it at any time, and no further data will be sent. For full details, see the <a href="privacy.html">Privacy Policy</a>.</p>
 
       <h2>No Warranty</h2>
 
-      <p>GravesMail is provided &ldquo;as is&rdquo; without warranty of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement. GravesMail does not guarantee that the software will be error-free, uninterrupted, or free of security vulnerabilities.</p>
+      <p>GravesMail is provided &ldquo;as is&rdquo; without warranty of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement. I do not guarantee that the software will be error-free, uninterrupted, or free of security vulnerabilities.</p>
 
       <h2>Spam Filter Disclaimer</h2>
 
-      <p>GravesMail&rsquo;s spam detection system is designed to identify and quarantine unwanted or malicious email, but no spam filter is perfect. GravesMail does not guarantee that all spam or phishing messages will be caught, or that legitimate messages will never be incorrectly flagged. You are responsible for reviewing your quarantined messages periodically.</p>
+      <p>GravesMail&rsquo;s spam detection system is designed to identify and quarantine unwanted or malicious email, but no spam filter is perfect. I do not guarantee that all spam or phishing messages will be caught, or that legitimate messages will never be incorrectly flagged. You are responsible for reviewing your quarantined messages periodically.</p>
 
       <h2>Limitation of Liability</h2>
 
-      <p>To the maximum extent permitted by law, GravesMail and its developer shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of data, loss of revenue, loss of business, or damages resulting from missed, lost, misfiled, or incorrectly filtered email, regardless of the cause of action or the theory of liability.</p>
+      <p>GravesMail is a solo developer project built with best efforts. To the maximum extent permitted by law, I shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of data, loss of revenue, loss of business, or damages resulting from missed, lost, misfiled, or incorrectly filtered email, regardless of the cause of action or the theory of liability.</p>
+
+      <h2>Three Platforms</h2>
+
+      <p>GravesMail is available for Windows (x64), macOS (Apple Silicon), and Linux (x64). These terms apply equally to all platforms.</p>
 
       <h2>Third-Party Services</h2>
 
-      <p>GravesMail connects to third-party email services (Gmail, Yahoo, Outlook, iCloud, or other IMAP/SMTP servers) on your behalf. GravesMail is not affiliated with, endorsed by, or responsible for any third-party service. Your use of those services is governed by their own terms and policies. If a third-party provider changes their protocols, authentication methods, or terms of service in a way that affects GravesMail&rsquo;s ability to connect, GravesMail is not liable for the resulting disruption.</p>
+      <p>GravesMail connects to third-party email services (Gmail, Yahoo, Outlook, iCloud, or other IMAP/SMTP servers) on your behalf. GravesMail is not affiliated with, endorsed by, or responsible for any third-party service. Your use of those services is governed by their own terms and policies. If a third-party provider changes their protocols, authentication methods, or terms of service in a way that affects GravesMail&rsquo;s ability to connect, I am not liable for the resulting disruption.</p>
 
       <h2>Updates</h2>
 
@@ -89,11 +109,11 @@
 
       <h2>Termination</h2>
 
-      <p>You may stop using GravesMail at any time by deleting the executable and, optionally, the local data directory at <strong>%LocalAppData%\GravesMail</strong>. There is no account to cancel and no subscription to end.</p>
+      <p>You may stop using GravesMail at any time by deleting the executable and, optionally, the local data directory at <strong>%LocalAppData%\GravesMail</strong> (or the equivalent on macOS/Linux). There is no account to cancel and no subscription to end.</p>
 
       <h2>Changes to These Terms</h2>
 
-      <p>These terms may be updated from time to time. Changes will be posted on this page with a new &ldquo;Last updated&rdquo; date. Since GravesMail does not collect email addresses or contact information, we cannot notify you directly of changes. Continued use of GravesMail after changes are posted constitutes acceptance of the updated terms.</p>
+      <p>These terms may be updated from time to time. Changes will be posted on this page with a new &ldquo;Last updated&rdquo; date. Since GravesMail does not collect email addresses or contact information, I cannot notify you directly of changes. Continued use of GravesMail after changes are posted constitutes acceptance of the updated terms.</p>
 
       <h2>Governing Law</h2>
 
@@ -103,6 +123,7 @@
 
       <div class="callout">
         <p><strong>GravesMail</strong><br>
+        Developer: Luke Graves<br>
         Website: <a href="https://graveslu-yahoo.github.io/gravesmail-site/">graveslu-yahoo.github.io/gravesmail-site</a><br>
         Email: graveslu@yahoo.com</p>
       </div>

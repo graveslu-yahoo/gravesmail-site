@@ -103,6 +103,25 @@ body {
 
 .sidebar-nav .nav-icon { margin-right: 10px; font-size: 15px; }
 
+.sidebar-nav a.nav-download {
+  background: var(--accent);
+  color: #1a1a2e;
+  border-radius: 6px;
+  margin: 4px 12px 8px;
+  padding: 10px 16px;
+  font-weight: 700;
+  border-left: none;
+  text-align: center;
+  justify-content: center;
+}
+
+.sidebar-nav a.nav-download:hover {
+  background: var(--accent-dark);
+  border-left-color: transparent;
+}
+
+.sidebar-nav a.nav-download .nav-icon { margin-right: 8px; }
+
 .sidebar-footer {
   padding: 14px 20px;
   border-top: 1px solid var(--border);
@@ -386,6 +405,32 @@ body {
   font-weight: 600;
   font-size: 14px;
   letter-spacing: 0.3px;
+}
+
+.hero-cta {
+  display: inline-block;
+  background: var(--accent);
+  color: #1a1a2e;
+  text-decoration: none;
+  padding: 14px 36px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: 0.02em;
+  margin-top: 24px;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.hero-cta:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+}
+
+.hero-sub {
+  display: block;
+  margin-top: 12px;
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.6);
 }
 
 /* ---- BELIEFS (mission page) ---- */

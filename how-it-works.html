@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>How Your Filter Learns — GravesMail</title>
+  <title>How It Works — GravesMail</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,10 +19,10 @@
     </div>
     <div class="sidebar-nav">
       <a href="index.html"><span class="nav-icon">&#x1F4EC;</span> Home</a>
-      <a href="mission.html"><span class="nav-icon">&#x1F3AF;</span> Mission &amp; Story</a>
-      <a href="how-it-works.html" class="active"><span class="nav-icon">&#x1F9E0;</span> How the Filter Learns</a>
+      <a href="beta.html" class="nav-download"><span class="nav-icon">&#x2B07;</span> Download the Beta</a>
+      <a href="mission.html"><span class="nav-icon">&#x1F3AF;</span> My Mission &amp; Story</a>
+      <a href="how-it-works.html" class="active"><span class="nav-icon">&#x1F9E0;</span> How It Works</a>
       <a href="compatibility.html"><span class="nav-icon">&#x2705;</span> Compatibility</a>
-      <a href="beta.html"><span class="nav-icon">&#x1F9EA;</span> Beta Testers Wanted</a>
       <a href="privacy.html"><span class="nav-icon">&#x1F512;</span> Privacy Policy</a>
       <a href="terms.html"><span class="nav-icon">&#x1F4DC;</span> Terms of Service</a>
       <a href="manual.html"><span class="nav-icon">&#x1F4D6;</span> User Manual</a>
@@ -35,86 +35,107 @@
   <main class="content">
 
     <div class="content-header">
-      <h2>How Your Spam Filter Learns</h2>
-      <div class="subtitle">And why it gets smarter the longer you use it</div>
+      <h2>How It Works</h2>
+      <div class="subtitle">Architecture, spam detection, and how the filter gets smarter over time</div>
     </div>
 
     <div class="content-body">
 
-      <h2>Your Filter Learns From You</h2>
+      <h2>The Architecture: IMAP Transport &rarr; Local Storage &rarr; Analysis</h2>
 
-      <p>Every time GravesMail checks your email, it&rsquo;s learning. When a spam message lands in your inbox and you confirm it&rsquo;s junk, the filter studies that message and remembers the patterns. When a real message gets flagged by mistake and you mark it as safe, the filter learns from that too.</p>
+      <p>GravesMail uses your email provider&rsquo;s IMAP server purely as a transport layer. I never read from IMAP to display messages &mdash; that would be slow and unreliable. Instead, here&rsquo;s what happens:</p>
 
-      <p>Over time, your filter becomes an expert on the specific kinds of email you get. If you receive a lot of fake shipping notifications, your filter gets especially good at catching those. If someone keeps targeting you with phishing emails that pretend to be your bank, your filter learns to spot them faster and faster.</p>
+      <ol>
+        <li><strong>Fetch from IMAP</strong> &mdash; Messages are downloaded from your provider&rsquo;s server over an encrypted connection.</li>
+        <li><strong>Stage in DMZ</strong> &mdash; New messages land in a local staging area (SQLite) before you see them.</li>
+        <li><strong>5-layer spam analysis</strong> &mdash; Every message runs through all five detection engines on your machine.</li>
+        <li><strong>Quick Rules filtering</strong> &mdash; Messages matching your personal Quick Rules are quarantined automatically.</li>
+        <li><strong>Promote to Inbox or Spam</strong> &mdash; Clean messages reach your Inbox. Threats go to Spam.</li>
+        <li><strong>Delete from server</strong> (optional) &mdash; If you&rsquo;ve enabled &ldquo;Delete from server,&rdquo; the message is removed from your provider.</li>
+      </ol>
 
-      <p>This happens automatically on your computer. <strong>Nobody else sees your email. Nobody else touches your data.</strong> The learning happens entirely on your machine, and the results stay there.</p>
+      <p>SQLite is the single source of truth. Everything you see in the UI comes from your local database, not from IMAP.</p>
 
-      <h2>Now Imagine Thousands of People Doing the Same Thing</h2>
+      <h2>Two-Phase Sync for Large Mailboxes</h2>
 
-      <p>You&rsquo;re not the only person getting spam. Millions of people get hit with the same kinds of attacks every day. A phishing campaign that targets you probably targets thousands of other people too.</p>
+      <p>When you first connect an account &mdash; especially one with thousands of messages &mdash; GravesMail uses a two-phase approach:</p>
 
-      <p>If every GravesMail user&rsquo;s filter is learning on its own, that&rsquo;s thousands of filters all getting smarter independently. But what if they could share what they&rsquo;ve learned with each other?</p>
+      <p><strong>Phase 1 (Quick Start):</strong> The newest 500 messages per folder are fetched first, typically in under a minute. You can start reading and working immediately.</p>
 
-      <p>That&rsquo;s exactly what GravesMail can do &mdash; if you choose to participate.</p>
+      <p><strong>Phase 2 (Background Sync):</strong> The remaining messages download quietly in the background. A progress indicator in the status bar shows completion percentage and estimated time remaining. You can pause, resume, or stop at any time. Progress is saved if you close the app.</p>
 
-      <h2>How It Works</h2>
+      <h2>The 5-Layer Spam Detection Engine</h2>
 
-      <p>When you turn on the sharing option in Settings, GravesMail will occasionally send a small package of data to help improve the filter for everyone. Here&rsquo;s what that data is:</p>
+      <p>Every incoming message passes through five independent detection engines. Each engine examines a different aspect of the message, and their weighted scores combine into a final spam verdict:</p>
 
-      <p><strong>It&rsquo;s a list of words and scores.</strong> That&rsquo;s it. Your filter keeps track of words that tend to appear in spam (like &ldquo;winner,&rdquo; &ldquo;urgent,&rdquo; or &ldquo;verify your account&rdquo;) and words that tend to appear in real email. Each word has a number that says how strongly it signals spam or not-spam. That list of words and numbers is what gets shared.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon">&#x1F9E0;</div>
+          <h4>1. Bayesian Filter (30%)</h4>
+          <p>Statistical analysis trained on 1,645 spam samples with 82,000+ tokens. Learns from your corrections over time &mdash; every &ldquo;Mark as Junk&rdquo; or &ldquo;Not Spam&rdquo; makes it smarter.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F310;</div>
+          <h4>2. Domain Validator (25%)</h4>
+          <p>DNS verification, MX record checks, and SPF validation. Catches messages from nonexistent or misconfigured domains.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F512;</div>
+          <h4>3. Header Analyzer (15%)</h4>
+          <p>SPF/DKIM/DMARC authentication and header anomaly detection. Identifies forged sender addresses and suspicious routing.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F50D;</div>
+          <h4>4. Heuristic Scorer (20%)</h4>
+          <p>18 pattern-matching rules that detect phishing URLs, urgency language, suspicious formatting, and other common attack tactics.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F6E1;</div>
+          <h4>5. Defender Integration (10%)</h4>
+          <p>On Windows, messages are scanned by Windows Defender for known malware signatures. Other platforms use the remaining four engines at adjusted weights.</p>
+        </div>
+      </div>
 
-      <p><strong>Here&rsquo;s what is <em>never</em> shared:</strong></p>
+      <h2>External Image Blocking &amp; Tracking Pixel Stripping</h2>
 
-      <ul class="never-list">
-        <li><strong>Your email address</strong> &mdash; never sent</li>
-        <li><strong>Your contacts</strong> &mdash; never sent</li>
-        <li><strong>Your email content</strong> &mdash; no subject lines, no message bodies, no attachments</li>
-        <li><strong>Your passwords</strong> &mdash; never accessed</li>
-        <li><strong>Your name or location</strong> &mdash; never recorded</li>
+      <p>When you receive an email, senders can embed external images that load from their servers. When the image loads, the sender learns your IP address, that you opened the email, when you opened it, and what device you used.</p>
+
+      <p>GravesMail blocks external images by default. Separately, it detects and strips invisible tracking pixels (1&times;1 images used solely for read-receipt tracking). These are independent controls &mdash; you can load images without loading trackers, or vice versa.</p>
+
+      <h2>Quick Rules: Your Personal Email Triage</h2>
+
+      <p>Quick Rules let you create one-click quarantine rules for specific senders, domains, or subject patterns. Each rule gets its own toolbar button. When you apply a rule to a message, the sender is automatically added to that rule&rsquo;s match list &mdash; the rule grows smarter as you use it.</p>
+
+      <p>Rules can be set to auto-apply during sync, so matching messages are quarantined before they ever reach your Inbox. You can scan entire folders in seconds to bulk-quarantine old messages. Quarantined messages can be reviewed, restored, or purged at any time.</p>
+
+      <h2>Automatic Encrypted Backups</h2>
+
+      <p>GravesMail automatically creates encrypted backups of your email database:</p>
+
+      <ul>
+        <li><strong>Full backups</strong> &mdash; weekly, complete database copy, AES-256 encrypted</li>
+        <li><strong>Differential backups</strong> &mdash; daily, only changes since last full backup</li>
+        <li><strong>Pre-operation snapshots</strong> &mdash; before any destructive operation (Quick Rules scan, purge, clear trash)</li>
       </ul>
 
-      <p>The data is anonymous. There is no way to connect it back to you or to figure out what emails you received. It&rsquo;s just words and numbers.</p>
+      <p>All backups are encrypted with a machine-specific key and run silently in the background. The Backup Manager lets you browse any backup&rsquo;s contents, search across all backups, compare with your current database, and selectively recover individual messages.</p>
 
-      <h2>What Happens With Your Data</h2>
+      <h2>Deletion Log &amp; Recovery</h2>
 
-      <p>The word scores from everyone who participates are combined together. If hundreds of people&rsquo;s filters all agree that a certain word is a strong spam signal, that word gets a high score in the shared model. If a word only shows up in one person&rsquo;s data, it carries less weight.</p>
+      <p>Every deleted message is captured in a local deletion log with full body content. You can browse, search, and one-click recover deleted messages for up to 90 days (configurable). No backup file needed &mdash; recovery is instant from the deletion log.</p>
 
-      <p>The combined model becomes the starting point for the next version of GravesMail. So when a new user runs the app for the very first time, they don&rsquo;t start from zero. They start with the combined knowledge of every user who came before them.</p>
+      <h2>Community Spam Intelligence (Opt-In)</h2>
+
+      <p>If you choose to participate, GravesMail can share anonymous spam pattern data &mdash; just word-frequency scores, never email content &mdash; to help improve the filter for all users. This data is combined into a shared baseline that ships with each new version, so new users start with the combined knowledge of the community.</p>
 
       <div class="callout tip">
         <div class="callout-label">Think of it like a neighborhood watch</div>
-        <p>If one neighbor sees something suspicious, they tell everyone else. Now the whole neighborhood knows what to look for. Nobody has to share their home address or their daily routine &mdash; they just share what they saw.</p>
+        <p>If one neighbor sees something suspicious, they tell everyone else. Now the whole neighborhood knows what to look for. Nobody has to share their home address or daily routine &mdash; they just share what they saw.</p>
       </div>
-
-      <h2>Two Systems, Working Together</h2>
-
-      <p>GravesMail&rsquo;s spam filter actually has two layers of learning:</p>
-
-      <h3>Layer 1: Your Personal Filter</h3>
-
-      <p>This is the filter that trains on your email, on your computer, every day. It gets better the more you use it. It&rsquo;s tuned to the specific spam and phishing attacks that target you. This layer works whether or not you participate in sharing.</p>
-
-      <h3>Layer 2: The Shared Baseline</h3>
-
-      <p>This is the combined knowledge of the entire GravesMail community, delivered with each new version. It protects you against spam campaigns you&rsquo;ve never personally seen, because someone else in the community already saw them.</p>
-
-      <p><strong>When both layers work together, you get the best of both worlds:</strong> protection against the attacks that target you specifically <em>and</em> protection against attacks happening everywhere else.</p>
-
-      <h2>Why This Matters</h2>
-
-      <p>Spam and phishing exist because they&rsquo;re cheap to send and enough people fall for them to make money. That&rsquo;s the entire business model.</p>
-
-      <p>Every GravesMail user who participates in sharing makes it harder for that business model to work. When the filter catches a new attack, that knowledge spreads to every other user. The spammers have to work harder, spend more money, and change their tactics more often &mdash; all for fewer and fewer successful deliveries.</p>
-
-      <p><strong>The more people who use GravesMail, the more expensive it becomes for spammers to operate.</strong> Eventually, the cost of sending spam is higher than the money they make from it. When that happens, they stop. Not because someone asked them to &mdash; because they can&rsquo;t afford to continue.</p>
 
       <h2>It&rsquo;s Your Choice</h2>
 
-      <p>Sharing is completely optional. It is turned off by default. You can turn it on or off at any time in Settings. GravesMail will never share anything without your permission, and you can stop participating whenever you want.</p>
-
-      <p>If you choose not to participate, your personal filter still learns and improves on its own. You still benefit from the shared baseline that shipped with your version of the app. You just won&rsquo;t be contributing new data to future baselines.</p>
-
-      <p>If you do choose to participate, you&rsquo;re helping build something bigger than any one inbox. You&rsquo;re helping protect everyone.</p>
+      <p>Sharing is completely optional. It&rsquo;s turned off by default. You can turn it on or off at any time in Settings. If you don&rsquo;t participate, your personal filter still learns and improves on its own. You still benefit from the shared baseline that shipped with your version.</p>
 
     </div>
 

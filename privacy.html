@@ -19,10 +19,10 @@
     </div>
     <div class="sidebar-nav">
       <a href="index.html"><span class="nav-icon">&#x1F4EC;</span> Home</a>
-      <a href="mission.html"><span class="nav-icon">&#x1F3AF;</span> Mission &amp; Story</a>
-      <a href="how-it-works.html"><span class="nav-icon">&#x1F9E0;</span> How the Filter Learns</a>
+      <a href="beta.html" class="nav-download"><span class="nav-icon">&#x2B07;</span> Download the Beta</a>
+      <a href="mission.html"><span class="nav-icon">&#x1F3AF;</span> My Mission &amp; Story</a>
+      <a href="how-it-works.html"><span class="nav-icon">&#x1F9E0;</span> How It Works</a>
       <a href="compatibility.html"><span class="nav-icon">&#x2705;</span> Compatibility</a>
-      <a href="beta.html"><span class="nav-icon">&#x1F9EA;</span> Beta Testers Wanted</a>
       <a href="privacy.html" class="active"><span class="nav-icon">&#x1F512;</span> Privacy Policy</a>
       <a href="terms.html"><span class="nav-icon">&#x1F4DC;</span> Terms of Service</a>
       <a href="manual.html"><span class="nav-icon">&#x1F4D6;</span> User Manual</a>
@@ -36,34 +36,37 @@
 
     <div class="content-header">
       <h2>Privacy Policy</h2>
-      <div class="subtitle">Last updated: February 27, 2026</div>
+      <div class="subtitle">Last updated: March 28, 2026</div>
     </div>
 
     <div class="content-body">
 
       <h2>The Short Version</h2>
 
-      <p>GravesMail is a local-first email client. Your email is downloaded to your computer and stays there. We do not operate servers that store, read, or process your email. We do not collect personal information. We do not display ads. We do not sell data. The only data that ever leaves your computer is when you explicitly opt in to the Community Spam Intelligence feature, and even then, no email content is ever shared.</p>
+      <p>GravesMail is a local-first email client. Your email is downloaded to your computer and stays there. I do not operate servers that store, read, or process your email. I do not collect personal information. I do not display ads. I do not sell data. The only data that ever leaves your computer is when you explicitly opt in to the Community Spam Intelligence feature, and even then, no email content is ever shared.</p>
 
-      <h2>What GravesMail Does</h2>
+      <h2>What Data GravesMail Stores</h2>
 
-      <p>GravesMail connects to your email provider (such as Gmail, Yahoo, Outlook, iCloud, or a custom IMAP server) using the credentials you provide. It downloads your email to your local computer over encrypted connections (TLS/SSL). Once downloaded, your email is stored locally in your Windows User Profile directory.</p>
+      <p>All data is stored locally in your user profile under <strong>%LocalAppData%\GravesMail</strong> (Windows) or the equivalent on macOS/Linux. Here is every file and its purpose:</p>
 
-      <p>GravesMail performs spam detection, tracking pixel analysis, and email filtering entirely on your computer. No email content is sent to GravesMail servers or any third party for analysis.</p>
+      <ul>
+        <li><strong>accounts.dat</strong> &mdash; IMAP/SMTP credentials, encrypted with DPAPI (Windows) or AES-256 (Mac/Linux)</li>
+        <li><strong>{accountHash}.db</strong> &mdash; Per-account SQLite database containing your downloaded email, folders, and attachments</li>
+        <li><strong>cache/</strong> &mdash; Message header and body cache with 24-hour TTL for fast display</li>
+        <li><strong>spam_data/</strong> &mdash; Bayesian training data, safe sender list, blocked sender list</li>
+        <li><strong>backups/</strong> &mdash; Encrypted backup files (.gravesmail-backup), AES-256 with machine-specific key</li>
+        <li><strong>backup_catalog.db</strong> &mdash; Metadata index of all backups for instant browsing (never transmitted)</li>
+        <li><strong>deletion_log.db</strong> &mdash; Deleted message content for recovery (configurable retention: 30&ndash;365 days)</li>
+        <li><strong>quickrules.db</strong> &mdash; Quick Rules definitions and quarantined messages</li>
+        <li><strong>calendar.json</strong> &mdash; Calendar events</li>
+        <li><strong>contacts.json</strong> &mdash; Contact records</li>
+        <li><strong>rules.json</strong> &mdash; Mail rules</li>
+        <li><strong>signatures/</strong> &mdash; Email signatures</li>
+      </ul>
 
-      <h2>What We Collect</h2>
+      <p>No data is stored outside this directory. No data is stored on remote servers.</p>
 
-      <h3>By Default: Nothing</h3>
-
-      <p>Out of the box, GravesMail collects zero data from you. It does not phone home. It does not send usage statistics. It does not transmit telemetry. It does not register your installation. There is no account to create, no registration process, and no analytics tracking.</p>
-
-      <h3>With Community Spam Intelligence Enabled (Opt-In Only)</h3>
-
-      <p>If you choose to turn on the Community Spam Intelligence feature in Settings, GravesMail will periodically send a small package of anonymous spam filter data. This data consists of:</p>
-
-      <p><strong>What is shared:</strong> Statistical word-frequency scores from your spam filter. These are words paired with numbers indicating how strongly each word correlates with spam or legitimate email. This is the same type of data used by academic researchers to study spam filtering.</p>
-
-      <p><strong>What is never shared:</strong></p>
+      <h2>What Data GravesMail Never Collects</h2>
 
       <ul class="never-list">
         <li><strong>Email addresses</strong> &mdash; yours or anyone who emails you</li>
@@ -74,55 +77,79 @@
         <li><strong>Calendar events</strong></li>
         <li><strong>IP addresses</strong></li>
         <li><strong>Your name, location, or any identifying information</strong></li>
-        <li><strong>Usage patterns</strong> &mdash; we do not track how often you open the app, which emails you read, or how you interact with messages</li>
+        <li><strong>Usage patterns</strong> &mdash; I do not track how often you open the app, which emails you read, or how you interact with messages</li>
+        <li><strong>Crash reports or diagnostics</strong> &mdash; nothing is ever sent automatically</li>
+        <li><strong>Installation or registration data</strong> &mdash; there is no account to create</li>
       </ul>
 
-      <p>The shared data is anonymous. It cannot be used to reconstruct your emails, identify you, or determine what messages you received. You can preview exactly what would be sent before enabling the feature. You can disable it at any time, and no further data will be sent.</p>
+      <h2>Backup Privacy</h2>
+
+      <p>GravesMail creates automatic encrypted backups of your email database:</p>
+
+      <ul>
+        <li><strong>Automatic backups</strong> (weekly full, daily differential) are encrypted with a machine-specific key derived from your operating system credentials. They can only be decrypted on the same machine by the same user.</li>
+        <li><strong>Manual backup exports</strong> (File &rarr; Backup Database) are encrypted with a password you choose. If you lose this password, the backup cannot be recovered.</li>
+        <li><strong>Backup metadata catalogs</strong> are stored locally and never transmitted. They allow instant browsing of backup contents without decrypting the full backup.</li>
+        <li><strong>Pre-operation snapshots</strong> are created before destructive operations (Quick Rules scans, purges, clear trash) as a safety net.</li>
+      </ul>
+
+      <p>All backup files stay on your computer unless you manually copy them to external storage.</p>
+
+      <h2>Quick Rules Privacy</h2>
+
+      <p>Quick Rules quarantine data is stored in a local encrypted database. Quarantined messages, match lists, and rule definitions never leave your computer. When you delete a rule or purge quarantined messages, the data is permanently removed from your local database.</p>
 
       <h2>How Your Credentials Are Stored</h2>
 
-      <p>If you choose to save your email credentials using the &ldquo;Remember credentials&rdquo; option, GravesMail encrypts them using Windows Data Protection API (DPAPI). This means your credentials are encrypted with a key tied to your Windows user account. They can only be decrypted on the same computer, by the same Windows user who saved them.</p>
+      <p>If you save your email credentials, GravesMail encrypts them using Windows Data Protection API (DPAPI) on Windows or AES-256 encryption on macOS and Linux. Your credentials can only be decrypted on the same computer, by the same user who saved them.</p>
 
       <p>GravesMail never transmits your credentials to any server other than your email provider&rsquo;s mail server for the purpose of logging in.</p>
 
-      <p>For Microsoft/Outlook accounts that use OAuth2 authentication, GravesMail uses the standard Microsoft Identity Platform flow. Authentication tokens are stored locally using the same DPAPI encryption. GravesMail does not have access to your Microsoft account password.</p>
+      <p>For Microsoft/Outlook accounts that use OAuth2 authentication, GravesMail uses the standard Microsoft Identity Platform flow. Authentication tokens are stored locally using the same encryption. GravesMail does not have access to your Microsoft account password.</p>
 
-      <h2>Where Your Data Is Stored</h2>
+      <h2>External Image Blocking &amp; Tracking Pixel Protection</h2>
 
-      <p>All data created by GravesMail is stored in your Windows User Profile under <strong>%LocalAppData%\GravesMail</strong>. This includes downloaded email, contacts, calendar events, mail rules, spam filter data, and settings. No data is stored outside this directory. No data is stored on remote servers.</p>
+      <p>External images are blocked by default to prevent senders from learning your IP address, that you opened their email, when, and from what device.</p>
 
-      <p>If you uninstall GravesMail, this directory and all its contents remain on your computer under your control. You can delete it at any time.</p>
+      <p>Tracking pixels (invisible 1&times;1 images used solely for read-receipt tracking) are detected and stripped separately. These are independent controls &mdash; you can load images without loading trackers.</p>
+
+      <h2>Community Spam Intelligence (Opt-In Only)</h2>
+
+      <p>If you choose to enable Community Spam Intelligence in Settings, GravesMail will periodically send anonymous spam filter data. This consists of word-frequency scores only &mdash; words paired with numbers indicating spam correlation. No email content, addresses, contacts, or identifying information is ever included.</p>
+
+      <p>The data is anonymous and cannot be used to reconstruct your emails or identify you. You can preview exactly what would be sent before enabling. You can disable it at any time.</p>
+
+      <h2>Three Platform Builds</h2>
+
+      <ul>
+        <li><strong>Windows</strong> &mdash; code signed by Luke Graves via Microsoft Azure Code Signing</li>
+        <li><strong>Linux</strong> &mdash; obfuscated code, AES-256 encrypted training data</li>
+        <li><strong>macOS</strong> &mdash; obfuscated code, AES-256 encrypted training data</li>
+      </ul>
+
+      <p>All three platforms have identical privacy characteristics. No platform sends data home or behaves differently with respect to privacy.</p>
 
       <h2>Third-Party Services</h2>
 
-      <p>GravesMail connects to the following third-party services, and only these:</p>
+      <p>GravesMail connects only to your email provider (over encrypted TLS/SSL connections) and, for Microsoft accounts, the Microsoft Identity Platform for OAuth2 authentication. GravesMail does not use any advertising networks, analytics services, crash reporting services, or tracking platforms.</p>
 
-      <p><strong>Your email provider</strong> (Gmail, Yahoo, Outlook, iCloud, or custom IMAP/SMTP server) &mdash; to download and send email using the credentials you provide. GravesMail communicates with your provider over encrypted connections (TLS/SSL on ports 993 and 465/587).</p>
+      <h2>Open for Inspection</h2>
 
-      <p><strong>Microsoft Identity Platform</strong> (for Outlook/Microsoft accounts only) &mdash; to authenticate using OAuth2. This is a standard Microsoft login flow that opens in your web browser. GravesMail does not see or store your Microsoft password.</p>
-
-      <p>GravesMail does not use any advertising networks, analytics services, crash reporting services, or tracking platforms.</p>
-
-      <h2>Tracking Pixel Protection</h2>
-
-      <p>GravesMail detects and strips tracking pixels from incoming emails. Tracking pixels are invisible images embedded by senders to monitor whether you opened their message. By stripping these images, GravesMail prevents senders from knowing whether you read their email, when you read it, or what device you used.</p>
-
-      <p>When you view a message with stripped tracking pixels, GravesMail displays a notification telling you how many were blocked. You can choose to load all images in a specific message if you wish.</p>
+      <p>Your SQLite database is a standard file you can open with any SQLite browser. You can verify at any time that it contains only your email data and nothing else. The backup files, deletion log, and Quick Rules database are all local files under your control.</p>
 
       <h2>Children&rsquo;s Privacy</h2>
 
-      <p>GravesMail is a general-purpose email client and does not knowingly collect any information from anyone, including children under 13. Since GravesMail does not collect personal information by default, it does not present specific risks to children&rsquo;s privacy.</p>
+      <p>GravesMail does not knowingly collect any information from anyone, including children under 13. Since GravesMail does not collect personal information by default, it does not present specific risks to children&rsquo;s privacy.</p>
 
       <h2>Changes to This Policy</h2>
 
-      <p>If this privacy policy is updated, the changes will be posted on this page with a new &ldquo;Last updated&rdquo; date. Since GravesMail does not collect email addresses or contact information, we cannot notify you directly of changes. We encourage you to check this page periodically.</p>
+      <p>If this privacy policy is updated, the changes will be posted on this page with a new &ldquo;Last updated&rdquo; date. Since GravesMail does not collect email addresses or contact information, I cannot notify you directly of changes. I encourage you to check this page periodically.</p>
 
       <h2>Contact</h2>
 
-      <p>If you have questions about this privacy policy or about how GravesMail handles your data, you can contact us at:</p>
-
       <div class="callout">
         <p><strong>GravesMail</strong><br>
+        Developer: Luke Graves<br>
         Website: <a href="https://graveslu-yahoo.github.io/gravesmail-site/">graveslu-yahoo.github.io/gravesmail-site</a><br>
         Email: graveslu@yahoo.com</p>
       </div>
@@ -130,8 +157,8 @@
       <h2>Summary</h2>
 
       <div class="callout tip">
-        <div class="callout-label">GravesMail&rsquo;s privacy commitment</div>
-        <p>Your credentials are encrypted locally. No personal data is collected or transmitted by default. You choose whether to keep your email on your provider&rsquo;s server or download it to your computer. All spam filter data, contacts, calendar events, and settings are stored locally. The optional Community Spam Intelligence feature shares only anonymous word-frequency scores, never email content. There are no ads, no analytics, no tracking, and no user profiles. Your email is yours.</p>
+        <div class="callout-label">My privacy commitment</div>
+        <p>Your credentials are encrypted locally. No personal data is collected or transmitted by default. All email, contacts, calendar events, backups, Quick Rules, and settings are stored locally on your computer. Backups are AES-256 encrypted. The optional Community Spam Intelligence feature shares only anonymous word-frequency scores, never email content. There are no ads, no analytics, no tracking, and no user profiles. Your email is yours.</p>
       </div>
 
     </div>

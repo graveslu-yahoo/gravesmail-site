@@ -19,7 +19,7 @@
     </div>
     <div class="sidebar-nav">
       <a href="index.html"><span class="nav-icon">&#x1F4EC;</span> Home</a>
-      <a href="beta.html" class="nav-download"><span class="nav-icon">&#x2B07;</span> Download the Beta</a>
+      <a href="beta.html"><span class="nav-icon">&#x1F6D2;</span> Get GravesMail</a>
       <a href="mission.html"><span class="nav-icon">&#x1F3AF;</span> My Mission &amp; Story</a>
       <a href="how-it-works.html" class="active"><span class="nav-icon">&#x1F9E0;</span> How It Works</a>
       <a href="compatibility.html"><span class="nav-icon">&#x2705;</span> Compatibility</a>
@@ -48,9 +48,9 @@
       <ol>
         <li><strong>Fetch from IMAP</strong> &mdash; Messages are downloaded from your provider&rsquo;s server over an encrypted connection.</li>
         <li><strong>Stage in DMZ</strong> &mdash; New messages land in a local staging area (SQLite) before you see them.</li>
-        <li><strong>5-layer spam analysis</strong> &mdash; Every message runs through all five detection engines on your machine.</li>
+        <li><strong>6-layer security analysis</strong> &mdash; Every message and attachment runs through all six detection engines on your machine, including YARA malware scanning.</li>
         <li><strong>Quick Rules filtering</strong> &mdash; Messages matching your personal Quick Rules are quarantined automatically.</li>
-        <li><strong>Promote to Inbox or Spam</strong> &mdash; Clean messages reach your Inbox. Threats go to Spam.</li>
+        <li><strong>Promote to Inbox, Spam, or Malware</strong> &mdash; Clean messages reach your Inbox. Spam goes to Spam. Malware-positive messages go to a separate Malware folder with attachments stripped and quarantined.</li>
         <li><strong>Delete from server</strong> (optional) &mdash; If you&rsquo;ve enabled &ldquo;Delete from server,&rdquo; the message is removed from your provider.</li>
       </ol>
 
@@ -64,9 +64,9 @@
 
       <p><strong>Phase 2 (Background Sync):</strong> The remaining messages download quietly in the background. A progress indicator in the status bar shows completion percentage and estimated time remaining. You can pause, resume, or stop at any time. Progress is saved if you close the app.</p>
 
-      <h2>The 5-Layer Spam Detection Engine</h2>
+      <h2>The 6-Layer Security Engine</h2>
 
-      <p>Every incoming message passes through five independent detection engines. Each engine examines a different aspect of the message, and their weighted scores combine into a final spam verdict:</p>
+      <p>Every incoming message and its attachments pass through six independent detection engines. Each engine examines a different aspect of the message, and their weighted scores combine into a final verdict:</p>
 
       <div class="features-grid">
         <div class="feature-card">
@@ -91,8 +91,13 @@
         </div>
         <div class="feature-card">
           <div class="icon">&#x1F6E1;</div>
-          <h4>5. Defender Integration (10%)</h4>
-          <p>On Windows, messages are scanned by Windows Defender for known malware signatures. Other platforms use the remaining four engines at adjusted weights.</p>
+          <h4>5. OS Antivirus Integration (5%)</h4>
+          <p>On Windows, attachments are submitted to your installed antivirus (Windows Defender, Norton, Bitdefender, Kaspersky, and 30+ others) via the AMSI interface. On Linux, ClamAV is used if installed. Files are written to a temp location, scanned, then immediately deleted.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F9EC;</div>
+          <h4>6. YARA Malware Scanner (5%)</h4>
+          <p>Scans attachment bytes against thousands of community malware signatures from the Neo23x0/signature-base repository. Detects trojans, ransomware, RATs, malicious Office macros, PDF exploits, and phishing documents. Runs on all platforms including mobile. Rules are updateable and ship embedded for offline use.</p>
         </div>
       </div>
 
@@ -107,6 +112,19 @@
       <p>Quick Rules let you create one-click quarantine rules for specific senders, domains, or subject patterns. Each rule gets its own toolbar button. When you apply a rule to a message, the sender is automatically added to that rule&rsquo;s match list &mdash; the rule grows smarter as you use it.</p>
 
       <p>Rules can be set to auto-apply during sync, so matching messages are quarantined before they ever reach your Inbox. You can scan entire folders in seconds to bulk-quarantine old messages. Quarantined messages can be reviewed, restored, or purged at any time.</p>
+
+      <h2>Malware Quarantine</h2>
+
+      <p>When YARA or OS antivirus detects malware in an attachment, GravesMail takes the following actions automatically:</p>
+
+      <ul>
+        <li><strong>Message quarantined</strong> &mdash; moved to a dedicated Malware folder, separate from Spam.</li>
+        <li><strong>Attachment stripped</strong> &mdash; the malicious file is removed from the message. The message body is retained so you can see who sent it.</li>
+        <li><strong>Data preserved</strong> &mdash; the attachment bytes are stored in a local quarantine database. You can review and restore or permanently delete quarantined attachments via Tools &rarr; Malware Quarantine.</li>
+        <li><strong>Full explanation</strong> &mdash; the message properties show exactly which YARA rule or AV engine triggered, what file was affected, and what action was taken.</li>
+      </ul>
+
+      <p>You can also right-click any attachment at any time and choose <strong>Scan for Malware</strong> to run an on-demand scan. YARA rules can be updated manually in Settings or automatically on a weekly schedule.</p>
 
       <h2>Automatic Encrypted Backups</h2>
 
@@ -135,7 +153,7 @@
 
       <h2>It&rsquo;s Your Choice</h2>
 
-      <p>Sharing is completely optional. It&rsquo;s turned off by default. You can turn it on or off at any time in Settings. If you don&rsquo;t participate, your personal filter still learns and improves on its own. You still benefit from the shared baseline that shipped with your version.</p>
+      <p>Sharing is completely optional. It&rsquo;s turned off by default. You can turn it on or off at any time in Settings. If you don&rsquo;t participate, your personal filter still learns and improves on its own. You still benefit from the shared baseline that shipped with your version. The same opt-in telemetry is available on the iOS and Android mobile app.</p>
 
     </div>
 

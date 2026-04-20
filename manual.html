@@ -19,7 +19,7 @@
     </div>
     <div class="sidebar-nav">
       <a href="index.html"><span class="nav-icon">&#x1F4EC;</span> Home</a>
-      <a href="beta.html" class="nav-download"><span class="nav-icon">&#x2B07;</span> Download the Beta</a>
+      <a href="beta.html"><span class="nav-icon">&#x1F6D2;</span> Get GravesMail</a>
       <a href="mission.html"><span class="nav-icon">&#x1F3AF;</span> My Mission &amp; Story</a>
       <a href="how-it-works.html"><span class="nav-icon">&#x1F9E0;</span> How It Works</a>
       <a href="compatibility.html"><span class="nav-icon">&#x2705;</span> Compatibility</a>
@@ -51,7 +51,8 @@
           <a href="#composing-email">4. Composing Email</a> &bull;
           <a href="#managing-email">5. Managing Email</a> &bull;
           <a href="#quick-rules">6. Quick Rules</a> &bull;
-          <a href="#spam">7. Spam Protection</a> &bull;
+          <a href="#spam">7. Spam &amp; Malware Protection</a> &bull;
+          <a href="#malware">8a. Malware &amp; Attachment Scanning</a> &bull;
           <a href="#backup">8. Backup &amp; Recovery</a> &bull;
           <a href="#calendar">9. Calendar</a> &bull;
           <a href="#contacts">10. Contacts &amp; Rules</a> &bull;
@@ -233,37 +234,73 @@
         </ul>
       </div>
 
-      <!-- 7. SPAM PROTECTION -->
+      <!-- 7. SPAM & MALWARE PROTECTION -->
       <div class="manual-section" id="spam">
-        <h2>7. Spam Protection</h2>
+        <h2>7. Spam &amp; Malware Protection</h2>
 
-        <p>GravesMail includes a 5-layer spam detection engine:</p>
+        <p>GravesMail includes a 6-layer security engine that analyzes every message and its attachments before delivery:</p>
 
         <ol>
-          <li><strong>Bayesian Filter (30%)</strong> &mdash; trained on 1,645 spam samples with 82,000+ tokens.</li>
-          <li><strong>Domain Validator (25%)</strong> &mdash; DNS verification, MX records, SPF checks.</li>
-          <li><strong>Header Analyzer (15%)</strong> &mdash; SPF/DKIM/DMARC authentication, header anomalies.</li>
-          <li><strong>Heuristic Scorer (20%)</strong> &mdash; 18 pattern-matching rules.</li>
-          <li><strong>Defender Integration (10%)</strong> &mdash; Windows Defender scan (Windows only).</li>
+          <li><strong>Bayesian Filter (30%)</strong> &mdash; trained on 1,645 spam samples with 82,000+ tokens. Learns from your corrections over time.</li>
+          <li><strong>Domain Validator (25%)</strong> &mdash; DNS verification, MX records, SPF checks. Catches messages from nonexistent or spoofed domains.</li>
+          <li><strong>Header Analyzer (15%)</strong> &mdash; SPF/DKIM/DMARC authentication and header anomaly detection.</li>
+          <li><strong>Heuristic Scorer (20%)</strong> &mdash; 18 pattern-matching rules detecting phishing URLs, urgency language, and common attack tactics.</li>
+          <li><strong>OS Antivirus Integration (5%)</strong> &mdash; Windows: your installed antivirus via AMSI (Defender, Norton, Bitdefender, and 30+ others). Linux: ClamAV if installed. Files scanned via temp file, then deleted.</li>
+          <li><strong>YARA Malware Scanner (5%)</strong> &mdash; attachment scanning against community malware signatures. Detects trojans, ransomware, malicious macros, PDF exploits, and phishing documents. Cross-platform.</li>
         </ol>
+
+        <h3>Spam Filter Aggressiveness</h3>
+        <p>Settings &rarr; Spam Filter Aggressiveness: 1&ndash;10 scale.</p>
+        <ul>
+          <li><strong>Level 1</strong> &mdash; Only obvious spam caught. Very few false positives.</li>
+          <li><strong>Level 5</strong> &mdash; Balanced. Recommended for most users.</li>
+          <li><strong>Level 10</strong> &mdash; Catches most suspicious mail. May occasionally flag legitimate newsletters or unfamiliar senders.</li>
+        </ul>
+        <p>The filter learns from corrections: Mark as Junk trains it to catch similar mail. Restoring a message from Spam teaches it to allow similar senders.</p>
 
         <h3>Reviewing Spam</h3>
         <p>Spam &rarr; Review Spam to view quarantined messages.</p>
 
         <h3>Training the Filter</h3>
         <ul>
-          <li><strong>Mark as Junk</strong> trains Bayesian filter as spam</li>
-          <li><strong>Mark as Not Spam</strong> trains Bayesian filter as legitimate</li>
+          <li><strong>Mark as Junk</strong> &mdash; trains Bayesian filter as spam</li>
+          <li><strong>Mark as Not Spam</strong> &mdash; trains Bayesian filter as legitimate</li>
         </ul>
 
         <h3>Safe Senders and Blocked Senders</h3>
-        <p>Both lists can be managed in Settings &rarr; Advanced Settings.</p>
+        <p>Managed in Settings &rarr; Advanced Settings.</p>
+      </div>
 
-        <h3>Spam Sensitivity</h3>
-        <p>Adjust the threshold in Settings &rarr; Advanced Settings.</p>
+      <!-- 8a. MALWARE & ATTACHMENT SCANNING -->
+      <div class="manual-section" id="malware">
+        <h2>8a. Malware &amp; Attachment Scanning</h2>
 
-        <h3>Reset Bayesian Filter</h3>
-        <p>Reset option available in Settings &rarr; Advanced Settings.</p>
+        <h3>How It Works</h3>
+        <p>Every attachment is scanned automatically during ingest using two engines:</p>
+        <ul>
+          <li><strong>YARA Scanner</strong> &mdash; matches attachment bytes against community signatures covering malware families, ransomware, RATs, Office macro exploits, PDF exploits, and phishing documents. Works on all platforms.</li>
+          <li><strong>OS Antivirus</strong> &mdash; on Windows, submits each attachment to your installed antivirus via AMSI (Defender, Norton, Bitdefender, Kaspersky, Malwarebytes, CrowdStrike, and others are auto-detected). On Linux, ClamAV is used if installed.</li>
+        </ul>
+
+        <h3>What Happens on Detection</h3>
+        <ul>
+          <li>Message is moved to the <strong>Malware</strong> folder (separate from Spam)</li>
+          <li>Malicious attachments are stripped from the message</li>
+          <li>Attachment data is preserved in a local quarantine database</li>
+          <li>Message body is retained &mdash; you can see who sent it</li>
+          <li>Full explanation shown in message properties: which rule triggered, which file was affected, and what action was taken</li>
+        </ul>
+
+        <h3>Malware Quarantine</h3>
+        <p>Tools &rarr; Malware Quarantine shows all quarantined attachments with date, filename, size, threat name, and scan engine. You can restore (save to disk) or permanently delete each entry.</p>
+
+        <h3>Manual Scan</h3>
+        <p>Right-click any attachment &rarr; <strong>Scan for Malware</strong> to run an on-demand scan. The result shows which engines were used and whether a threat was detected.</p>
+
+        <h3>YARA Rule Updates</h3>
+        <p>Settings &rarr; Update Rules Now downloads the latest signatures from the Neo23x0/signature-base community repository. Auto-update checks weekly by default (configurable 1&ndash;30 days). The app ships with an embedded baseline ruleset that works without an internet connection.</p>
+
+        <p>Rule sources include: ransomware families, APT toolkits, generic droppers and downloaders, malicious Office macros, PDF exploits, PowerShell cradles, web shells, and phishing document patterns.</p>
       </div>
 
       <!-- 8. BACKUP & RECOVERY -->
@@ -339,6 +376,33 @@
         <h3>Managing Contacts</h3>
         <p>Tools &rarr; Contacts opens the contact manager. Contacts support full business card fields: name, company, job title, multiple emails and phones, addresses, categories, and notes. Contacts can be exported to CSV.</p>
 
+        <h3>Contact Auto-Discovery</h3>
+        <p>Contacts are added automatically from people you send mail to and from message headers in your inbox. No manual entry needed for frequent contacts.</p>
+
+        <h3>Importing Contacts</h3>
+        <p><strong>CardDAV (Yahoo, iCloud, Outlook.com):</strong> Tools &rarr; Contacts &rarr; Import CardDAV connects directly to your provider&rsquo;s contact server using your stored IMAP credentials. Supported providers are detected automatically &mdash; no URL required.</p>
+
+        <p><strong>.vcf File (Google Contacts, any provider):</strong> Tools &rarr; Contacts &rarr; Import .vcf File imports a vCard file. Use this for Gmail, which requires a manual export because Google does not allow direct CardDAV access without OAuth2.</p>
+
+        <h4>How to export from Google Contacts:</h4>
+        <ol>
+          <li>Go to contacts.google.com</li>
+          <li>Click Export in the left sidebar</li>
+          <li>Select &ldquo;vCard (for iOS Contacts)&rdquo;</li>
+          <li>Click Export &mdash; a .vcf file downloads</li>
+          <li>In GravesMail: Tools &rarr; Contacts &rarr; Import .vcf File</li>
+        </ol>
+
+        <h4>How to export from iCloud Contacts:</h4>
+        <ol>
+          <li>Go to icloud.com and open Contacts</li>
+          <li>Select all (Edit &rarr; Select All)</li>
+          <li>Click the gear icon &rarr; Export vCard</li>
+          <li>In GravesMail: Tools &rarr; Contacts &rarr; Import .vcf File</li>
+        </ol>
+
+        <p>Duplicates are skipped automatically during import.</p>
+
         <h3>Creating Mail Rules</h3>
         <p>Tools &rarr; Mail Rules lets you create automatic rules. Rules can match on From, Subject, Body, To, attachments, and importance level. Actions include: Move to folder, Mark as read, Delete, Flag, and Set importance.</p>
 
@@ -362,7 +426,7 @@
           <li><strong>Tracking pixels stripped by default</strong> &mdash; prevents read receipt tracking.</li>
           <li><strong>Backups AES-256 encrypted</strong> with machine key or user password.</li>
           <li><strong>Obfuscated code and encrypted training data</strong> in release builds.</li>
-          <li><strong>No telemetry</strong> &mdash; GravesMail never phones home or collects data.</li>
+          <li><strong>Opt-in telemetry only</strong> &mdash; Community Spam Intelligence is <strong>off by default</strong>. If enabled, only anonymized spam filter token scores are shared &mdash; never email content, addresses, or personal information. A random contributor ID with no connection to your identity is generated on opt-in. You can preview exactly what would be sent before enabling it. Toggle in Settings &rarr; Community &rarr; Share Spam Intelligence.</li>
         </ul>
       </div>
 
@@ -395,9 +459,10 @@
 
         <p><strong>Account management:</strong> File &rarr; Add/Remove account.</p>
         <p><strong>Sync frequency.</strong></p>
-        <p><strong>Spam sensitivity.</strong></p>
+        <p><strong>Spam Filter Aggressiveness</strong> &mdash; 1&ndash;10 scale (1 = least aggressive, 5 = balanced recommended, 10 = most aggressive).</p>
         <p><strong>Delete from server toggle.</strong></p>
-        <p><strong>Community spam intelligence</strong> (opt-in).</p>
+        <p><strong>YARA Malware Scanning</strong> &mdash; enable/disable, update rules, auto-update interval.</p>
+        <p><strong>Community Spam Intelligence</strong> (opt-in, off by default) &mdash; share anonymized filter scores to help improve detection for all users.</p>
         <p><strong>Backup frequency and retention.</strong></p>
         <p><strong>Deletion log retention.</strong></p>
         <p><strong>Storage management:</strong> message count, database size, clear trash/spam.</p>

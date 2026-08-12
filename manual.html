@@ -159,6 +159,40 @@
 
         <h3>Signatures</h3>
         <p>Your default signature is automatically appended. Edit via Settings &rarr; Edit Signature.</p>
+
+        <h3>Password-Protected Email (No Key Needed)</h3>
+        <p>To send something private to someone who has no encryption keys and no special software, tick <strong>Password-protect (no key needed)</strong> in Compose. Your message and all its attachments are sealed inside a real, standard <strong>AES-256 encrypted ZIP</strong> that the recipient opens with free, ordinary software on any platform &mdash; no GravesMail, no account, and no keys needed on their end.</p>
+
+        <h4>Sending one</h4>
+        <ul>
+          <li>Write your message and attach files as usual, then press Send.</li>
+          <li>GravesMail asks you to set a strong password: at least <strong>12 characters</strong> with lower-case, upper-case, <strong>two</strong> digits, and <strong>two</strong> symbols. A live checklist ticks off each rule as you type, and you enter it twice. Send is blocked until every rule is met and both entries match, so a weak password or a typo can never lock your recipient out.</li>
+          <li>After the message goes out, GravesMail shows the password <strong>once</strong> with a Copy button.</li>
+          <li><strong>Share the password out-of-band</strong> &mdash; by phone, text, or encrypted chat. Never in the same email. GravesMail will not offer to email it for you, and never saves or sends it anywhere.</li>
+        </ul>
+
+        <p>What goes out is one attachment, <strong>protected-message.zip</strong>. Your real message (as message.html) and every attachment are encrypted inside it; the visible email body contains only plain-language instructions for opening it. Attachment names are replaced inside the archive with neutral placeholders (attachment-01, attachment-02, &hellip;), and their real names live in an encrypted manifest the recipient sees after entering the password &mdash; so the names don&rsquo;t leak either.</p>
+
+        <h4>How your recipient opens it</h4>
+        <p>These instructions are written into every protected email GravesMail sends, so your recipient always has them. It uses the industry-standard WinZip AES-256 (AE-2) format, verified against real Proton, Gmail, and Outlook recipients on machines with no GravesMail installed.</p>
+        <div class="callout">
+          <div class="callout-label">Windows users: don&rsquo;t just double-click the ZIP</div>
+          <p>Windows&rsquo; built-in ZIP support does not handle strong AES-256 encryption &mdash; it will look like it opens and then fail with an empty folder or an error. Use one of the free tools below instead.</p>
+        </div>
+        <ul>
+          <li><strong>Windows</strong> &mdash; install 7-Zip from <a href="https://www.7-zip.org">7-zip.org</a> (the official site only; &ldquo;download portal&rdquo; copies often bundle adware). Right-click the ZIP &rarr; 7-Zip &rarr; Extract Here, then enter the password. <a href="https://peazip.github.io">PeaZip</a> is a clean alternative.</li>
+          <li><strong>macOS</strong> &mdash; the built-in Archive Utility is unreliable with AES-256. Install <a href="https://www.keka.io">Keka</a> or The Unarchiver (Mac App Store), open the ZIP with it, and enter the password.</li>
+          <li><strong>iPhone / iPad</strong> &mdash; install Password Zip (free) from the App Store.</li>
+          <li><strong>Android</strong> &mdash; install RAR by RARLAB (free) from Google Play.</li>
+        </ul>
+        <p>After opening, open <strong>message.html</strong> in a web browser to read the message. Any files are listed there with their real names; on disk they sit next to message.html under the placeholder names, so rename each one to the real name shown.</p>
+        <p>GravesMail can also open a password-protected message it receives, in place, on every platform &mdash; if both people use GravesMail, no archiver is needed.</p>
+
+        <h4>If the password is refused</h4>
+        <p>It is almost always a typo introduced by a messaging app &mdash; smart quotes, auto-correct, a stray copied space, or wrong capitalisation. Retype it by hand exactly as the sender gave it.</p>
+
+        <h4>Being honest about what this protects</h4>
+        <p>The <strong>entire</strong> security is the password. Choose a good one and share it over a different channel than the email. There is <strong>no</strong> expiry and no &ldquo;self-destruct&rdquo; &mdash; those are unenforceable without a server, and GravesMail is local-first. The ZIP encrypts file <em>contents</em>, not the archive&rsquo;s structure: anyone who intercepts the message can still see how many files are inside and their rough sizes and timestamps, though not their names or contents. And the email&rsquo;s subject, To/From, and timing still travel in the clear, as with any email.</p>
       </div>
 
       <!-- 5. MANAGING EMAIL -->

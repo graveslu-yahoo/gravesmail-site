@@ -113,6 +113,14 @@
 
       <p>Tracking pixels (invisible 1&times;1 images used solely for read-receipt tracking) are detected and stripped separately. These are independent controls &mdash; you can load images without loading trackers.</p>
 
+      <h2>Password-Protected Email</h2>
+
+      <p>When you send a message with <strong>Password-protect (no key needed)</strong>, the message body and every attachment are encrypted on your device into a standard AES-256 ZIP before the message leaves. The sealing happens locally &mdash; nothing is uploaded to me or to any service to perform it, and there is no server in the path.</p>
+
+      <p>The password is yours alone. GravesMail shows it to you once, never emails it, never stores it, and never transmits it. I have no copy of it and no way to open what you sent. You share it with your recipient out-of-band &mdash; by phone, text, or encrypted chat.</p>
+
+      <p>The protection is the password and nothing else. There is no expiry and no remote revocation, because both would require a server I deliberately do not run. As with any email, the message&rsquo;s subject, To/From, and timing still travel in the clear.</p>
+
       <h2>Community Spam Intelligence (Opt-In Only)</h2>
 
       <p>If you choose to enable Community Spam Intelligence in Settings, GravesMail will periodically send anonymous spam filter data. This consists of word-frequency scores only &mdash; words paired with numbers indicating spam correlation. No email content, addresses, contacts, or identifying information is ever included.</p>

@@ -118,6 +118,21 @@
 
       <p>GravesMail blocks external images by default. Separately, it detects and strips invisible tracking pixels (1&times;1 images used solely for read-receipt tracking). These are independent controls &mdash; you can load images without loading trackers, or vice versa.</p>
 
+      <h2>Password-Protected Email (No Key Needed)</h2>
+
+      <p>Sometimes you need to send something private to someone who has no encryption keys and no special software &mdash; just an ordinary email account. GravesMail&rsquo;s <strong>Password-protect (no key needed)</strong> option seals your message and any attachments inside a <strong>real, standard AES-256 encrypted ZIP</strong>, which the recipient opens with free, ordinary software on any platform.</p>
+
+      <p>This uses the industry-standard WinZip AES-256 (AE-2) format &mdash; the same strong encryption 7-Zip, Keka, and the mobile archiver apps already understand. It is <strong>not</strong> a GravesMail-only container, and it is not the weak, crackable &ldquo;ZipCrypto&rdquo; that older ZIP tools used. This has been verified end-to-end against real Proton, Gmail, and Outlook recipients opening the file on a machine with no GravesMail installed &mdash; genuine interoperability, not app-to-app compatibility.</p>
+
+      <p>What actually goes out is a single attachment, <strong>protected-message.zip</strong>. Your real message and every attachment are encrypted inside it; the visible email body carries only plain-language instructions for opening it. Attachment names inside the archive are replaced with neutral placeholders, with the real names held in an encrypted manifest that appears once the recipient enters the password &mdash; so the file names don&rsquo;t leak either.</p>
+
+      <p>When you send, GravesMail asks you to set a strong password (at least 12 characters with upper and lower case, two digits, and two symbols), with a live checklist and a confirm field so a typo can never lock the recipient out. Afterward it shows the password <strong>once</strong>, with a Copy button, and reminds you to pass it along <strong>out-of-band</strong> &mdash; by phone, text, or chat. GravesMail never offers to email the password, and never stores or transmits it anywhere. GravesMail can also open protected messages it receives, in place, on every platform.</p>
+
+      <div class="callout">
+        <div class="callout-label">Being honest about what this protects</div>
+        <p>The <strong>entire</strong> security is the password &mdash; choose a good one and share it over a different channel than the email itself. There is no expiry and no &ldquo;self-destruct&rdquo;; those are unenforceable without a server, and GravesMail is local-first, so I don&rsquo;t claim them. The ZIP encrypts file <em>contents</em>, not the archive&rsquo;s structure, so anyone who intercepts the message can still see how many files are inside and their rough sizes and timestamps &mdash; just not their names or their contents. And the email&rsquo;s subject, To/From, and timing still travel in the clear, as they do with any email.</p>
+      </div>
+
       <h2>Quick Rules: Your Personal Email Triage</h2>
 
       <p>Quick Rules let you create one-click quarantine rules for specific senders, domains, or subject patterns. Each rule gets its own toolbar button. When you apply a rule to a message, the sender is automatically added to that rule&rsquo;s match list &mdash; the rule grows smarter as you use it.</p>

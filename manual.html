@@ -215,7 +215,7 @@
         <p>What goes out is one attachment, <strong>protected-message.zip</strong>. Your real message (as message.html) and every attachment are encrypted inside it; the visible email body contains only plain-language instructions for opening it. Attachment names are replaced inside the archive with neutral placeholders (attachment-01, attachment-02, &hellip;), and their real names live in an encrypted manifest the recipient sees after entering the password &mdash; so the names don&rsquo;t leak either.</p>
 
         <h4>How your recipient opens it</h4>
-        <p>These instructions are written into every protected email GravesMail sends, so your recipient always has them. It uses the industry-standard WinZip AES-256 (AE-2) format, verified against real Proton, Gmail, and Outlook recipients on machines with no GravesMail installed.</p>
+        <p>These instructions are written into every protected email GravesMail sends, so your recipient always has them. It uses the industry-standard WinZip AES-256 (AE-2) format, proven to open with real standard archiver software and pinned to that format by automated test &mdash; so it is a genuinely standard file, not a GravesMail-only container.</p>
         <div class="callout">
           <div class="callout-label">Windows users: don&rsquo;t just double-click the ZIP</div>
           <p>Windows&rsquo; built-in ZIP support does not handle strong AES-256 encryption &mdash; it will look like it opens and then fail with an empty folder or an error. Use one of the free tools below instead.</p>

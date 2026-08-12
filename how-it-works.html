@@ -112,6 +112,14 @@
 
       <p>The Security Engine screen (Tools &rarr; Security Engine, or Settings &rarr; Security Engine on mobile) lets you tune each of the seven layers on its own with a 0&ndash;100% sensitivity slider &mdash; 0% turns a layer off, 100% is the most sensitive. There is no single global control; you tune the layers individually. The same screen shows live malware-scanner status, a country policy editor, and a read-only inventory of every detector and how strongly it counts.</p>
 
+      <h2>Geolocation Without the Lookup</h2>
+
+      <p>The Heuristic layer considers where a message originated. That lookup is <strong>purely local</strong>. GravesMail ships with an embedded country-to-IP-range table and consults it on your device &mdash; there are no DNS queries, no external API calls, and no third-party service in the path. Your message metadata never leaves your device to be geolocated.</p>
+
+      <p>You decide what the result means. In the Security Engine screen you can mark countries as <strong>Safe</strong> (no extra spam signal) or <strong>Threat</strong> (a strong one). Both lists start empty, so ordinary international mail is never penalized until you choose a policy.</p>
+
+      <p class="note">IP geolocation data by <a href="https://db-ip.com">DB-IP</a> (db-ip.com), licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
+
       <h2>External Image Blocking &amp; Tracking Pixel Stripping</h2>
 
       <p>When you receive an email, senders can embed external images that load from their servers. When the image loads, the sender learns your IP address, that you opened the email, when you opened it, and what device you used.</p>

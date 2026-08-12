@@ -108,6 +108,12 @@
 
       <p>For Microsoft/Outlook accounts that use OAuth2 authentication, GravesMail uses the standard Microsoft Identity Platform flow. Authentication tokens are stored locally using the same encryption. GravesMail does not have access to your Microsoft account password.</p>
 
+      <h2>Geolocation Is Local</h2>
+
+      <p>GravesMail looks up the geographic origin of incoming mail as one of its spam signals. That lookup happens entirely on your device, against a country-to-IP-range table embedded in the app. There are no DNS queries, no external API calls, and no third-party lookup service. Your message metadata is never sent anywhere to be geolocated.</p>
+
+      <p>IP geolocation data by <a href="https://db-ip.com">DB-IP</a> (db-ip.com), licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
+
       <h2>External Image Blocking &amp; Tracking Pixel Protection</h2>
 
       <p>External images are blocked by default to prevent senders from learning your IP address, that you opened their email, when, and from what device.</p>

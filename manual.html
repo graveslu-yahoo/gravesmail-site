@@ -219,20 +219,29 @@
       <div class="manual-section" id="quick-rules">
         <h2>6. Quick Rules &mdash; Intelligent Email Triage</h2>
 
-        <p>Quick Rules let you define personal quarantine rules that catch emails matching specific criteria and store them in a hidden database. Each rule gets its own button in the Quick Rules toolbar.</p>
+        <p>Quick Rules are your own triage rules. Each rule catches matching messages and sets them aside, moves them, or deletes them. On the desktop each rule also gets its own button in the Quick Rules toolbar.</p>
+
+        <div class="callout tip">
+          <div class="callout-label">Three words that mean different things</div>
+          <p><strong>Spam</strong> is where the spam engine files unwanted mail. The <strong>Spam Trap</strong> is where <em>your own Quick Rules</em> set messages aside for later review instead of deleting them &mdash; open it with Review Spam Trap. <strong>Held</strong> describes attachments that were scanned and held back because they looked dangerous; those live in Held Attachments.</p>
+        </div>
+
+        <h3>Your Rules Take Precedence Over the Spam Filter</h3>
+        <p>A message matched by one of your Quick Rules is filed by <strong>your rule</strong>, before the spam filter can divert it. A sender you have written a rule for will not be wrongly sent to Spam even if the filter would have scored the message as junk. The filter still runs and still scores every message &mdash; you can see its verdict in Properties &mdash; it just doesn&rsquo;t override where your rule files the message. <strong>The one exception is malware:</strong> the malware scan always wins, so a rule can never deliver a message with a dangerous attachment to your Inbox.</p>
 
         <h3>Creating a Rule</h3>
         <ul>
-          <li>Click &ldquo;+&rdquo; in the Quick Rules toolbar, or right-click a message &rarr; &ldquo;Create Quick Rule from Message&hellip;&rdquo;</li>
+          <li>Click &ldquo;+&rdquo; in the Quick Rules toolbar, or right-click a message &rarr; &ldquo;Create Quick Rule from Message&hellip;&rdquo; &mdash; which opens the editor already filled in from that sender and scans the message&rsquo;s folder so existing matching mail is caught too, with a count of how many were applied</li>
           <li>Choose match type: sender address, sender domain, sender contains, subject contains, subject starts with</li>
           <li>Add multiple match values &mdash; paste comma/semicolon-separated lists or add individually</li>
-          <li>Choose action: Quarantine (review later), Move to folder, Delete permanently, Auto-delete after X days (7&ndash;1,000)</li>
+          <li>Choose an action: send to the <strong>Spam Trap</strong> (review later), Move to folder, Delete permanently, or Auto-delete after X days (7&ndash;1,000)</li>
+          <li>Choose whether the rule marks <strong>Legitimate</strong> or <strong>Spam</strong> mail. <strong>You must pick one</strong> &mdash; the editor won&rsquo;t save until you do. This tells the spam filter how to learn from what the rule catches, and the filter learns best when shown clearly-labelled examples of <em>both</em> kinds of mail. A filter fed only spam, with no &ldquo;this is legitimate&rdquo; examples to weigh against, gets worse rather than better &mdash; which is why the choice is required.</li>
           <li>Enable &ldquo;Auto-apply during sync&rdquo; to catch matching messages before they reach your Inbox</li>
         </ul>
 
         <h3>Using Rules</h3>
         <ul>
-          <li>Select a message &rarr; click a rule button &rarr; message quarantined, sender auto-added to rule</li>
+          <li>Select a message &rarr; click a rule button &rarr; the message is filed by that rule, and the sender is auto-added to it</li>
           <li>Right-click &rarr; Apply Rule &rarr; select which rule</li>
           <li>Each application to a new sender automatically adds that sender to the rule&rsquo;s match list</li>
         </ul>
@@ -241,17 +250,20 @@
         <ul>
           <li>Right-click rule button &rarr; Scan Current Folder or Scan All Folders</li>
           <li>Right-click a folder &rarr; Scan with Rule &rarr; select rule</li>
-          <li>Bulk-quarantines matching messages to reduce storage</li>
+          <li>Catches matching messages in bulk to reduce storage</li>
         </ul>
 
-        <h3>Reviewing Quarantined Messages</h3>
+        <h3>Reviewing What Your Rules Caught</h3>
+        <p>The <strong>Quick Rule Review</strong> window shows each rule&rsquo;s caught messages and matched senders. The <strong>Filtered</strong> tab shows everything caught across <em>all</em> rules within a rolling time window &mdash; set it to 1, 6, 24 (the default), 48, 72, or 96 hours with the &ldquo;Show filtered mail from the last&rdquo; dropdown; your choice is remembered per device.</p>
         <ul>
-          <li>Right-click rule button &rarr; Review Quarantine</li>
+          <li>Right-click rule button &rarr; Review to see that one rule&rsquo;s catches</li>
           <li>Full message properties (General, Headers, Spam Analysis, Attachments, URLs, Tracking Pixels, Body)</li>
-          <li>Restore individual or all messages to original folders</li>
-          <li>Delete individual or purge all quarantined messages</li>
+          <li>Restore individual messages or all of them to their original folders (Restore is shown in green &mdash; recovering mail is a safe action)</li>
+          <li>Delete individual messages or purge everything a rule caught</li>
           <li>Matched Senders tab: view, add, edit, remove match values</li>
+          <li>The Rules, Filtered, and Spam review lists each have a search box that filters what&rsquo;s shown as you type. Click a column header to sort; your sort choice is remembered per device.</li>
         </ul>
+        <p class="note"><em>Naming note:</em> the cross-rule review previously called <strong>Today&rsquo;s Catches</strong> (and the short <strong>Catches</strong> button) is now simply <strong>Filtered</strong>. Same list &mdash; only the name changed.</p>
 
         <h3>Managing Rules</h3>
         <ul>
@@ -296,7 +308,7 @@
         <p>Open a message&rsquo;s Properties for a per-layer breakdown: each layer&rsquo;s raw score, the threshold at which it alarms, and its state &mdash; <strong>Alarmed</strong>, <strong>Clean</strong>, or <strong>Not available</strong>. Not available is never shown as Clean.</p>
 
         <h3>Reviewing Spam</h3>
-        <p>Spam &rarr; Review Spam to view messages the engine sorted as spam.</p>
+        <p>Spam &rarr; Review Spam shows messages the engine sorted as spam. This is separate from <strong>Review Spam Trap</strong>, which shows mail your own Quick Rules set aside.</p>
 
         <h3>Training the Filter</h3>
         <ul>
@@ -325,14 +337,14 @@
         <h3>What Happens on Detection</h3>
         <ul>
           <li>Message is moved to the <strong>Malware</strong> folder (separate from Spam)</li>
-          <li>Malicious attachments are stripped from the message</li>
-          <li>Attachment data is preserved in a local quarantine database</li>
+          <li>Dangerous attachments are stripped from the message and <strong>held</strong></li>
+          <li>Attachment data is preserved locally &mdash; nothing is silently destroyed</li>
           <li>Message body is retained &mdash; you can see who sent it</li>
           <li>Full explanation shown in message properties: which rule triggered, which file was affected, and what action was taken</li>
         </ul>
 
-        <h3>Malware Quarantine</h3>
-        <p>Tools &rarr; Malware Quarantine shows all quarantined attachments with date, filename, size, threat name, and scan engine. You can restore (save to disk) or permanently delete each entry.</p>
+        <h3>Held Attachments</h3>
+        <p><strong>Held Attachments</strong> (on the Tools menu; <strong>View Held Attachments</strong> from the Guard screen on mobile) shows every held item with date, filename, size, threat name, and scan engine, along with why it was held. You can save an item to disk if you trust it, or permanently delete it. Held items are kept until you decide &mdash; they are never lost silently.</p>
 
         <h3>Manual Scan</h3>
         <p>Right-click any attachment &rarr; <strong>Scan for Malware</strong> to run an on-demand scan. The result shows which engines were used and whether a threat was detected.</p>

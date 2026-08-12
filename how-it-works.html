@@ -49,8 +49,8 @@
         <li><strong>Fetch from IMAP</strong> &mdash; Messages are downloaded from your provider&rsquo;s server over an encrypted connection.</li>
         <li><strong>Stage in DMZ</strong> &mdash; New messages land in a local staging area (SQLite) before you see them.</li>
         <li><strong>7-layer security analysis</strong> &mdash; Every message and attachment runs through all seven Protection Layers on your machine, including YARA malware scanning.</li>
-        <li><strong>Quick Rules filtering</strong> &mdash; Messages matching your personal Quick Rules are quarantined automatically.</li>
-        <li><strong>Promote to Inbox, Spam, or Malware</strong> &mdash; Clean messages reach your Inbox. Spam goes to Spam. Malware-positive messages go to a separate Malware folder with attachments stripped and quarantined.</li>
+        <li><strong>Quick Rules filtering</strong> &mdash; Messages matching your personal Quick Rules are filed by your rule automatically: set aside in the Spam Trap for review, moved, or deleted.</li>
+        <li><strong>Promote to Inbox, Spam, or Malware</strong> &mdash; Clean messages reach your Inbox. Spam goes to Spam. Malware-positive messages go to a separate Malware folder with dangerous attachments stripped and held.</li>
         <li><strong>Delete from server</strong> (optional) &mdash; If you&rsquo;ve enabled &ldquo;Delete from server,&rdquo; the message is removed from your provider.</li>
       </ol>
 
@@ -135,18 +135,22 @@
 
       <h2>Quick Rules: Your Personal Email Triage</h2>
 
-      <p>Quick Rules let you create one-click quarantine rules for specific senders, domains, or subject patterns. Each rule gets its own toolbar button. When you apply a rule to a message, the sender is automatically added to that rule&rsquo;s match list &mdash; the rule grows smarter as you use it.</p>
+      <p>Quick Rules let you create one-click triage rules for specific senders, domains, or subject patterns. Each rule gets its own toolbar button. When you apply a rule to a message, the sender is automatically added to that rule&rsquo;s match list &mdash; the rule grows smarter as you use it.</p>
 
-      <p>Rules can be set to auto-apply during sync, so matching messages are quarantined before they ever reach your Inbox. You can scan entire folders in seconds to bulk-quarantine old messages. Quarantined messages can be reviewed, restored, or purged at any time.</p>
+      <p>A rule can send matching mail to the <strong>Spam Trap</strong> to be set aside for review, move it to a folder, delete it, or auto-delete it after a number of days. Rules can be set to auto-apply during sync, so matching messages never reach your Inbox, and you can scan entire folders in seconds to catch old mail in bulk. Anything a rule caught can be reviewed, restored, or purged at any time.</p>
 
-      <h2>Malware Quarantine</h2>
+      <p><strong>Your rules take precedence over the spam filter.</strong> A message matched by one of your rules is filed by <em>your</em> rule before the spam filter can divert it &mdash; so a sender you have written a rule for won&rsquo;t be wrongly sent to Spam. The filter still runs and still scores the message, and you can see its verdict in Properties; it simply doesn&rsquo;t override your rule. The one exception is malware: the malware scan always wins, so a rule can never deliver a dangerous attachment to your Inbox.</p>
 
-      <p>When YARA or OS antivirus detects malware in an attachment, GravesMail takes the following actions automatically:</p>
+      <p>The <strong>Filtered</strong> list shows everything caught across all of your rules within a rolling time window (1 to 96 hours on the desktop, 24 by default). Each review list &mdash; Rules, Filtered, and Spam &mdash; has its own search box.</p>
+
+      <h2>Held Attachments</h2>
+
+      <p>When YARA or your system antivirus detects malware in an attachment, GravesMail takes the following actions automatically:</p>
 
       <ul>
-        <li><strong>Message quarantined</strong> &mdash; moved to a dedicated Malware folder, separate from Spam.</li>
-        <li><strong>Attachment stripped</strong> &mdash; the malicious file is removed from the message. The message body is retained so you can see who sent it.</li>
-        <li><strong>Data preserved</strong> &mdash; the attachment bytes are stored in a local quarantine database. You can review and restore or permanently delete quarantined attachments via Tools &rarr; Malware Quarantine.</li>
+        <li><strong>Message set aside</strong> &mdash; moved to a dedicated Malware folder, separate from Spam.</li>
+        <li><strong>Attachment stripped</strong> &mdash; the dangerous file is removed from the message. The message body is retained so you can see who sent it.</li>
+        <li><strong>Data preserved</strong> &mdash; the attachment bytes are kept locally. You can review each held item, see why it was held, save it to disk if you trust it, or permanently delete it, via <strong>Held Attachments</strong>. Held items are kept until you decide; they are never lost silently.</li>
         <li><strong>Full explanation</strong> &mdash; the message properties show exactly which YARA rule or AV engine triggered, what file was affected, and what action was taken.</li>
       </ul>
 

@@ -47,22 +47,23 @@
 
       <h2>What Data GravesMail Stores</h2>
 
-      <p>All data is stored locally in your user profile under <strong>%LocalAppData%\GravesMail</strong> (Windows) or the equivalent on macOS/Linux. Here is every file and its purpose:</p>
+      <p>All data is stored locally in your user profile &mdash; under <strong>%LocalAppData%\GravesMail</strong> on Windows, or the platform equivalent on macOS, Linux, iOS, and Android. Here is what is kept and why:</p>
+
+      <p><strong>The encrypted database.</strong> Your mail and nearly all of your supporting data live in one whole-database-encrypted store: every message, subject, sender, and attachment, plus your contacts, calendar, signatures, Quick Rules and advanced rules, safe and blocked lists, sender reputation, spam-filter training, tuned thresholds, and security settings. These were previously loose files alongside the database; they were consolidated into it, which strengthened their protection. They did not move off your device &mdash; nothing about where your data lives changed, only how it is stored locally.</p>
+
+      <p><strong>Files that stay outside the database</strong>, because they are needed before it can be opened or must survive its loss:</p>
 
       <ul>
-        <li><strong>accounts.dat</strong> &mdash; IMAP/SMTP credentials, encrypted with DPAPI (Windows) or AES-256 (Mac/Linux)</li>
-        <li><strong>{accountHash}.db</strong> &mdash; Per-account SQLite database containing your downloaded email, folders, and attachments</li>
-        <li><strong>cache/</strong> &mdash; Message header and body cache with 24-hour TTL for fast display</li>
-        <li><strong>spam_data/</strong> &mdash; Bayesian training data, safe sender list, blocked sender list</li>
-        <li><strong>backups/</strong> &mdash; Encrypted backup files (.gravesmail-backup), AES-256 under the app-managed Backup Master Key</li>
-        <li><strong>backup_catalog.db</strong> &mdash; Metadata index of all backups for instant browsing (never transmitted)</li>
-        <li><strong>deletion_log.db</strong> &mdash; Deleted message content for recovery (configurable retention: 30&ndash;365 days)</li>
-        <li><strong>quickrules.db</strong> &mdash; Quick Rules definitions and quarantined messages</li>
-        <li><strong>calendar.json</strong> &mdash; Calendar events</li>
-        <li><strong>contacts.json</strong> &mdash; Contact records</li>
-        <li><strong>rules.json</strong> &mdash; Mail rules</li>
-        <li><strong>signatures/</strong> &mdash; Email signatures</li>
+        <li><strong>The database key</strong> &mdash; held in your device&rsquo;s own secure keystore (DPAPI on Windows, Keychain on macOS/iOS, Keystore on Android, the system secret store on Linux). It cannot live inside the database it unlocks.</li>
+        <li><strong>Saved account credentials</strong> &mdash; your IMAP/SMTP passwords and OAuth2 tokens, encrypted with your device key and deliberately kept separate from the mail database.</li>
+        <li><strong>bmk.wrap</strong> &mdash; the wrapped copies of your Backup Master Key. It sits with your backups rather than in the database, precisely because a backup exists to survive the loss of that database.</li>
+        <li><strong>Your PGP keyring</strong> &mdash; kept in its standard on-disk format, with the private keyring under its own wrapping key.</li>
+        <li><strong>backups/</strong> &mdash; encrypted backup files (.gravesmail-backup), AES-256 under the Backup Master Key</li>
+        <li><strong>Backup catalog</strong> &mdash; a local metadata index for instant browsing of backup contents (never transmitted)</li>
+        <li><strong>Deletion log</strong> &mdash; deleted message content for recovery (configurable retention: 30&ndash;365 days)</li>
       </ul>
+
+      <p>Files that ship <em>with</em> the app &mdash; the baseline spam model, the baseline YARA rules, and the geographic lookup table &mdash; are program assets, not your data. They are replaced when you update and are excluded from backups.</p>
 
       <p>No data is stored outside this directory. No data is stored on remote servers.</p>
 
@@ -101,7 +102,7 @@
 
       <h2>How Your Credentials Are Stored</h2>
 
-      <p>If you save your email credentials, GravesMail encrypts them using Windows Data Protection API (DPAPI) on Windows or AES-256 encryption on macOS and Linux. Your credentials can only be decrypted on the same computer, by the same user who saved them.</p>
+      <p>GravesMail keeps all of your mail and personal data encrypted at rest on every device. The encryption key is held in your device&rsquo;s own secure keystore &mdash; DPAPI on Windows, Keychain on macOS and iOS, Keystore on Android, and the system secret store on Linux &mdash; so the data is readable only on your device. If you save your email credentials, they are encrypted the same way and can only be decrypted on the same computer, by the same user who saved them.</p>
 
       <p>GravesMail never transmits your credentials to any server other than your email provider&rsquo;s mail server for the purpose of logging in.</p>
 
@@ -143,7 +144,7 @@
 
       <h2>Open for Inspection</h2>
 
-      <p>Your SQLite database is a standard file you can open with any SQLite browser. You can verify at any time that it contains only your email data and nothing else. The backup files, deletion log, and Quick Rules database are all local files under your control.</p>
+      <p>Your database, backup files, and deletion log are all ordinary local files under your control &mdash; on your disk, in your user profile, where you can see them, copy them, or delete them. Nothing is hidden in a service you cannot inspect, and nothing phones home.</p>
 
       <h2>Children&rsquo;s Privacy</h2>
 

@@ -502,10 +502,12 @@
         <h2>11. Privacy &amp; Security</h2>
 
         <ul>
-          <li><strong>Local-first</strong> &mdash; all mail stored on YOUR computer in SQLite, not the cloud.</li>
+          <li><strong>Local-first</strong> &mdash; all mail stored on YOUR computer, not the cloud.</li>
+          <li><strong>Encrypted at rest</strong> &mdash; the whole database is encrypted: every message, subject, sender, and attachment, plus your contacts, calendar, rules, lists, filter training, and security settings.</li>
           <li><strong>No cloud dependency</strong> &mdash; works fully offline with cached messages.</li>
           <li><strong>Delete from server</strong> &mdash; optional, removes mail from provider after fetch.</li>
-          <li><strong>Credential encryption</strong> &mdash; DPAPI on Windows, AES-256 on Mac/Linux.</li>
+          <li><strong>Credential encryption</strong> &mdash; your saved credentials and the database key are held in your device&rsquo;s secure keystore: DPAPI on Windows, Keychain on macOS/iOS, Keystore on Android, the system secret store on Linux.</li>
+          <li><strong>Diagnostic logs</strong> &mdash; never record full email addresses or subjects.</li>
           <li><strong>External images blocked by default</strong> &mdash; prevents IP tracking.</li>
           <li><strong>Tracking pixels stripped by default</strong> &mdash; prevents read receipt tracking.</li>
           <li><strong>Backups AES-256 encrypted</strong> &mdash; device-local backups under the app-managed Backup Master Key (recoverable elsewhere with your recovery passphrase); Portable Password Backups under a password you choose.</li>

@@ -128,6 +128,8 @@
 
       <p>The protection is the password and nothing else. There is no expiry and no remote revocation, because both would require a server I deliberately do not run. As with any email, the message&rsquo;s subject, To/From, and timing still travel in the clear.</p>
 
+      <p>One further limit, stated plainly because you should hear it from me rather than discover it: the ZIP format encrypts file <em>contents</em>, not the archive&rsquo;s structure. Anyone who intercepts the message can still see <strong>how many</strong> files are inside and their rough <strong>sizes</strong> and <strong>timestamps</strong> &mdash; though not their names, which are replaced with neutral placeholders, and not their contents. If that metadata alone would tell someone something you need kept private, this feature is not the right tool for that message.</p>
+
       <h2>Community Spam Intelligence (Opt-In Only)</h2>
 
       <p>If you choose to enable Community Spam Intelligence in Settings, GravesMail will periodically send anonymous spam filter data. This consists of word-frequency scores only &mdash; words paired with numbers indicating spam correlation. No email content, addresses, contacts, or identifying information is ever included.</p>

@@ -48,7 +48,7 @@
       <ol>
         <li><strong>Fetch from IMAP</strong> &mdash; Messages are downloaded from your provider&rsquo;s server over an encrypted connection.</li>
         <li><strong>Stage in DMZ</strong> &mdash; New messages land in a local staging area (SQLite) before you see them.</li>
-        <li><strong>6-layer security analysis</strong> &mdash; Every message and attachment runs through all six detection engines on your machine, including YARA malware scanning.</li>
+        <li><strong>7-layer security analysis</strong> &mdash; Every message and attachment runs through all seven Protection Layers on your machine, including YARA malware scanning.</li>
         <li><strong>Quick Rules filtering</strong> &mdash; Messages matching your personal Quick Rules are quarantined automatically.</li>
         <li><strong>Promote to Inbox, Spam, or Malware</strong> &mdash; Clean messages reach your Inbox. Spam goes to Spam. Malware-positive messages go to a separate Malware folder with attachments stripped and quarantined.</li>
         <li><strong>Delete from server</strong> (optional) &mdash; If you&rsquo;ve enabled &ldquo;Delete from server,&rdquo; the message is removed from your provider.</li>
@@ -64,42 +64,53 @@
 
       <p><strong>Phase 2 (Background Sync):</strong> The remaining messages download quietly in the background. A progress indicator in the status bar shows completion percentage and estimated time remaining. You can pause, resume, or stop at any time. Progress is saved if you close the app.</p>
 
-      <h2>The 6-Layer Security Engine</h2>
+      <h2>The Seven Protection Layers</h2>
 
-      <p>Every incoming message and its attachments pass through six independent detection engines. Each engine examines a different aspect of the message, and their weighted scores combine into a final verdict:</p>
+      <p>Every incoming message and its attachments pass through seven independent Protection Layers. Each layer looks for a different kind of problem and decides on its own. <strong>If any single layer raises an alarm, the message is treated as spam</strong> &mdash; there is no averaging and no combined score that has to be reached. One alarm is enough. This is the &ldquo;7-layer OR&rdquo; model.</p>
 
       <div class="features-grid">
         <div class="feature-card">
-          <div class="icon">&#x1F9E0;</div>
-          <h4>1. Bayesian Filter (30%)</h4>
-          <p>Statistical analysis trained on 1,645 spam samples with 82,000+ tokens. Learns from your corrections over time &mdash; every &ldquo;Mark as Junk&rdquo; or &ldquo;Not Spam&rdquo; makes it smarter.</p>
+          <div class="icon">&#x1F310;</div>
+          <h4>1. Domain Validation</h4>
+          <p>Does the sender&rsquo;s domain exist, and does it have real mail servers? Is its address ending (its TLD, such as .shop, .top, .click, or .xyz) one commonly abused by spam?</p>
         </div>
         <div class="feature-card">
-          <div class="icon">&#x1F310;</div>
-          <h4>2. Domain Validator (25%)</h4>
-          <p>DNS verification, MX record checks, and SPF validation. Catches messages from nonexistent or misconfigured domains.</p>
+          <div class="icon">&#x1F9E0;</div>
+          <h4>2. Bayesian Filter</h4>
+          <p>A learned judgment of how spam-like the message&rsquo;s words are. It ships pre-trained and then learns from you &mdash; every &ldquo;Mark as Spam&rdquo; or &ldquo;Mark as Not Spam&rdquo; makes it smarter.</p>
         </div>
         <div class="feature-card">
           <div class="icon">&#x1F512;</div>
-          <h4>3. Header Analyzer (15%)</h4>
-          <p>SPF/DKIM/DMARC authentication and header anomaly detection. Identifies forged sender addresses and suspicious routing.</p>
+          <h4>3. Header Authentication</h4>
+          <p>SPF, DKIM, and DMARC &mdash; the standard checks that prove a sender is who they claim to be.</p>
         </div>
         <div class="feature-card">
           <div class="icon">&#x1F50D;</div>
-          <h4>4. Heuristic Scorer (20%)</h4>
-          <p>18 pattern-matching rules that detect phishing URLs, urgency language, suspicious formatting, and other common attack tactics.</p>
+          <h4>4. Heuristic Scoring</h4>
+          <p>41 detectors covering content and header patterns: disguised words (H0ME, S4LE), advance-fee and inheritance-scam wording, forged headers, date anomalies, and the sender&rsquo;s country of origin.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">&#x1F4CA;</div>
+          <h4>5. Reputation</h4>
+          <p>Your safe and blocked lists, sender history, and cross-message campaign tracking &mdash; which catches a spammer who keeps changing sender domains but reuses the same originating server, payload host, or unsubscribe link.</p>
         </div>
         <div class="feature-card">
           <div class="icon">&#x1F6E1;</div>
-          <h4>5. OS Antivirus Integration (5%)</h4>
-          <p>On Windows, attachments are submitted to your installed antivirus (Windows Defender, Norton, Bitdefender, Kaspersky, and 30+ others) via the AMSI interface. On Linux, ClamAV is used if installed. Files are written to a temp location, scanned, then immediately deleted.</p>
+          <h4>6. Malware: System AV</h4>
+          <p>On Windows, attachments are submitted to your installed antivirus (Windows Defender, Norton, Bitdefender, Kaspersky, and others) via the AMSI interface. This layer is <strong>not available on macOS, Linux, or mobile</strong> &mdash; and on those platforms it says so plainly rather than reporting a clean result it never produced.</p>
         </div>
         <div class="feature-card">
           <div class="icon">&#x1F9EC;</div>
-          <h4>6. YARA Malware Scanner (5%)</h4>
-          <p>Scans attachment bytes against thousands of community malware signatures from the Neo23x0/signature-base repository. Detects trojans, ransomware, RATs, malicious Office macros, PDF exploits, and phishing documents. Runs on all platforms including mobile. Rules are updateable and ship embedded for offline use.</p>
+          <h4>7. Malware: YARA</h4>
+          <p>Scans attachment bytes and message bodies against thousands of community malware signatures from the Neo23x0/signature-base repository. Detects trojans, ransomware, RATs, malicious Office macros, PDF exploits, and phishing documents. Runs on every platform, including mobile, and ships embedded for offline use.</p>
         </div>
       </div>
+
+      <h3>Honest reporting &mdash; no false confidence</h3>
+
+      <p>Open any message&rsquo;s Properties to see a per-layer breakdown: what each layer scored, the threshold at which it alarms, and its state &mdash; <strong>Alarmed</strong>, <strong>Clean</strong>, or <strong>Not available</strong>. When a scanner could not run, GravesMail reports &ldquo;Not available.&rdquo; It is never shown as &ldquo;Clean.&rdquo; An antivirus that fails to start and then reports clean anyway is the worst kind of security tool, because you trust a verdict that was never actually rendered.</p>
+
+      <p>The Security Engine screen (Tools &rarr; Security Engine, or Settings &rarr; Security Engine on mobile) lets you tune each of the seven layers on its own with a 0&ndash;100% sensitivity slider &mdash; 0% turns a layer off, 100% is the most sensitive. There is no single global control; you tune the layers individually. The same screen shows live malware-scanner status, a country policy editor, and a read-only inventory of every detector and how strongly it counts.</p>
 
       <h2>External Image Blocking &amp; Tracking Pixel Stripping</h2>
 

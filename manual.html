@@ -238,34 +238,40 @@
       <div class="manual-section" id="spam">
         <h2>7. Spam &amp; Malware Protection</h2>
 
-        <p>GravesMail includes a 6-layer security engine that analyzes every message and its attachments before delivery:</p>
+        <p>GravesMail examines every message with seven independent <strong>Protection Layers</strong>. Each layer looks for a different kind of problem and decides on its own. If <strong>any single layer</strong> raises an alarm, the message is treated as spam &mdash; there is no averaging and no combined score that has to be reached. One alarm is enough (the &ldquo;7-layer OR&rdquo; model).</p>
 
         <ol>
-          <li><strong>Bayesian Filter (30%)</strong> &mdash; trained on 1,645 spam samples with 82,000+ tokens. Learns from your corrections over time.</li>
-          <li><strong>Domain Validator (25%)</strong> &mdash; DNS verification, MX records, SPF checks. Catches messages from nonexistent or spoofed domains.</li>
-          <li><strong>Header Analyzer (15%)</strong> &mdash; SPF/DKIM/DMARC authentication and header anomaly detection.</li>
-          <li><strong>Heuristic Scorer (20%)</strong> &mdash; 18 pattern-matching rules detecting phishing URLs, urgency language, and common attack tactics.</li>
-          <li><strong>OS Antivirus Integration (5%)</strong> &mdash; Windows: your installed antivirus via AMSI (Defender, Norton, Bitdefender, and 30+ others). Linux: ClamAV if installed. Files scanned via temp file, then deleted.</li>
-          <li><strong>YARA Malware Scanner (5%)</strong> &mdash; attachment scanning against community malware signatures. Detects trojans, ransomware, malicious macros, PDF exploits, and phishing documents. Cross-platform.</li>
+          <li><strong>Domain Validation</strong> &mdash; does the sender&rsquo;s domain exist and have real mail servers? Is its TLD (.shop, .top, .click, .xyz) one commonly abused by spam?</li>
+          <li><strong>Bayesian Filter</strong> &mdash; a learned judgment of how spam-like the message&rsquo;s words are. Ships pre-trained, then learns from what you teach it.</li>
+          <li><strong>Header Authentication</strong> &mdash; SPF, DKIM, and DMARC, the standard checks that prove a sender is who they claim to be.</li>
+          <li><strong>Heuristic Scoring</strong> &mdash; 41 detectors covering content and header patterns: disguised words (H0ME, S4LE), advance-fee and inheritance-scam wording, forged headers, date anomalies, and sender country of origin.</li>
+          <li><strong>Reputation</strong> &mdash; your safe and blocked lists, sender history, and cross-message campaign tracking that catches a spammer rotating sender domains while reusing the same originating server, payload host, or unsubscribe link.</li>
+          <li><strong>Malware: System AV</strong> &mdash; on Windows, your installed antivirus via AMSI (Defender, Norton, Bitdefender, Kaspersky, and others). <strong>Not available on macOS, Linux, or mobile</strong>, where it reports &ldquo;not available&rdquo; rather than a clean result it never produced.</li>
+          <li><strong>Malware: YARA</strong> &mdash; pattern rules scanning attachments and message bodies against community malware signatures. Detects trojans, ransomware, malicious macros, PDF exploits, and phishing documents. Every platform.</li>
         </ol>
 
-        <h3>Spam Filter Aggressiveness</h3>
-        <p>Settings &rarr; Spam Filter Aggressiveness: 1&ndash;10 scale.</p>
+        <h3>Tuning the Engine (Tools &rarr; Security Engine)</h3>
+        <p>The Security Engine screen gives each of the seven layers its own sensitivity slider, from 0% to 100%. <strong>0% turns a layer off; 100% is the most sensitive.</strong> You tune each layer on its own &mdash; there is no single global aggressiveness control. Changes take effect right away. The same screen shows:</p>
         <ul>
-          <li><strong>Level 1</strong> &mdash; Only obvious spam caught. Very few false positives.</li>
-          <li><strong>Level 5</strong> &mdash; Balanced. Recommended for most users.</li>
-          <li><strong>Level 10</strong> &mdash; Catches most suspicious mail. May occasionally flag legitimate newsletters or unfamiliar senders.</li>
+          <li><strong>Malware Scanner Status</strong> &mdash; the live state of both malware layers, including which antivirus product is active on Windows and how many YARA rules are loaded.</li>
+          <li><strong>Country Policy</strong> &mdash; mark countries Safe or Threat for the geolocation check. Both lists start empty, so ordinary international mail is never penalized until you choose a policy.</li>
+          <li><strong>Detector Inventory</strong> &mdash; a read-only list of each layer&rsquo;s detectors and how strongly each counts (Strong, Standard, or Weak).</li>
         </ul>
-        <p>The filter learns from corrections: Mark as Junk trains it to catch similar mail. Restoring a message from Spam teaches it to allow similar senders.</p>
+
+        <h3>Seeing Why a Message Was Sorted</h3>
+        <p>Open a message&rsquo;s Properties for a per-layer breakdown: each layer&rsquo;s raw score, the threshold at which it alarms, and its state &mdash; <strong>Alarmed</strong>, <strong>Clean</strong>, or <strong>Not available</strong>. Not available is never shown as Clean.</p>
 
         <h3>Reviewing Spam</h3>
-        <p>Spam &rarr; Review Spam to view quarantined messages.</p>
+        <p>Spam &rarr; Review Spam to view messages the engine sorted as spam.</p>
 
         <h3>Training the Filter</h3>
         <ul>
-          <li><strong>Mark as Junk</strong> &mdash; trains Bayesian filter as spam</li>
-          <li><strong>Mark as Not Spam</strong> &mdash; trains Bayesian filter as legitimate</li>
+          <li><strong>Mark as Spam</strong> &mdash; moves the message to Spam, teaches the filter, and adds the sender and their domain to your blocked list.</li>
+          <li><strong>Mark as Not Spam</strong> &mdash; rescues the message and teaches the filter that mail like this is wanted.</li>
+          <li><strong>Block Sender</strong> &mdash; adds a sender to your blocked list without moving the message or teaching the filter.</li>
         </ul>
+        <p><strong>Changing your mind is safe.</strong> If you mark a message Spam and later mark it Not Spam (or the reverse), GravesMail undoes the earlier lesson and applies the new one. Going back and forth settles on your final choice; it never piles up or drifts the filter&rsquo;s accuracy.</p>
+        <p>Spam training is per device. GravesMail does not yet sync between your devices, so each device learns on its own &mdash; as does your blocked-sender list.</p>
 
         <h3>Safe Senders and Blocked Senders</h3>
         <p>Managed in Settings &rarr; Advanced Settings.</p>
@@ -279,7 +285,7 @@
         <p>Every attachment is scanned automatically during ingest using two engines:</p>
         <ul>
           <li><strong>YARA Scanner</strong> &mdash; matches attachment bytes against community signatures covering malware families, ransomware, RATs, Office macro exploits, PDF exploits, and phishing documents. Works on all platforms.</li>
-          <li><strong>OS Antivirus</strong> &mdash; on Windows, submits each attachment to your installed antivirus via AMSI (Defender, Norton, Bitdefender, Kaspersky, Malwarebytes, CrowdStrike, and others are auto-detected). On Linux, ClamAV is used if installed.</li>
+          <li><strong>System AV</strong> &mdash; on Windows, submits each attachment to your installed antivirus via AMSI (Defender, Norton, Bitdefender, Kaspersky, Malwarebytes, CrowdStrike, and others are auto-detected). Not available on macOS, Linux, or mobile, where YARA does the scanning and the AV layer honestly reports &ldquo;not available.&rdquo;</li>
         </ul>
 
         <h3>What Happens on Detection</h3>

@@ -160,8 +160,49 @@
         <h3>Signatures</h3>
         <p>Your default signature is automatically appended. Edit via Settings &rarr; Edit Signature.</p>
 
+        <h3>Encrypted Email (OpenPGP)</h3>
+        <p>GravesMail supports <strong>OpenPGP</strong>, the open standard for end-to-end encrypted and signed email. You can exchange private mail with anyone who uses PGP on any mail system &mdash; Proton Mail, Thunderbird, gpg, and others &mdash; not just other GravesMail users.</p>
+
+        <h4>Setting up your key</h4>
+        <p>Open the PGP Key Manager (<strong>Tools &rarr; PGP Key Manager</strong> on desktop; <strong>Settings &rarr; PGP Keys</strong> on mobile) and choose <strong>Generate my key</strong>. Enter your name and email and pick an algorithm: <strong>Ed25519 / Curve25519</strong> is recommended, and <strong>RSA-4096</strong> is offered for maximum compatibility with older PGP software.</p>
+
+        <div class="callout">
+          <div class="callout-label">Back up your key &mdash; this is critical</div>
+          <p>If you lose your secret key, every message ever encrypted to it becomes <strong>permanently unrecoverable</strong> &mdash; no one, including me, can recover it. After generating, use <strong>Back up secret key</strong> to save a password-protected backup (a <strong>.gmpgpbak</strong> file) somewhere safe, and remember the password.</p>
+        </div>
+
+        <p><strong>Restoring a key.</strong> To bring a backed-up key onto a new or reinstalled device, use <strong>Restore secret key</strong> (right next to Back up). Pick your .gmpgpbak file and enter its password; GravesMail imports the key and confirms <em>which</em> key was restored by showing its identity and fingerprint. If the key is already present it simply refreshes it, with no duplicate. A wrong password gives a clear &ldquo;incorrect password&rdquo; message, and a file that isn&rsquo;t a GravesMail backup is reported plainly &mdash; restore never fails silently.</p>
+
+        <h4>Sharing and verifying keys</h4>
+        <ul>
+          <li><strong>Export public key</strong> shares your public key so others can encrypt to you.</li>
+          <li><strong>Import key (.asc)</strong> adds a contact&rsquo;s public key.</li>
+          <li>After importing, the manager shows the key&rsquo;s <strong>fingerprint</strong>. Confirm it with the contact out-of-band &mdash; a call, or in person &mdash; then choose <strong>Mark verified</strong>. A verified key shows a green badge; an unverified key still works but stays flagged.</li>
+        </ul>
+        <p><strong>Keys are identified by fingerprint, not email.</strong> It is normal to have more than one key for the same address (an older and a newer one, or different types). Every action in the Key Manager &mdash; export, back up, use-for-signing, delete &mdash; acts on the key you have <em>selected</em>, so always select the exact key first. If you have several of your own keys, select one and choose <strong>Use for signing</strong> to set which signs your outgoing mail.</p>
+
+        <h4>Linking a key to a contact</h4>
+        <p>Open a contact and use its <strong>PGP keys</strong> section to <strong>Link</strong> a key from your keyring to that person, <strong>Unlink</strong> it (which only removes the link &mdash; the key stays in your Key Manager), or <strong>Verify</strong> it. Linking lets encryption to that contact just work without hunting through the Key Manager. A contact can have more than one key, and encryption goes to all of them. <strong>Linking a key does not turn encryption on</strong> &mdash; you still choose it per message.</p>
+
+        <h4>Sending</h4>
+        <p>In Compose, set the <strong>Security</strong> control to <strong>Sign</strong>, <strong>Encrypt</strong>, or <strong>Sign + Encrypt</strong> (recommended for private mail). It defaults to off, so ordinary mail is unaffected. If a recipient has a linked key on their contact, GravesMail uses it automatically once you choose to encrypt.</p>
+        <p><strong>If you choose to encrypt but a recipient has no usable key, GravesMail stops and asks.</strong> It will never quietly send your message unencrypted. You can cancel, or explicitly choose &ldquo;Send UNENCRYPTED&rdquo; &mdash; a deliberate second step that names the at-risk recipients. There is no path through the app where choosing encryption silently produces a plaintext send.</p>
+        <p>When you send encrypted mail, GravesMail also encrypts it to <strong>your own key</strong>, so the copy in your Sent folder (and anything you move to Archive) stays readable by you. This is always on.</p>
+
+        <h4>Reading</h4>
+        <p>Encrypted mail is decrypted automatically and shows a closed padlock 🔒 and an <strong>Encrypted</strong> badge, in the message list and on the message itself, for mail received <em>and</em> sent. Unencrypted mail shows no icon, so the list stays uncluttered &mdash; the padlock&rsquo;s presence means encrypted, its absence means not. Signed mail shows its signature status: verified key, unverified key, or, shown loudly, an invalid signature. A message encrypted to a key you don&rsquo;t have on that device shows an explicit notice rather than a blank body.</p>
+
+        <h4>Deleting a key</h4>
+        <p>Select a key and choose <strong>Delete key</strong>. Removing a public-only (contact) key just forgets it &mdash; you can re-import it later. Removing one of <strong>your own secret keys</strong> is irreversible and makes any mail encrypted to it permanently unrecoverable, so GravesMail shows an escalated warning and asks you to confirm. Make sure you have a backup first.</p>
+
+        <h4>What PGP does and does not protect</h4>
+        <p>PGP encrypts the message <strong>body and attachments</strong>. It does <strong>not</strong> hide the <strong>subject line</strong>, the <strong>To/From/Cc</strong>, or <strong>when</strong> a message was sent &mdash; those travel in the clear. That is the same limit every PGP/MIME system has, including Proton.</p>
+        <p>PGP protects your mail <strong>in flight</strong>, from interception and from your mail provider. It is <strong>not</strong> an anti-forensics tool: once decrypted, mail is cached in GravesMail&rsquo;s local encrypted database so you can search and read it offline.</p>
+        <p>GravesMail does not do automatic keyserver or WKD lookup and has no web-of-trust &mdash; you import and verify keys yourself. Inline clearsigned messages are shown as readable text but their signatures are <strong>not</strong> verified; GravesMail displays them rather than claiming a signature it hasn&rsquo;t checked.</p>
+        <p><strong>Interoperability.</strong> GravesMail&rsquo;s PGP is verified in both directions against <strong>GnuPG</strong>, the reference OpenPGP implementation, for both Ed25519 and RSA-4096 keys. Proton Mail and Thunderbird are standard OpenPGP clients and should work, but that has not been formally recorded yet, so it isn&rsquo;t claimed here.</p>
+
         <h3>Password-Protected Email (No Key Needed)</h3>
-        <p>To send something private to someone who has no encryption keys and no special software, tick <strong>Password-protect (no key needed)</strong> in Compose. Your message and all its attachments are sealed inside a real, standard <strong>AES-256 encrypted ZIP</strong> that the recipient opens with free, ordinary software on any platform &mdash; no GravesMail, no account, and no keys needed on their end.</p>
+        <p>Use this when your recipient does <em>not</em> use PGP &mdash; which is most people. Tick <strong>Password-protect (no key needed)</strong> in Compose. Your message and all its attachments are sealed inside a real, standard <strong>AES-256 encrypted ZIP</strong> that the recipient opens with free, ordinary software on any platform &mdash; no GravesMail, no account, and no keys needed on their end.</p>
 
         <h4>Sending one</h4>
         <ul>

@@ -335,11 +335,27 @@
         </ul>
         <p><strong>Keep it safe &mdash; it cannot be recovered for you.</strong> Your recovery passphrase is the only way to recover device-local backups on a new or reset device. There is no reset link and no back door, by design. If you forget it and lose the device, those backups cannot be opened.</p>
 
-        <h3>Manual Backups</h3>
-        <ul>
-          <li>File &rarr; Backup Database: choose Full or Differential, password-protected</li>
-          <li>Backup file (.gravesmail-backup) can be stored on external drives or cloud storage</li>
-        </ul>
+        <h3>Portable Password Backup &mdash; the one you make yourself</h3>
+        <p>This is the backup to keep if you might lose, replace, or migrate your device. Choose <strong>File &rarr; Portable Password Backup&hellip;</strong> (on mobile, <strong>Guard &rarr; Backup &rarr; Portable Password Backup</strong>), pick a password, and GravesMail writes a single password-sealed <strong>.gravesmail-backup</strong> file containing your entire profile &mdash; restorable on <em>any</em> device. Copy it somewhere safe off the device.</p>
+
+        <h4>Choosing the password</h4>
+        <p>Because this one file can rebuild your whole mailbox on a stranger&rsquo;s machine, GravesMail asks for a genuinely strong password: at least <strong>12 characters</strong>, including an uppercase letter, a lowercase letter, at least <strong>two digits</strong>, and at least <strong>two special characters</strong>. You will not have to guess at it &mdash; the dialog ticks each requirement off live as you type, and you enter the password twice. The Create button stays disabled until every requirement is met and both entries match, so a typo or a weak choice can never lock you out of your own backup. Long passphrases are welcome; there is no restrictive maximum. The password protects the file with PBKDF2-SHA256 key stretching at 600,000 iterations, recorded inside the file so future versions can still open today&rsquo;s backups.</p>
+        <p><strong>Without the password the file cannot be opened &mdash; not by me, not by anyone.</strong> There is no recovery path, which is the point. Store it somewhere you trust.</p>
+
+        <h4>What travels with it</h4>
+        <p>By default a Portable Password Backup also carries your existing backup history, so moving to a new device brings everything with it and nothing is left behind. This is opt-out: you can exclude the accumulated backups so only the current app data travels, or split the backup into <strong>two files</strong> &mdash; one for the app and its data, one for the backup history &mdash; and move them separately. Both files are labelled clearly.</p>
+
+        <h4>Restoring</h4>
+        <p>You can restore a Portable Password Backup on a fresh device from the first-run screen, <em>before</em> setting up any account. Restore first verifies the backup is complete and intact before touching anything you already have &mdash; a truncated or damaged file is refused, with your current data left untouched &mdash; then reports what came back, dataset by dataset. Restart GravesMail once when it finishes.</p>
+        <p><strong>Restoring replaces everything</strong> currently in GravesMail on that device. On a new install there is nothing to lose; if you have already been using GravesMail there, its current data is overwritten.</p>
+
+        <div class="callout">
+          <div class="callout-label">One backup feature, not two</div>
+          <p>Portable Password Backup replaces two older, overlapping options &mdash; a device-local <em>manual</em> backup and a separate <em>Backup for Migration</em>. They had converged into the same thing, so they are now one feature. As a result, old <strong>.gravesmail-migration</strong> files and pre-existing device-local <em>manual</em> backups are <strong>not</strong> restorable by this version &mdash; make a fresh Portable Password Backup. Your automatic daily backups are unaffected and still restore normally.</p>
+        </div>
+
+        <h3>No Size Limit</h3>
+        <p>GravesMail backs up and restores mailboxes of any size &mdash; tens or hundreds of gigabytes and beyond. Backup and restore stream from disk to disk, so a very large mailbox never has to fit in memory and there is no 2&nbsp;GB ceiling. Large archives are stored without compression to keep them fast, so the file may be a little larger by design.</p>
 
         <h3>Backup Manager (Tools &rarr; Backup Manager)</h3>
         <ul>
@@ -359,11 +375,16 @@
         </ul>
 
         <h3>Backup Settings</h3>
+        <p>Sensible defaults are already set; the Backup Manager exposes the controls if you want them.</p>
         <ul>
-          <li>Full backup frequency: Weekly, Every 2 Weeks, Monthly</li>
-          <li>Retention: configurable for full, differential, and pre-operation backups</li>
-          <li>Deletion log retention: 30&ndash;365 days</li>
+          <li><strong>Schedule mode</strong> &mdash; choose <strong>Interval</strong> or <strong>Weekly</strong>. The two are mutually exclusive; only the one you pick is followed.</li>
+          <li><strong>Interval mode</strong> &mdash; automatic backups Off, Daily, Weekly, or a custom interval in hours, plus &ldquo;full backup every N days&rdquo; (the backups in between are differentials).</li>
+          <li><strong>Weekly mode</strong> &mdash; a seven-day grid, Monday to Sunday. Set each day to None, Full, or Differential in any combination. A Differential day with no earlier full to build on is automatically promoted to a full. If you switch to Weekly but leave every day set to None, GravesMail quietly falls back to your Interval schedule rather than leaving you with no backups &mdash; and keeps your grid exactly as you set it.</li>
+          <li><strong>Retention</strong> &mdash; how many full, differential, and pre-operation snapshot backups to keep. The minimum is 1; retention will never delete your only copy of something.</li>
+          <li><strong>Full Backup Now</strong> / <strong>Differential Backup Now</strong> &mdash; take an immediate device-local backup into GravesMail&rsquo;s own history on this device. These are <em>not</em> the Portable Password Backup, which lives on the File menu.</li>
+          <li><strong>Deletion log retention</strong> &mdash; 30&ndash;365 days.</li>
         </ul>
+        <p>Changes take effect immediately and persist across restarts.</p>
       </div>
 
       <!-- 9. CALENDAR -->

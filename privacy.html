@@ -120,6 +120,18 @@
 
       <p>Tracking pixels (invisible 1&times;1 images used solely for read-receipt tracking) are detected and stripped separately. These are independent controls &mdash; you can load images without loading trackers.</p>
 
+      <h2>End-to-End Encryption (OpenPGP)</h2>
+
+      <p>GravesMail supports standard OpenPGP for end-to-end encrypted and signed mail. Everything happens on your device: keys are generated locally, your secret key never leaves your machine, and encryption and decryption are performed by the app. There is no key escrow, no keyserver upload, and no service of mine in the path &mdash; I have no copy of your keys and cannot read your encrypted mail.</p>
+
+      <p><strong>What PGP hides:</strong> the message body and attachments.</p>
+
+      <p><strong>What PGP does not hide:</strong> the <strong>subject line</strong>, the <strong>To/From/Cc</strong>, and <strong>when</strong> the message was sent. Those travel in the clear and remain visible to mail infrastructure, including your provider. This is a limit of PGP/MIME itself, shared by every client that implements it, Proton included &mdash; not something GravesMail can fix, and not something I&rsquo;ll imply otherwise.</p>
+
+      <p>PGP protects mail <strong>in flight</strong> &mdash; from interception and from your mail provider. It is not an anti-forensics tool. Once a message is decrypted, it is cached in GravesMail&rsquo;s local encrypted database so you can search and read it offline, which means it is protected on disk by your device encryption rather than by PGP.</p>
+
+      <p>If you lose your secret key, mail encrypted to it is permanently unrecoverable. I cannot recover it for you &mdash; there is no escrow copy, which is the same design choice that means no one else can read your mail either.</p>
+
       <h2>Password-Protected Email</h2>
 
       <p>When you send a message with <strong>Password-protect (no key needed)</strong>, the message body and every attachment are encrypted on your device into a standard AES-256 ZIP before the message leaves. The sealing happens locally &mdash; nothing is uploaded to me or to any service to perform it, and there is no server in the path.</p>

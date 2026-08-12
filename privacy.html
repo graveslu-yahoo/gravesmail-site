@@ -54,7 +54,7 @@
         <li><strong>{accountHash}.db</strong> &mdash; Per-account SQLite database containing your downloaded email, folders, and attachments</li>
         <li><strong>cache/</strong> &mdash; Message header and body cache with 24-hour TTL for fast display</li>
         <li><strong>spam_data/</strong> &mdash; Bayesian training data, safe sender list, blocked sender list</li>
-        <li><strong>backups/</strong> &mdash; Encrypted backup files (.gravesmail-backup), AES-256 with machine-specific key</li>
+        <li><strong>backups/</strong> &mdash; Encrypted backup files (.gravesmail-backup), AES-256 under the app-managed Backup Master Key</li>
         <li><strong>backup_catalog.db</strong> &mdash; Metadata index of all backups for instant browsing (never transmitted)</li>
         <li><strong>deletion_log.db</strong> &mdash; Deleted message content for recovery (configurable retention: 30&ndash;365 days)</li>
         <li><strong>quickrules.db</strong> &mdash; Quick Rules definitions and quarantined messages</li>
@@ -84,16 +84,16 @@
 
       <h2>Backup Privacy</h2>
 
-      <p>GravesMail creates automatic encrypted backups of your email database:</p>
+      <p>GravesMail creates encrypted backups of your whole local profile:</p>
 
       <ul>
-        <li><strong>Automatic backups</strong> (weekly full, daily differential) are encrypted with a machine-specific key derived from your operating system credentials. They can only be decrypted on the same machine by the same user.</li>
-        <li><strong>Manual backup exports</strong> (File &rarr; Backup Database) are encrypted with a password you choose. If you lose this password, the backup cannot be recovered.</li>
+        <li><strong>Scheduled and manual device-local backups</strong> (full and differential) are AES-256 encrypted under a <strong>Backup Master Key</strong> that GravesMail generates and manages. The key is never stored in the clear &mdash; only wrapped copies are kept, wrapped both under your device&rsquo;s secure keystore (so routine backups need no password) and under a <strong>recovery passphrase</strong> you set once. The recovery passphrase is required, not optional, and it is what lets these backups be restored on a new or replaced device. I never receive the key or the passphrase, and I cannot recover either one for you.</li>
+        <li><strong>Portable Password Backup</strong> (File &rarr; Portable Password Backup&hellip;) is sealed with a password you choose, using PBKDF2-SHA256 key stretching at 600,000 iterations. If you lose that password, the backup cannot be opened &mdash; by design, and by no one, including me.</li>
         <li><strong>Backup metadata catalogs</strong> are stored locally and never transmitted. They allow instant browsing of backup contents without decrypting the full backup.</li>
         <li><strong>Pre-operation snapshots</strong> are created before destructive operations (Quick Rules scans, purges, clear trash) as a safety net.</li>
       </ul>
 
-      <p>All backup files stay on your computer unless you manually copy them to external storage.</p>
+      <p>All backup files stay on your computer unless you copy them elsewhere yourself. A Portable Password Backup holds your entire profile &mdash; including saved account passwords and the keys that unlock your mail &mdash; protected only by the password you chose, so keep the file somewhere safe.</p>
 
       <h2>Quick Rules Privacy</h2>
 

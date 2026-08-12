@@ -139,15 +139,35 @@
 
       <h2>Automatic Encrypted Backups</h2>
 
-      <p>GravesMail automatically creates encrypted backups of your email database:</p>
+      <p>GravesMail automatically creates encrypted backups of your <strong>whole profile</strong> &mdash; not just your mail database, but your contacts, calendar, rules, safe and blocked lists, tuned thresholds, sender reputation, trained spam filter, PGP keyring, and saved account credentials. (Files that ship with the app and are replaced on update, such as the geographic lookup table and the baseline spam model, are deliberately left out.)</p>
 
       <ul>
-        <li><strong>Full backups</strong> &mdash; weekly, complete database copy, AES-256 encrypted</li>
-        <li><strong>Differential backups</strong> &mdash; daily, only changes since last full backup</li>
+        <li><strong>Full backups</strong> &mdash; a complete profile copy, AES-256 encrypted</li>
+        <li><strong>Differential backups</strong> &mdash; only what changed since the last full backup; restoring one automatically walks back through the chain</li>
         <li><strong>Pre-operation snapshots</strong> &mdash; before any destructive operation (Quick Rules scan, purge, clear trash)</li>
       </ul>
 
-      <p>All backups are encrypted with a machine-specific key and run silently in the background. The Backup Manager lets you browse any backup&rsquo;s contents, search across all backups, compare with your current database, and selectively recover individual messages.</p>
+      <p>You control the schedule from the Backup Manager: either an <strong>interval</strong> (off, daily, weekly, or a custom number of hours, with a full backup every N days) or a <strong>weekly grid</strong> where each day is set to None, Full, or Differential. Retention limits for full, differential, and snapshot backups are configurable and never prune your only copy.</p>
+
+      <h3>How These Backups Are Encrypted</h3>
+
+      <p>GravesMail&rsquo;s own scheduled and manual backups are sealed with a <strong>Backup Master Key</strong> that the app generates and manages for you. The key itself is never written to disk in the clear &mdash; only wrapped copies are stored, and it is wrapped two ways:</p>
+
+      <ul>
+        <li><strong>Your device&rsquo;s secure keystore</strong> &mdash; so routine backups happen silently, with no password prompt, ever.</li>
+        <li><strong>Your recovery passphrase</strong> &mdash; which unwraps the same key on <em>any</em> machine, with no keystore involved.</li>
+      </ul>
+
+      <p>That second wrap is what makes these backups <strong>device-independent</strong>. Earlier versions tied automatic backups to one physical machine; they are no longer restorable only where they were made.</p>
+
+      <p>You set the recovery passphrase <strong>once</strong>, the first time you make a backup. It is <strong>required, not skippable</strong> &mdash; a backup will not complete until one is set, precisely so you can never end up holding backups you cannot recover. After that, backups run with no further prompt. You can change it at any time from the Backup Manager, and changing it keeps every existing backup restorable.</p>
+
+      <div class="callout">
+        <div class="callout-label">Keep your recovery passphrase safe</div>
+        <p>It is the only way to recover these backups on a new or reset device, and <strong>I cannot recover it for you</strong> &mdash; by design. There is no reset link and no support back door, because either one would be a way in for someone who isn&rsquo;t you. If you forget it and lose the device, those backups cannot be opened. Store it somewhere safe.</p>
+      </div>
+
+      <p>The Backup Manager lets you browse any backup&rsquo;s contents, search across all backups, compare with your current database, and selectively recover individual messages. A restore verifies the backup is complete and intact <em>before</em> touching your current profile &mdash; a truncated or damaged backup is refused with your existing data left untouched &mdash; and when it finishes it shows you what came back, dataset by dataset.</p>
 
       <h2>Deletion Log &amp; Recovery</h2>
 

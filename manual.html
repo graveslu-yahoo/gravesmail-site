@@ -313,16 +313,27 @@
       <div class="manual-section" id="backup">
         <h2>8. Backup &amp; Recovery</h2>
 
-        <p>GravesMail automatically protects your email with encrypted backups.</p>
+        <p>GravesMail automatically protects your <strong>whole profile</strong> with encrypted backups &mdash; not just your mail, but your contacts, calendar, rules, safe and blocked lists, tuned thresholds, sender reputation, trained spam filter, PGP keyring, and saved account credentials. Files that ship with the app and are replaced when you update (the geographic lookup table, the baseline spam model) are deliberately excluded.</p>
 
         <h3>Automatic Backups</h3>
         <ul>
-          <li>Full backup created weekly (complete database copy, AES-256 encrypted)</li>
-          <li>Differential backup created daily (only changes since last full, lightweight)</li>
+          <li>Full backups (a complete profile copy) and lightweight differentials (only what changed since the last full) &mdash; restoring a differential automatically walks back through the chain to the last full</li>
           <li>Pre-operation snapshot before any destructive operation (Quick Rules scan, purge, delete rule, clear trash)</li>
-          <li>All backups encrypted with machine-specific key</li>
-          <li>Runs silently in background after app loads &mdash; never blocks your work</li>
+          <li>All backups AES-256 encrypted under a key GravesMail manages for you &mdash; no password needed day to day</li>
+          <li>Runs silently in the background after the app loads &mdash; never blocks your work</li>
+          <li>Forgiving of gaps: after a holiday or a laptop left closed for weeks, GravesMail takes <em>one</em> backup if one is due. It never tries to catch up with a flood of backups, and a long absence is never an error.</li>
         </ul>
+
+        <h3>Recovery Passphrase (required &mdash; set once)</h3>
+        <p>Automatic and manual device-local backups are sealed with a <strong>Backup Master Key</strong> the app manages. That key is stored only in wrapped form, and it is wrapped two ways: under your device&rsquo;s secure keystore (so routine backups never prompt you) and under a <strong>recovery passphrase</strong> you choose (which opens the same backups on any machine, with no keystore involved). This is what makes these backups device-independent &mdash; earlier versions could only restore them on the machine that made them.</p>
+        <ul>
+          <li>GravesMail asks for the passphrase the <strong>first time you make a backup</strong>. It is <strong>required, not skippable</strong> &mdash; the backup will not complete until one is set, so you can never end up with backups you cannot recover.</li>
+          <li>Because it is set at your first backup, a brand-new install has no automatic backups until you make that first one. Scheduled backups are quietly skipped until then rather than failing with an error.</li>
+          <li>After it is set, backups run with no further prompt.</li>
+          <li>It meets the same requirements as the backup password below, entered twice with the same live checklist.</li>
+          <li>You can change it at any time from the Backup Manager. Changing it keeps all existing backups restorable.</li>
+        </ul>
+        <p><strong>Keep it safe &mdash; it cannot be recovered for you.</strong> Your recovery passphrase is the only way to recover device-local backups on a new or reset device. There is no reset link and no back door, by design. If you forget it and lose the device, those backups cannot be opened.</p>
 
         <h3>Manual Backups</h3>
         <ul>
@@ -430,7 +441,7 @@
           <li><strong>Credential encryption</strong> &mdash; DPAPI on Windows, AES-256 on Mac/Linux.</li>
           <li><strong>External images blocked by default</strong> &mdash; prevents IP tracking.</li>
           <li><strong>Tracking pixels stripped by default</strong> &mdash; prevents read receipt tracking.</li>
-          <li><strong>Backups AES-256 encrypted</strong> with machine key or user password.</li>
+          <li><strong>Backups AES-256 encrypted</strong> &mdash; device-local backups under the app-managed Backup Master Key (recoverable elsewhere with your recovery passphrase); Portable Password Backups under a password you choose.</li>
           <li><strong>Obfuscated code and encrypted training data</strong> in release builds.</li>
           <li><strong>Opt-in telemetry only</strong> &mdash; Community Spam Intelligence is <strong>off by default</strong>. If enabled, only anonymized spam filter token scores are shared &mdash; never email content, addresses, or personal information. A random contributor ID with no connection to your identity is generated on opt-in. You can preview exactly what would be sent before enabling it. Toggle in Settings &rarr; Community &rarr; Share Spam Intelligence.</li>
         </ul>

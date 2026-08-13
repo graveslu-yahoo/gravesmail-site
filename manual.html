@@ -298,12 +298,17 @@
         <p>The <strong>Quick Rule Review</strong> window shows each rule&rsquo;s caught messages and matched senders. The <strong>Filtered</strong> tab shows everything caught across <em>all</em> rules within a rolling time window &mdash; set it to 1, 6, 24 (the default), 48, 72, or 96 hours with the &ldquo;Show filtered mail from the last&rdquo; dropdown; your choice is remembered per device.</p>
         <ul>
           <li>Right-click rule button &rarr; Review to see that one rule&rsquo;s catches</li>
-          <li>Full message properties (General, Headers, Spam Analysis, Attachments, URLs, Tracking Pixels, Body)</li>
+          <li>Full message properties (Safe Preview, General, Headers, Spam Analysis, Attachments, URLs, Tracking Pixels, Body)</li>
           <li>Restore individual messages or all of them to their original folders (Restore is shown in green &mdash; recovering mail is a safe action)</li>
           <li>Delete individual messages or purge everything a rule caught</li>
           <li>Matched Senders tab: view, add, edit, remove match values</li>
           <li>The Rules, Filtered, and Spam review lists each have a search box that filters what&rsquo;s shown as you type. Click a column header to sort; your sort choice is remembered per device.</li>
         </ul>
+        <h3>Safe Preview &mdash; Read and Answer a Caught Message Without Restoring It</h3>
+        <p>Open any caught message&rsquo;s Properties &mdash; from the Filtered list or from Review Spam Trap &mdash; and the first tab is <strong>Safe Preview</strong>. It shows the message as it would look in your reading pane, but rendered safely: scripts and active content are neutered, tracking pixels are always blocked, and remote images load only if the sender is trusted. That lets you read a caught message and decide what it is without putting it back in your Inbox.</p>
+        <p>Safe Preview also has <strong>Reply</strong>, <strong>Reply All</strong>, and <strong>Forward</strong> buttons. You do not have to restore a caught message just to answer it &mdash; these open the normal compose window, pre-filled exactly as a reply or forward from the Inbox would be, with attachments available and the same encryption handling (you are never sent in plaintext to a contact you have set to always encrypt). The message stays where it is; your reply is a normal outgoing message.</p>
+        <p>Zoom applies to the preview too (the &minus; / % / + controls at the bottom, or pinch-to-zoom on mobile). Safe Preview is a clean reading surface &mdash; the spam-reason breakdown lives on the <strong>Spam Analysis</strong> tab, not here. On mobile, tapping any caught message opens this Properties view directly with Safe Preview showing first.</p>
+
         <p class="note"><em>Naming note:</em> the cross-rule review previously called <strong>Today&rsquo;s Catches</strong> (and the short <strong>Catches</strong> button) is now simply <strong>Filtered</strong>. Same list &mdash; only the name changed.</p>
 
         <h3>Managing Rules</h3>

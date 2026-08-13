@@ -165,7 +165,9 @@
 
       <p>GravesMail&rsquo;s PGP is verified <strong>bidirectionally against GnuPG</strong> &mdash; the reference OpenPGP implementation &mdash; using GravesMail-generated keys, for both Ed25519 and RSA-4096: GravesMail encrypts and gpg decrypts, gpg encrypts and GravesMail decrypts, and signatures verify in both directions. That is an automated test suite, not a one-off manual check.</p>
 
-      <p>Interoperability with Proton Mail and Thunderbird specifically has not been formally recorded yet, so I won&rsquo;t claim it here. Both are standard OpenPGP clients and the GnuPG proof is the meaningful one, but I&rsquo;d rather tell you what has actually been verified than what is merely very likely to work.</p>
+      <p><strong>Proton Mail is confirmed too</strong> &mdash; by hand rather than by automated test. Real encrypted mail has been sent and read in both directions between GravesMail and a live Proton account. That testing is also what found and fixed three real defects along the way: Proton&rsquo;s strict key validation rejecting GravesMail&rsquo;s Ed25519 keys, a key-expiry bug, and attachments being silently dropped from encrypted mail on decryption. All three are fixed, and Proton interop works in both directions.</p>
+
+      <p>Thunderbird I have <strong>not</strong> tested for PGP specifically, so I won&rsquo;t claim it here. It is a standard OpenPGP client and it should work, but &ldquo;should&rdquo; is not the same as verified, and I&rsquo;d rather tell you what has actually been checked.</p>
 
       <h2>Password-Protected Email (No Key Needed)</h2>
 
